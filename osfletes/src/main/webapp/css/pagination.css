@@ -1,0 +1,19 @@
+*.pagination{
+	display:table;
+	margin-left:-100px;
+	left:50%;
+	width:200px;
+	height:50px;
+	text-align:center;
+	vertical-align:middle;
+	font-size: medium;
+	font-family: sans-serif;
+	font-weight: bolder;
+}
+
+*.pagination > div{
+	position: absolute;
+	padding:3px;
+	text-align:center;
+	vertical-align:middle;
+}

@@ -1,0 +1,22 @@
+div,span{
+	border:3px;
+	}
+*.download-table{display:table;}
+*.download-row{display: table-row;}
+*.download-cell{
+	display:table-cell;
+	background-color:oliveaqua;
+	font-family: sans-serif;
+	font-size: small;
+	padding: 5px;
+	}
+*.error{
+	font-family: monospace;
+	font-weight: bold;
+	color: red;
+	}
+	
+div,span > input[type="button"] {
+	font-family: sans-serif;
+	font-size: small;
+}

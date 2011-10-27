@@ -15,10 +15,18 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
     
-	<bean id="persistenceManagerFactory"
-    class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean">
-<property name="persistenceManagerFactoryName" value="transactions-optional" />
-</bean>
+	<bean id="persistenceManagerFactory"  class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean" >
+	 <property name="jdoProperties">
+    	<props>
+    		<prop  key="javax.jdo.PersistenceManagerFactoryClass">org.datanucleus.store.appengine.jdo.DatastoreJDOPersistenceManagerFactory</prop>
+       		<prop key="javax.jdo.option.ConnectionURL">appengine</prop>
+			<prop key="javax.jdo.option.NontransactionalRead">true</prop>
+			<prop key="javax.jdo.option.NontransactionalWrite">true</prop>
+			<prop key="javax.jdo.option.RetainValues">true</prop>
+			<prop key="datanucleus.appengine.autoCreateDatastoreTxns">true</prop>
+		</props>
+	</property>
+	</bean>
 	
 	<bean id="persistenceManagerFactoryProxy" class="org.springframework.orm.jdo.TransactionAwarePersistenceManagerFactoryProxy">
 <property name="targetPersistenceManagerFactory" ref="persistenceManagerFactory" />

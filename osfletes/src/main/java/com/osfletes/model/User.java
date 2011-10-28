@@ -1,10 +1,12 @@
 package com.osfletes.model;
 
 import siena.Column;
+import siena.Filter;
 import siena.Generator;
 import siena.Id;
 import siena.Model;
 import siena.NotNull;
+import siena.Query;
 import siena.Table;
 
 @Table("usuarios")
@@ -31,5 +33,8 @@ public class User extends Model{
     @Column("password")
     @NotNull	
 	public String password;
+    
+    @Filter("user")
+    public Query<Anuncio> anuncios;
 	
 }

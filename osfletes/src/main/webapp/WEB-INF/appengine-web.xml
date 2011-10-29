@@ -6,6 +6,7 @@
 	<!-- Configure java.util.logging -->
 	<system-properties>
 		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+	
 	</system-properties>
 	
 	<static-files>
@@ -14,5 +15,7 @@
 		<include path="/imagenes/*.jpg"/>
 		<include path="/imagenes/*.png"/>
 	</static-files>
+	
+	<sessions-enabled>true</sessions-enabled>
 	
 </appengine-web-app>

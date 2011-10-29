@@ -15,7 +15,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
     
-	<bean id="persistenceManagerFactory"  class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean" >
+<!--  bean id="persistenceManagerFactory"  class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean" >
 	 <property name="jdoProperties">
     	<props>
     		<prop  key="javax.jdo.PersistenceManagerFactoryClass">org.datanucleus.store.appengine.jdo.DatastoreJDOPersistenceManagerFactory</prop>
@@ -37,6 +37,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 <bean id="transactionManager" class="org.springframework.orm.jdo.JdoTransactionManager">
 <property name="persistenceManagerFactory" ref="persistenceManagerFactoryProxy" />
-</bean>
+</bean>-->
 	
 </beans>

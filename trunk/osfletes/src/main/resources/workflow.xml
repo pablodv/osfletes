@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="workflow-factory" class="com.licitaciones.WorkflowLicitacionFactoryImpl" factory-method="createFactory">
+		<property name="workflows">
+			<map>
+				<entry key="workflow-anuncio" value-ref="workflow-anuncio"/>
+			</map>
+		</property>
+	</bean>
+	<bean id="workflow-anuncio" class="com.licitaciones.Workflow">
+		<constructor-arg name="estados">
+			<list>
+				<ref local="creado"/>
+				<ref local="publicado"/>
+				<ref local="publicacion-cerrada"/>
+				<ref local="cancelada"/>
+				<ref local="proveedor-seleccionado"/>
+				<ref local="cerrado-sin-adj"/>
+				<ref local="eliminado"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="transactions">
+			<list>
+				<ref local="crear"/>
+				<ref local="publicar"/>
+				<ref local="cerrar"/>
+				<ref local="cancelar"/>
+				<ref local="seleccionar"/>
+				<ref local="terminar-vencido"/>
+				<ref local="eliminar"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="creado" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="1"/>
+		<constructor-arg name="transactionsVector" value="66"/>
+		<constructor-arg name="name" value="CREADO"/>
+	</bean>
+	
+	<bean id="publicado" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="transactionsVector" value="28"/>
+		<constructor-arg name="name" value="PUBLICADO"/>
+	</bean>
+	
+	<bean id="publicacion-cerrada" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="4"/>
+		<constructor-arg name="transactionsVector" value="48"/>
+		<constructor-arg name="name" value="PUBLICACION CERRADA"/>
+	</bean>
+	
+	<bean id="cancelada" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="8"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="CANCELADO"/>
+	</bean>
+	
+	<bean id="proveedor-seleccionado" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="16"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="PROVEEDOR SELECCIONADO"/>
+	</bean>
+	
+	<bean id="cerrado-sin-adj" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="32"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="CERRADO SIN ADJUDICACION"/>
+	</bean>
+	
+	<bean id="eliminado" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="64"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="eliminado"/>
+	</bean>
+	
+	<bean id="crear" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="0"/>
+		<constructor-arg name="name" value="crear"/>
+	</bean>
+	
+	<bean id="publicar" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="name" value="Publicar"/>
+	</bean>
+	
+	<bean id="cerrar" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="4"/>
+		<constructor-arg name="name" value="Cerrar"/>
+	</bean>
+	
+	<bean id="seleccionar" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="16"/>
+		<constructor-arg name="name" value="Seleccionar"/>
+	</bean>
+	
+	<bean id="cancelar" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="8"/>
+		<constructor-arg name="name" value="Cancelar"/>
+	</bean>
+	
+	<bean id="terminar-vencido" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="32"/>
+		<constructor-arg name="name" value="Terminar Vencido"/>
+	</bean>
+	
+	<bean id="eliminar" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="64"/>
+		<constructor-arg name="name" value="Eliminar"/>
+	</bean>
+	
+
+</beans>

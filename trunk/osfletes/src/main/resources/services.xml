@@ -20,5 +20,5 @@
 
 <!--    <bean id="serviceLocator" class="com.wiwl.service.ServiceLocator" factory-method="getInstance"/> -->
    <context:component-scan  base-package="dao"/>
-   <context:component-scan base-package="service"/>
+   <context:component-scan  base-package="com.osfletes.service"/>
 </beans>

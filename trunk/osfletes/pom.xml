@@ -367,14 +367,28 @@
             <artifactId>datanucleus-jpa</artifactId>
             <version>1.1.5</version>
         </dependency>
+         <dependency>
+            <groupId>com.siena</groupId>
+            <artifactId>siena</artifactId>
+            <version>1.0.0-b6</version>
+        </dependency>
+        
 </dependencies>
 
-<pluginRepositories>
-        
+	<pluginRepositories>
         <pluginRepository>
             <id>gae-plugin</id>
             <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
         </pluginRepository>
-        
     </pluginRepositories>
+    <repositories>
+    	<repository>
+    		<id>third-party</id>
+    		<url>http://gastonserver.dyndns.org:2112/archiva/repository/third-party</url>
+    	</repository>
+    	<repository>
+    		<id>components</id>
+    		<url>http://gastonserver.dyndns.org:2112/archiva/repository/internal</url>
+    	</repository>
+    </repositories>
 </project>

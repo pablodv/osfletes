@@ -41,43 +41,43 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	</bean>
 	
 	<bean id="creado" class="com.licitaciones.EstadoImpl">
-		<constructor-arg name="identityVector" value="1"/>
+		<constructor-arg name="identityVector" value="0"/>
 		<constructor-arg name="transactionsVector" value="66"/>
 		<constructor-arg name="name" value="CREADO"/>
 	</bean>
 	
 	<bean id="publicado" class="com.licitaciones.EstadoImpl">
-		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="identityVector" value="1"/>
 		<constructor-arg name="transactionsVector" value="28"/>
 		<constructor-arg name="name" value="PUBLICADO"/>
 	</bean>
 	
 	<bean id="publicacion-cerrada" class="com.licitaciones.EstadoImpl">
-		<constructor-arg name="identityVector" value="4"/>
+		<constructor-arg name="identityVector" value="2"/>
 		<constructor-arg name="transactionsVector" value="48"/>
 		<constructor-arg name="name" value="PUBLICACION CERRADA"/>
 	</bean>
 	
 	<bean id="cancelada" class="com.licitaciones.EstadoImpl">
-		<constructor-arg name="identityVector" value="8"/>
+		<constructor-arg name="identityVector" value="3"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="CANCELADO"/>
 	</bean>
 	
 	<bean id="proveedor-seleccionado" class="com.licitaciones.EstadoImpl">
-		<constructor-arg name="identityVector" value="16"/>
+		<constructor-arg name="identityVector" value="4"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="PROVEEDOR SELECCIONADO"/>
 	</bean>
 	
 	<bean id="cerrado-sin-adj" class="com.licitaciones.EstadoImpl">
-		<constructor-arg name="identityVector" value="32"/>
+		<constructor-arg name="identityVector" value="5"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="CERRADO SIN ADJUDICACION"/>
 	</bean>
 	
 	<bean id="eliminado" class="com.licitaciones.EstadoImpl">
-		<constructor-arg name="identityVector" value="64"/>
+		<constructor-arg name="identityVector" value="6"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="eliminado"/>
 	</bean>
@@ -88,32 +88,32 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	</bean>
 	
 	<bean id="publicar" class="com.licitaciones.TransactionImpl">
-		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="identityVector" value="1"/>
 		<constructor-arg name="name" value="Publicar"/>
 	</bean>
 	
 	<bean id="cerrar" class="com.licitaciones.TransactionImpl">
-		<constructor-arg name="identityVector" value="4"/>
+		<constructor-arg name="identityVector" value="2"/>
 		<constructor-arg name="name" value="Cerrar"/>
 	</bean>
 	
 	<bean id="seleccionar" class="com.licitaciones.TransactionImpl">
-		<constructor-arg name="identityVector" value="16"/>
+		<constructor-arg name="identityVector" value="3"/>
 		<constructor-arg name="name" value="Seleccionar"/>
 	</bean>
 	
 	<bean id="cancelar" class="com.licitaciones.TransactionImpl">
-		<constructor-arg name="identityVector" value="8"/>
+		<constructor-arg name="identityVector" value="4"/>
 		<constructor-arg name="name" value="Cancelar"/>
 	</bean>
 	
 	<bean id="terminar-vencido" class="com.licitaciones.TransactionImpl">
-		<constructor-arg name="identityVector" value="32"/>
+		<constructor-arg name="identityVector" value="5"/>
 		<constructor-arg name="name" value="Terminar Vencido"/>
 	</bean>
 	
 	<bean id="eliminar" class="com.licitaciones.TransactionImpl">
-		<constructor-arg name="identityVector" value="64"/>
+		<constructor-arg name="identityVector" value="6"/>
 		<constructor-arg name="name" value="Eliminar"/>
 	</bean>
 	

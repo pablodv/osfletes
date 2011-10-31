@@ -40,7 +40,8 @@ public class EstadoImpl implements Estado {
 		if(resultState == 0){
 			throw new InvalidTransactionException();
 		}
-		return resultState;
+		return   Integer.numberOfTrailingZeros(resultState);
+		
 	}
 
 	@Override

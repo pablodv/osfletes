@@ -30,8 +30,7 @@ public class Workflow {
 	}
 	
 	public Estado getStateById(int id) {
-		int estadoIndex = estados.indexOf(new EstadoImpl(id,0,null));
-		return estados.get(estadoIndex);
+		return estados.get(id);
 	}
 	
 	public List<Transaction> getEstadoTransactions(int id){
@@ -42,7 +41,7 @@ public class Workflow {
 		
 		for(int i=0;i< bitCount;i++){
 			int maxBit = Integer.highestOneBit(transactionVector);
-			transactions.add( this.getTransactionById(maxBit));
+			transactions.add(this.getTransactionById(Integer.numberOfTrailingZeros(maxBit)));
 			transactionVector ^= maxBit;
 		}
 		
@@ -50,8 +49,7 @@ public class Workflow {
 	}
 	
 	private Transaction getTransactionById(int id){
-		int transactionIndex = transactions.indexOf(new TransactionImpl(id,null));
-		return transactions.get(transactionIndex);
+		return transactions.get(id);
 	}
 	
 	public Estado executeAction(int stateId, int transactionId) throws InvalidTransactionException{

@@ -12,7 +12,7 @@ import com.osfletes.model.Anuncio;
 import com.osfletes.service.AnuncioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(locations="/AnuncioServiceTest-context.xml")
 public class AnuncioServiceTest {
 	
 	@Autowired

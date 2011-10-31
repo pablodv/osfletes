@@ -56,6 +56,14 @@
         </resources>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/main/test</testSourceDirectory>
+        <testResources>
+        	<testResource>
+        		<directory>
+        			src/main/test-resources
+        		</directory>
+        		<includes><include>*.xml</include></includes>
+        	</testResource>
+        </testResources>
 		<plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

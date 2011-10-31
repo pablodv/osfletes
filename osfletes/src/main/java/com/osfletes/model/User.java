@@ -9,7 +9,6 @@ import siena.NotNull;
 import siena.Query;
 import siena.Table;
 
-@Table("usuarios")
 public class User extends Model{
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;

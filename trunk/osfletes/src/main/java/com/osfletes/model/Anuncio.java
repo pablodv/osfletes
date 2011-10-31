@@ -34,12 +34,12 @@ public class Anuncio extends Model{
     @Column("hora_desde")
 	public Integer horaDesde;
     
-    @Column("fecha_hasta")
+    @Column("hora_hasta")
 	public Integer horaHasta;
     
     //@Index("user_index")
-    @Column("user")
-    public User user;
+    //@Column("user")
+    //public User user;
 	
     static Query<Anuncio> all() {
         return Model.all(Anuncio.class);

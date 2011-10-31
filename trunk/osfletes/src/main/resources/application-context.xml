@@ -39,4 +39,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 <property name="persistenceManagerFactory" ref="persistenceManagerFactoryProxy" />
 </bean>-->
 	
+    <bean id="anuncioService" 
+          class="com.osfletes.service.AnuncioService"/>	
 </beans>

@@ -15,6 +15,5 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
 	
-    <bean id="anuncioService" 
-          class="com.osfletes.service.AnuncioService"/>	
+    <context:component-scan  base-package="com.osfletes.service"/>	
 </beans>

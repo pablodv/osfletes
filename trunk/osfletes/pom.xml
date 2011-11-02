@@ -55,11 +55,11 @@
             </resource>
         </resources>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/main/test</testSourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <testResources>
         	<testResource>
         		<directory>
-        			src/main/test-resources
+        			src/test/resources
         		</directory>
         		<includes><include>*.xml</include></includes>
         	</testResource>
@@ -386,6 +386,13 @@
             <artifactId>siena</artifactId>
             <version>1.0.0-b6</version>
         </dependency>
+        
+        <!-- Borrar esto que es para generar el schema con siena-->
+        <dependency>
+        	<groupId>org.apache.ddlutils</groupId>
+			<artifactId>ddlutils</artifactId>
+			<version>1.0</version>
+		</dependency>
         
 </dependencies>
 

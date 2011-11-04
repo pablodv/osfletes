@@ -4,12 +4,16 @@ import siena.Column;
 import siena.Filter;
 import siena.Generator;
 import siena.Id;
+import siena.Index;
 import siena.Model;
 import siena.NotNull;
 import siena.Query;
 import siena.Table;
 
-public class User extends Model{
+@Table("usuarios2")
+public class User2 extends Model{
+	
+	@Index(value = { "usuario2_index" })
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
 	

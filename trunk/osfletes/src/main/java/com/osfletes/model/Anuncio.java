@@ -3,8 +3,10 @@ package com.osfletes.model;
 import java.util.Date;
 
 import siena.Column;
+import siena.DateTime;
 import siena.Generator;
 import siena.Id;
+import siena.Index;
 import siena.Model;
 import siena.NotNull;
 import siena.Query;
@@ -12,21 +14,27 @@ import siena.Table;
 
 @Table("anuncios")
 public class Anuncio extends Model{
+	
+	@Index(value = { "anuncio_index" })
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
 	
+	@DateTime
     @Column("fecha_desde")
     @NotNull	
 	public Date fechaDesde;
 
+	@DateTime
     @Column("fecha_hasta")
     @NotNull	
 	public Date fechaHasta;
     
+	@DateTime
     @Column("fecha_creacion")
     @NotNull	
 	public Date fechaCreacion;
     
+	@DateTime
     @Column("fecha_cierre")
     @NotNull	
 	public Date fechaCierre;
@@ -37,9 +45,10 @@ public class Anuncio extends Model{
     @Column("hora_hasta")
 	public Integer horaHasta;
     
-    //@Index("user_index")
-    //@Column("user")
-    //public User user;
+    @Index("user_index")
+    @Column("user_id")
+    public User2 user;
+    
 	
     static Query<Anuncio> all() {
         return Model.all(Anuncio.class);

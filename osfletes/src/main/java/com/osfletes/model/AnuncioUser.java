@@ -12,7 +12,7 @@ public class AnuncioUser {
     @NotNull
     @Column("user_id")
     @Index("user_index")
-    public User user;
+    public User2 user;
     
     @NotNull
     @Column("anuncio_id")

@@ -10,8 +10,10 @@ import org.apache.ddlutils.model.Database;
 
 import siena.jdbc.ddl.DdlGenerator;
 
+import com.osfletes.model.Anuncio;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
+import com.osfletes.model.User2;
 
 public class GenerateSchema {
 
@@ -19,9 +21,9 @@ public class GenerateSchema {
 		DdlGenerator generator = new DdlGenerator();
 
 		// add all your classes
-		//generator.addTable(Anuncio.class);
+		generator.addTable(Anuncio.class);
 		generator.addTable(Direccion.class);
-		//generator.addTable(User.class);
+		generator.addTable(User2.class);
 		generator.addTable(AnuncioMultipleLocalizado.class);
 		
 
@@ -30,7 +32,7 @@ public class GenerateSchema {
 
 		Platform platform = PlatformFactory.createNewPlatformInstance("mysql");
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/osfletes", "root", "root");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://gastonserver.dyndns.org:3306/osfletes", "osfletes", "osfletes");
 
 		// if you want to print the SQL that will be executed
 		String sql = platform.getAlterTablesSql(connection, database);
@@ -41,4 +43,6 @@ public class GenerateSchema {
 
 		connection.close();	
 	}
+	
+	
 }

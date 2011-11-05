@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import com.osfletes.model.Anuncio;
 import com.osfletes.model.User2;
@@ -21,6 +22,7 @@ public class AnuncioServiceTest {
 	
 	@Test
 	public void testSaveAnuncio(){
+		
 		Anuncio anuncio = new Anuncio();
 		anuncio.fechaCierre = new Date();
 		anuncio.fechaCreacion = new Date();
@@ -28,6 +30,12 @@ public class AnuncioServiceTest {
 		anuncio.fechaHasta = new Date();
 		anuncio.horaDesde = 1;
 		anuncio.horaDesde = 3;
+		try {
+			
+			anuncioService.save(anuncio);
+		} catch (Exception e) {
+			junit.framework.Assert.assertTrue(false);
+		}
 		
 		User2 u2 = new User2();
 		u2.nombre = "matias";
@@ -39,8 +47,8 @@ public class AnuncioServiceTest {
 		
 		anuncio.user = u2;
 		
-		anuncio.insert();
-		//anuncioService.save(anuncio);
+		
+		anuncioService.rollbackSave(anuncio);
 	}
 	
 	@Test
@@ -54,9 +62,13 @@ public class AnuncioServiceTest {
 		anuncio.horaDesde = 1;
 		anuncio.horaDesde = 3;
 		
-		anuncioService.rollbackSave(anuncio);
 		
-		junit.framework.Assert.assertTrue(anuncioService.list().size() == size);
+			anuncioService.rollbackSave(anuncio);
+			
+		
+			junit.framework.Assert.assertTrue(anuncioService.list().size() == size);
+		
+		
 	}
 	
 }

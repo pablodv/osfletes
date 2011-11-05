@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import siena.Model;
-import siena.jdbc.ThreadedConnectionManager;
 
 import com.osfletes.model.Anuncio;
 
@@ -14,14 +13,18 @@ public class AnuncioService implements IService<Anuncio>{
 
 	@Override
 	public void save(Anuncio obj) {
-		obj.save();
+		obj.insert();
+		obj.getPersistenceManager().beginTransaction();
+			obj.getPersistenceManager().save(obj);
+		obj.getPersistenceManager().commitTransaction();
 	}
 	
 	public void rollbackSave(Anuncio obj) {
+		obj.insert();
 		obj.getPersistenceManager().beginTransaction();
-		
 		obj.getPersistenceManager().save(obj);
 		obj.getPersistenceManager().rollbackTransaction();
+		
 	}
 
 	@Override

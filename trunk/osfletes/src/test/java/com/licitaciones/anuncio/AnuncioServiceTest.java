@@ -7,18 +7,19 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.Assert;
 
 import com.osfletes.model.Anuncio;
 import com.osfletes.model.User2;
-import com.osfletes.service.AnuncioService;
+import com.osfletes.service.IAnuncioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/AnuncioServiceTest-context.xml")
+@ContextConfiguration(locations={"/AnuncioServiceTest-context.xml"})
 public class AnuncioServiceTest {
 	
+	
 	@Autowired
-	protected AnuncioService anuncioService = null;
+	protected IAnuncioService anuncioService = null;
+	
 	
 	@Test
 	public void testSaveAnuncio(){
@@ -48,7 +49,7 @@ public class AnuncioServiceTest {
 		anuncio.user = u2;
 		
 		
-		anuncioService.rollbackSave(anuncio);
+		anuncioService.save(anuncio);
 	}
 	
 	@Test
@@ -62,8 +63,12 @@ public class AnuncioServiceTest {
 		anuncio.horaDesde = 1;
 		anuncio.horaDesde = 3;
 		
-		
-			anuncioService.rollbackSave(anuncio);
+		try {
+			anuncioService.saveRollback(anuncio);
+			junit.framework.Assert.assertTrue(false);
+		} catch (Exception e) {
+			junit.framework.Assert.assertTrue(true);
+		}
 			
 		
 			junit.framework.Assert.assertTrue(anuncioService.list().size() == size);

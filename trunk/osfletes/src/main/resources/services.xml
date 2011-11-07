@@ -18,7 +18,7 @@
                           http://www.springframework.org/schema/context/spring-context.xsd
                           ">
 
-<!--    <bean id="serviceLocator" class="com.wiwl.service.ServiceLocator" factory-method="getInstance"/> -->
+    <bean id="serviceLocator" class="com.osfletes.service.ServiceLocator" factory-method="getInstance"/> 
    <context:component-scan  base-package="dao"/>
    <context:component-scan  base-package="com.osfletes.service"/>
 </beans>

@@ -1,10 +1,13 @@
 package com.osfletes.model;
 
-import siena.core.Many;
-import siena.core.Owned;
+import siena.Filter;
+import siena.Query;
 
 public class AnuncioMultipleLocalizado extends Anuncio{
 
-	@Owned
-	public Many<Direccion> listaDirecciones;
+	//@Owned
+	//public Many<Direccion> listaDirecciones;
+	
+	@Filter("owner")
+	public Query<Direccion> listaDirecciones;
 }

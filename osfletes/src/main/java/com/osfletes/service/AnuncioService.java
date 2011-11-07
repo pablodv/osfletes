@@ -1,42 +1,26 @@
 package com.osfletes.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
-
-import siena.Model;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.osfletes.model.Anuncio;
 
-@Service(value="AnuncioService")
-public class AnuncioService implements IService<Anuncio>{
+@Service(value="anuncioService")
+public class AnuncioService extends GenericSienaServiceImpl<Anuncio> implements IAnuncioService{
 
 	@Override
-	public void save(Anuncio obj) {
-		obj.insert();
-		obj.getPersistenceManager().beginTransaction();
-			obj.getPersistenceManager().save(obj);
-		obj.getPersistenceManager().commitTransaction();
+	protected Class<Anuncio> getRepresentedClass() {
+		return Anuncio.class;
 	}
-	
-	public void rollbackSave(Anuncio obj) {
+
+	@Override
+	@Transactional
+	public void saveRollback(Anuncio obj) {
 		obj.insert();
-		obj.getPersistenceManager().beginTransaction();
 		obj.getPersistenceManager().save(obj);
-		obj.getPersistenceManager().rollbackTransaction();
-		
+		throw new RuntimeException();
 	}
 
-	@Override
-	public List<Anuncio> list() {
-
-		return Model.all(Anuncio.class).fetch();
-	}
-
-	@Override
-	public void delete(Anuncio obj) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

@@ -2,28 +2,46 @@ package com.osfletes.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import siena.Model;
+import siena.PersistenceManager;
+import siena.PersistenceManagerFactory;
+import siena.Query;
 
 public abstract class GenericSienaServiceImpl<T extends Model> implements IService<T>{
 
-	 protected Class<T> representedClass;
-	
 	@Override
+	@Transactional
 	public void save(T obj) {
-		obj.getClass();		
+		obj.insert();
+		obj.getPersistenceManager().save(obj);
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<T> list() {
-		return null;
-		}
+		return Model.all(getRepresentedClass()).fetch();
+	}
 
 	@Override
+	@Transactional
 	public void delete(T obj) {
-		// TODO Auto-generated method stub
-		
+		obj.getPersistenceManager().delete(obj);
 	}
 	
-	protected abstract T getRepresentedClass();
+	@Override
+	public T getById(Object id) {
+		PersistenceManager pm= getPersistenceManager();
+		Query<T> q = pm.createQuery(getRepresentedClass());
+		q.filter("id", id);
+		return q.get();
+	}
+	
+	protected PersistenceManager getPersistenceManager(){
+		return PersistenceManagerFactory.getPersistenceManager(getRepresentedClass());
+	}
+
+	protected abstract Class<T> getRepresentedClass();
 
 }

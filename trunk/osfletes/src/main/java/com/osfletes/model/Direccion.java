@@ -18,15 +18,16 @@ public class Direccion extends Model{
 
     @Column("direccion")
     @NotNull	
-	private String direccion;
+	public String direccion;
     
     @Column("longitud")
     @NotNull	
-	private BigDecimal longitud;
+	public BigDecimal longitud;
     
     @Column("latitud")
     @NotNull	
-	private BigDecimal latitud;
+	public BigDecimal latitud;
     
+    @Column("owner")
 	public AnuncioMultipleLocalizado anuncio;
 }

@@ -1,4 +1,4 @@
-package com.osfletes.security;
+package com.osfletes.model;
 
 
 
@@ -10,20 +10,41 @@ import javax.persistence.Entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity(name="PROP_USERS")
-public class User implements UserDetails {
+import siena.Column;
+import siena.Filter;
+import siena.Generator;
+import siena.Id;
+import siena.Index;
+import siena.Model;
+import siena.NotNull;
+import siena.Query;
+import siena.Table;
 
+
+@Table("users")
+@Entity(name="PROP_USERS")
+public class User extends Model implements UserDetails {
+
+	private static final long serialVersionUID = 4079664434226649300L;
 	
-	private String password;
+	@Index(value = { "user_index" })
+	@Id(Generator.AUTO_INCREMENT)
+	public Long id;
+
+	@Column("password")
+    @NotNull	
+	public String password;
 	
-	private String username;
+    @Column("username")
+    @NotNull	
+	public String username;
 	
-	private Collection<GrantedAuthority> authorities;
-	
-	@Override
-	public Collection<GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
+    //@OneToMany
+	//public Collection<GrantedAuthority> authorities;
+    
+	@Filter("owner")
+	public Query<Direccion> authorities;
+    
 
 	@Override
 	public String getPassword() {
@@ -65,8 +86,11 @@ public class User implements UserDetails {
 		this.username = username;
 	}
 
-	public void setAuthorities(Collection<GrantedAuthority> authorities) {
-		this.authorities = authorities;
+
+	@Override
+	public Collection<GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

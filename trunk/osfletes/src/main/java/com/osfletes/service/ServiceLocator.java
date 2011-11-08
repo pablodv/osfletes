@@ -6,7 +6,7 @@ public class ServiceLocator {
 
   private static ServiceLocator INSTANCE;
 
-  private AnuncioMultipleLocalizadoService service;
+  private IAnuncioService service;
   
   // constructor privado
   private ServiceLocator() {/*Singleton*/}
@@ -19,12 +19,12 @@ public class ServiceLocator {
   }
 
   
-  public static AnuncioMultipleLocalizadoService getAnuncioService() {
+  public static IAnuncioService getAnuncioService() {
     return INSTANCE.service;
   }
 
   @Autowired
-  public void setAnuncioService(AnuncioMultipleLocalizadoService service) {
+  public void setAnuncioService(IAnuncioService service) {
     this.service = service;
   }
 }

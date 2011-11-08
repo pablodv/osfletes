@@ -12,6 +12,8 @@ import siena.jdbc.ddl.DdlGenerator;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
+import com.osfletes.model.Role;
+import com.osfletes.model.User;
 import com.osfletes.model.User2;
 
 public class GenerateSchema {
@@ -21,8 +23,10 @@ public class GenerateSchema {
 
 		// add all your classes
 		//generator.addTable(Anuncio.class);
+		generator.addTable(Role.class);
+		generator.addTable(User.class);
 		generator.addTable(Direccion.class);
-		generator.addTable(User2.class);
+		//generator.addTable(User2.class);
 		generator.addTable(AnuncioMultipleLocalizado.class);
 		
 

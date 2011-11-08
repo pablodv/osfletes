@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.osfletes.model.Anuncio;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
+import com.osfletes.model.Role;
+import com.osfletes.model.User;
 import com.osfletes.model.User2;
 import com.osfletes.service.IAnuncioService;
 
@@ -24,7 +25,6 @@ public class AnuncioServiceTest {
 	protected IAnuncioService anuncioService = null;
 	
 	
-	@Test
 	public void testSaveAnuncio(){
 		
 		AnuncioMultipleLocalizado anuncio = new AnuncioMultipleLocalizado();
@@ -49,7 +49,7 @@ public class AnuncioServiceTest {
 		u2.password = "paass";
 		u2.insert();
 		
-		anuncio.user = u2;
+		//anuncio.user = u2;
 		
 		
 		anuncioService.save(anuncio);
@@ -66,6 +66,7 @@ public class AnuncioServiceTest {
 		anuncio.horaDesde = 1;
 		anuncio.horaDesde = 3;
 		
+		/*
 		User2 u2 = new User2();
 		u2.nombre = "matias";
 		u2.apellido = "kochman";
@@ -73,7 +74,17 @@ public class AnuncioServiceTest {
 		u2.username = "mat";
 		u2.password = "paass";
 		u2.insert();
+		*/
 		
+		User u = new User();
+		u.username = "a";
+		u.password = "b";
+		u.insert();
+		
+		Role role1 = new Role();
+		role1.role = "EL_puto_jefe";
+		role1.user = u;
+		role1.insert();
 		
 		Direccion d1= new Direccion();
 		d1.direccion = "sarasa";
@@ -84,7 +95,7 @@ public class AnuncioServiceTest {
 		
 		//anuncio.listaDirecciones.asList().add(d1);
 		
-		anuncio.user = u2;
+		anuncio.user = u;
 		
 		anuncio.save();
 		

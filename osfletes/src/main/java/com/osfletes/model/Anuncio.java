@@ -47,7 +47,7 @@ public class Anuncio extends Model{
     
     @Index("user_index")
     @Column("user_id")
-    public User2 user;
+    public User user;
     
 	
     static Query<Anuncio> all() {

@@ -12,7 +12,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 		<s:intercept-url pattern="/Login" access="isAnonymous()"/>
 		<s:form-login login-page="/Login" authentication-failure-url="/Login?login_error=true" />
 		<s:intercept-url pattern="/static/**" access="isAuthenticated()" />
-		<s:intercept-url pattern="/**" access="isAuthenticated()" />
+		<s:intercept-url pattern="/**" access="isAnonymous()" />
 		<s:intercept-url pattern="/index" access="isAuthenticated()" />
 		<s:intercept-url pattern="/Constants" access="isAuthenticated()" />
 	</s:http>

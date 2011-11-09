@@ -112,7 +112,9 @@
                 <artifactId>maven-gae-plugin</artifactId>
                 <version>0.8.4</version>
                 <configuration>
-                    <port>81</port>
+                    <port>29080</port>
+                    <debugPort>29081</debugPort>
+                    <monitorPort>29090</monitorPort>
                     <serverId>appengine.google.com</serverId>
 					<sdkDir>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}/</sdkDir>
 					<appDir>${basedir}/target/${project.artifactId}-${project.version}</appDir>

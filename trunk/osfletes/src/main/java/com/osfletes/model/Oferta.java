@@ -6,7 +6,6 @@ import java.util.Date;
 import siena.Id;
 import siena.Model;
 
-import com.osfletes.security.User;
 
 public class Oferta extends Model{
 

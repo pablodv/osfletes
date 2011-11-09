@@ -10,4 +10,14 @@ public class AnuncioMultipleLocalizado extends Anuncio{
 	
 	@Filter("owner")
 	public Query<Direccion> listaDirecciones;
+
+	public Query<Direccion> getListaDirecciones() {
+		return listaDirecciones;
+	}
+
+	public void setListaDirecciones(Query<Direccion> listaDirecciones) {
+		this.listaDirecciones = listaDirecciones;
+	}
+	
+	
 }

@@ -3,10 +3,9 @@ package com.osfletes.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.osfletes.model.Anuncio;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 
-@Service(value="anuncioService")
+@Service(value="anuncioMultipleLocalizadoService")
 public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<AnuncioMultipleLocalizado> implements IAnuncioService{
 
 	@Override

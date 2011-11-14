@@ -1,21 +1,19 @@
 package com.osfletes.web.controller;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osfletes.model.Oferta;
 import com.osfletes.service.IOfertaService;
+import com.osfletes.web.dto.OfertaDTO;
 
 @Controller
 public class ProviderController {
@@ -51,4 +49,16 @@ public class ProviderController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/getOfertas")
+	public @ResponseBody List<OfertaDTO> getOfertas(){
+		List<Oferta> ofertas = ofertaService.list();
+		List<OfertaDTO> ofertasDto = new ArrayList<OfertaDTO>(ofertas.size());
+		for(Oferta oferta : ofertas){
+			OfertaDTO dto = new OfertaDTO();
+			dto.setValorOferta(oferta.getValorOferta());
+			dto.setId(oferta.getId());
+			ofertasDto.add(dto);
+		}
+		return ofertasDto;
+	  }
 }

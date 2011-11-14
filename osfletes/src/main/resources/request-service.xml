@@ -18,7 +18,7 @@
 
   <context:component-scan base-package="com.osfletes.web.controller"/>
   <s:global-method-security secured-annotations="enabled" />
-  <mvc:view-controller path="/Constants" view-name="/Constants" />
+  <mvc:view-controller path="/Constants" view-name="Constants" />
   <mvc:view-controller path="/Login" view-name="login" />
   <mvc:view-controller path="/index" view-name="index" />
   <mvc:view-controller path="/**" view-name="index" />

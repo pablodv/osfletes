@@ -11,7 +11,7 @@
 	
 	<static-files>
 		<include path="/css/*.css"/>  
-		<include path="/scripts/*.js"/>
+		<include path="/js/*.js"/>
 		<include path="/imagenes/*.jpg"/>
 		<include path="/imagenes/*.png"/>
 	</static-files>

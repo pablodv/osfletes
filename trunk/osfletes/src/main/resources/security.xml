@@ -11,10 +11,10 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 		<s:intercept-url pattern="/fletes" access="isAnonymous()"/>
 		<s:intercept-url pattern="/Login" access="isAnonymous()"/>
 		<s:form-login login-page="/Login" authentication-failure-url="/Login?login_error=true" />
-		<s:intercept-url pattern="/static/**" access="isAuthenticated()" />
+		<!-- Cambiar a isAuthenticated cuando tengamos el login -->
 		<s:intercept-url pattern="/**" access="isAnonymous()" />
+		<s:intercept-url pattern="/Constants" access="isAnonymous()" />
 		<s:intercept-url pattern="/index" access="isAuthenticated()" />
-		<s:intercept-url pattern="/Constants" access="isAuthenticated()" />
 	</s:http>
 	<s:authentication-manager >
 		<s:authentication-provider user-service-ref="userService"/>

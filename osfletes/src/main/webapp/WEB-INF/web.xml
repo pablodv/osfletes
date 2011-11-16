@@ -45,7 +45,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:/application-context.xml,classpath*:/services.xml,classpath*:/security.xml</param-value>
+		<param-value>
+		classpath*:/application-context.xml,
+		classpath*:/application-context-mappers.xml,
+		classpath*:/services.xml,
+		classpath*:/security.xml
+		</param-value>
 	</context-param>
 	
 	<!-- Spring servlet dispatcher	-->

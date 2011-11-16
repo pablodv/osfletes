@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.osfletes.mapper.AnuncioMultipleMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.IAnuncioService;
+import com.osfletes.web.dto.AnuncioMultipleDTO;
 
 @Controller
 public class AnuncioController {
@@ -21,6 +23,14 @@ public class AnuncioController {
 	@Autowired
 	IAnuncioService anuncioService;
 	
+	@Autowired
+	private AnuncioMultipleMapper anuncioMultipleMapper;
+	
+
+	public void setAnuncioMultipleMapper(AnuncioMultipleMapper anuncioMultipleMapper) {
+		this.anuncioMultipleMapper = anuncioMultipleMapper;
+	}
+
 	public void setAnuncioService(IAnuncioService anuncioService) {
 		this.anuncioService = anuncioService;
 	}
@@ -41,9 +51,11 @@ public class AnuncioController {
 
     
 	@RequestMapping(value="/guardarAnuncio")
-	public String guardarAnuncio(@ModelAttribute("anuncio") AnuncioMultipleLocalizado anuncio){
+	public String guardarAnuncio(@ModelAttribute("anuncio") AnuncioMultipleDTO anuncioDTO){
 		//AnuncioMultipleLocalizado anuncio = new AnuncioMultipleLocalizado();
-		anuncio.fechaDesde = anuncio.fechaDesde;
+		anuncioDTO.fechaDesde = anuncioDTO.fechaDesde;
+		
+		AnuncioMultipleLocalizado anuncio = anuncioMultipleMapper.toModel(anuncioDTO);
 		anuncioService.save(anuncio);
 		return "redirect:listarAnuncios"; 
 	}
@@ -51,8 +63,11 @@ public class AnuncioController {
 	@RequestMapping(value="/listarAnuncios")
 	public ModelAndView listarAnuncios(){
 		ModelAndView mv = new ModelAndView("listaAnuncios");
-		List lista = anuncioService.list();
-		mv.addObject("lista",lista);
+		List<AnuncioMultipleLocalizado> lista = anuncioService.list();
+		
+		List<AnuncioMultipleDTO> dtoList = anuncioMultipleMapper.toDTO(lista);
+		
+		mv.addObject("lista",dtoList);
 		return mv;
 	}
     

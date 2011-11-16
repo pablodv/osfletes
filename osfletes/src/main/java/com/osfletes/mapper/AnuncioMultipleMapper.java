@@ -38,8 +38,18 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 	
 	@Override
 	public AnuncioMultipleLocalizado toModel(AnuncioMultipleDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		AnuncioMultipleLocalizado model = new AnuncioMultipleLocalizado();
+		
+		model.setFechaCierre(dto.getFechaCierre());
+		model.setFechaCreacion(dto.getFechaCreacion());
+		model.setFechaDesde(dto.getFechaDesde());
+		model.setFechaHasta(dto.getFechaHasta());
+		model.setHoraDesde(dto.getHoraDesde());
+		model.setHoraHasta(dto.getHoraHasta());
+		model.setId(dto.getId());
+		
+		return model;
 	}
 
 }

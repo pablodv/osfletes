@@ -43,7 +43,7 @@ public class AnuncioController {
 
 	@RequestMapping(value="/crearAnuncio")
 	public ModelAndView crearAnuncio(){
-    	AnuncioMultipleLocalizado anuncio = new AnuncioMultipleLocalizado();
+		AnuncioMultipleDTO anuncio = new AnuncioMultipleDTO();
 		ModelAndView mv = new ModelAndView("anuncioMultiple");
 		mv.addObject("anuncio",anuncio);
 		return mv;
@@ -52,11 +52,11 @@ public class AnuncioController {
     
 	@RequestMapping(value="/guardarAnuncio")
 	public String guardarAnuncio(@ModelAttribute("anuncio") AnuncioMultipleDTO anuncioDTO){
-		//AnuncioMultipleLocalizado anuncio = new AnuncioMultipleLocalizado();
-		anuncioDTO.fechaDesde = anuncioDTO.fechaDesde;
 		
 		AnuncioMultipleLocalizado anuncio = anuncioMultipleMapper.toModel(anuncioDTO);
+		
 		anuncioService.save(anuncio);
+		
 		return "redirect:listarAnuncios"; 
 	}
 	

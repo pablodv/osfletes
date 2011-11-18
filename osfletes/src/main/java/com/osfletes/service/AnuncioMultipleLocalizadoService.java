@@ -1,9 +1,14 @@
 package com.osfletes.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import siena.PersistenceManagerFactory;
+
 import com.osfletes.model.AnuncioMultipleLocalizado;
+import com.osfletes.model.Direccion;
 
 @Service(value="anuncioMultipleLocalizadoService")
 public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<AnuncioMultipleLocalizado> implements IAnuncioService{
@@ -21,6 +26,13 @@ public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<An
 		throw new RuntimeException();
 	}
 
+	@Transactional
+	public void saveWithAddresses(AnuncioMultipleLocalizado anuncio,List<Direccion> addresses) {
+		
+		anuncio.insert();
+		anuncio.getPersistenceManager().save(anuncio);
+		PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(addresses);
+	}	
 	
 
 }

@@ -28,6 +28,8 @@ public class Direccion extends Model{
     @NotNull	
 	public BigDecimal latitud;
     
+    public Integer posicion;
+    
     @Column("owner")
 	public AnuncioMultipleLocalizado anuncio;
 }

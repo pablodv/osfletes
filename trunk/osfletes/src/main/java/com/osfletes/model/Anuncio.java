@@ -8,7 +8,6 @@ import siena.Generator;
 import siena.Id;
 import siena.Index;
 import siena.Model;
-import siena.NotNull;
 import siena.Query;
 import siena.Table;
 

@@ -14,7 +14,9 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="anuncioMultipleMapper"     class="com.osfletes.mapper.AnuncioMultipleMapper" />    
+	<bean id="anuncioMultipleMapper"     class="com.osfletes.mapper.AnuncioMultipleMapper" />
+	<bean id="direccionMapper" class="com.osfletes.mapper.DireccionMapper" />    
+	    
 <!-- 
  -->
     

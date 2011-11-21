@@ -29,7 +29,7 @@
 	<h1>New Car</h1>
 	
 	<c:url value="/guardarAnuncio" var="action"/>
- 	<form:form method="post" action="${action}" commandName="anuncio">
+ 	<form:form method="post" action="${action}" commandName="anuncioDTO">
  
 		fecha desde<br />
 		<form:input path="fechaDesde"/><br /><br />
@@ -43,15 +43,12 @@
 		hora hasta<br />
 		<form:input path="horaHasta"/><br /><br />
 
-		<div class="demo">
-		
-			<label for="from">From</label>
-			<input type="text" id="from" name="from"/>
-			<label for="to">to</label>
-			<input type="text" id="to" name="to"/>
-		
-		</div>
- 
+		direccion desde<br />
+		<form:input path="direccion1"/><br /><br />
+
+		direccion hasta<br />
+		<form:input path="direccion2"/><br /><br />
+
 		<input type="submit" value="Submit">
  
 	</form:form>

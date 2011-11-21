@@ -1,5 +1,6 @@
 package com.osfletes.web.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osfletes.mapper.AnuncioMultipleMapper;
+import com.osfletes.mapper.DireccionMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
+import com.osfletes.model.Direccion;
 import com.osfletes.service.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 
@@ -21,10 +24,13 @@ import com.osfletes.web.dto.AnuncioMultipleDTO;
 public class AnuncioController {
 	
 	@Autowired
-	IAnuncioService anuncioService;
+	private IAnuncioService anuncioService;
 	
 	@Autowired
 	private AnuncioMultipleMapper anuncioMultipleMapper;
+
+	@Autowired
+	private DireccionMapper direccionMapper;
 	
 
 	public void setAnuncioMultipleMapper(AnuncioMultipleMapper anuncioMultipleMapper) {
@@ -45,17 +51,27 @@ public class AnuncioController {
 	public ModelAndView crearAnuncio(){
 		AnuncioMultipleDTO anuncio = new AnuncioMultipleDTO();
 		ModelAndView mv = new ModelAndView("anuncioMultiple");
-		mv.addObject("anuncio",anuncio);
+		mv.addObject("anuncioDTO",anuncio);
 		return mv;
 	}
 
     
 	@RequestMapping(value="/guardarAnuncio")
-	public String guardarAnuncio(@ModelAttribute("anuncio") AnuncioMultipleDTO anuncioDTO){
+	public String guardarAnuncio(@ModelAttribute("anuncioDTO") AnuncioMultipleDTO anuncioDTO){
 		
 		AnuncioMultipleLocalizado anuncio = anuncioMultipleMapper.toModel(anuncioDTO);
 		
-		anuncioService.save(anuncio);
+		Direccion direccion1 = direccionMapper.fromAnuncioDTOToModel(anuncioDTO.getDireccion1(), 1);
+
+		Direccion direccion2 = direccionMapper.fromAnuncioDTOToModel(anuncioDTO.getDireccion2(), 2);
+
+		List<Direccion> listaDirecciones = new ArrayList<Direccion>();
+		listaDirecciones.add(direccion1);
+		listaDirecciones.add(direccion2);
+		
+		//anuncioService.save(anuncio);
+
+		anuncioService.saveWithAddresses(anuncio, listaDirecciones);
 		
 		return "redirect:listarAnuncios"; 
 	}
@@ -76,6 +92,10 @@ public class AnuncioController {
 	public String saveAnuncio(HttpServletRequest request, HttpServletResponse response){
 		
 		return "redirect:index"; 
+	}
+
+	public void setDireccionMapper(DireccionMapper direccionMapper) {
+		this.direccionMapper = direccionMapper;
 	}
 	
 	

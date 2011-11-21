@@ -4,4 +4,9 @@
 
 <c:forEach items="${lista}" var="anuncio">
 <div>${anuncio.fechaDesde}</div>
+<div>${anuncio.fechaHasta}</div>
+<div>${anuncio.horaDesde}</div>
+<div>${anuncio.horaHasta}</div>
+<div>${anuncio.direccion1}</div>
+<div>${anuncio.direccion2}</div>
 </c:forEach>

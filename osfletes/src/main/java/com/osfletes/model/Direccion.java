@@ -31,5 +31,5 @@ public class Direccion extends Model{
     public Integer posicion;
     
     @Column("owner")
-	public AnuncioMultipleLocalizado anuncio;
+	public AnuncioMultipleLocalizado owner;
 }

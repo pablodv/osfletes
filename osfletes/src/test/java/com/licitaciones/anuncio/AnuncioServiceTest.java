@@ -115,7 +115,7 @@ public class AnuncioServiceTest {
 		
 		anuncio.save();
 		
-		d1.anuncio = anuncio;
+		d1.owner = anuncio;
 		d1.save();
 		//anuncioService.save(anuncio);
 	}	

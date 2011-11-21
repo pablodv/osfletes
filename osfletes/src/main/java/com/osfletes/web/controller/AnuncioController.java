@@ -19,6 +19,7 @@ import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
 import com.osfletes.service.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
+import siena.PersistenceManagerFactory;
 
 @Controller
 public class AnuncioController {
@@ -72,6 +73,10 @@ public class AnuncioController {
 		//anuncioService.save(anuncio);
 
 		anuncioService.saveWithAddresses(anuncio, listaDirecciones);
+		for (Direccion direccion : listaDirecciones) {
+			direccion.owner = anuncio;
+			PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(direccion);
+		}
 		
 		return "redirect:listarAnuncios"; 
 	}

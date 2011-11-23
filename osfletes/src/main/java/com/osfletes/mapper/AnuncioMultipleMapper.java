@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
+import com.osfletes.model.Direccion;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 
 public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,AnuncioMultipleDTO>{
@@ -28,10 +29,13 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 		
 		List<AnuncioMultipleDTO> listaDtos = new ArrayList<AnuncioMultipleDTO>();
 		AnuncioMultipleDTO dto =null;
-		List lista;
+		List<Direccion> lista;
 		for (AnuncioMultipleLocalizado model : list) {
 			lista = model.getListaDirecciones().fetch();
 			dto = toDTO(model);
+			for (Direccion dir : lista) {
+				dto.setDireccion1(dir.direccion);
+			}
 			listaDtos.add(dto);
 		}
 		return listaDtos;

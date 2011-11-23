@@ -10,7 +10,7 @@
 	</system-properties>
 	
 	<static-files>
-		<include path="/css/*.css"/>  
+		<include path="/css/*/*.css"/>  
 		<include path="/js/*.js"/>
 		<include path="/imagenes/*.jpg"/>
 		<include path="/imagenes/*.png"/>

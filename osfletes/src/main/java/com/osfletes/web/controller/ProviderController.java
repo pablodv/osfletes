@@ -1,13 +1,16 @@
 package com.osfletes.web.controller;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,8 +21,13 @@ import com.osfletes.web.dto.OfertaDTO;
 @Controller
 public class ProviderController {
 
-	
 	IOfertaService ofertaService;
+	
+//	@InitBinder
+//    protected void initBinder(WebDataBinder binder) {
+//        binder.setValidator(this.ofertaValidator);
+//    }
+
 	
 	@Autowired
 	public void setOfertaService(IOfertaService ofertaService) {
@@ -27,18 +35,19 @@ public class ProviderController {
 	}
 	
 	
-	@RequestMapping(value="/ofertar")
+	@RequestMapping(value="/ofertar" , method= RequestMethod.GET)
 	public ModelAndView ofertar(){
 		ModelAndView mv = new ModelAndView("ofertas"); 
-		mv.addObject("oferta",  new Oferta());
+		mv.addObject("oferta",  new OfertaDTO());
 		return mv;
 	}
 	
-	@RequestMapping(value="/crearOferta")
-	public String ofertar(@RequestParam(value="valorOferta") BigDecimal precio){
-		Oferta oferta = new Oferta();
-		oferta.setValorOferta(precio);
-		ofertaService.save(oferta);
+	@RequestMapping(value="/ofertar", method= RequestMethod.POST)
+	public String ofertar(@ModelAttribute("oferta") @Valid OfertaDTO oferta, BindingResult result){
+		if (result.hasErrors()) return "ofertas";
+		Oferta ofertaObj = new Oferta();
+		ofertaObj.setValorOferta(oferta.getValorOferta());
+		ofertaService.save(ofertaObj);
 		return "redirect:ofertas"; 
 	}
 	
@@ -61,4 +70,9 @@ public class ProviderController {
 		}
 		return ofertasDto;
 	  }
+	
+	/*@ExceptionHandler(BindException.class)
+	  public ModelAndView handleNullPointerException(BindException ex) {
+		return new ModelAndView("/ofertar").addObject(ex.getBindingResult());
+	  }*/
 }

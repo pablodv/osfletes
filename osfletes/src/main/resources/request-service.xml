@@ -19,12 +19,21 @@
   <context:component-scan base-package="com.osfletes.web.controller"/>
   <s:global-method-security secured-annotations="enabled" />
   <mvc:view-controller path="/Constants" view-name="Constants" />
+  <mvc:view-controller path="/Header" view-name="Header" />
   <mvc:view-controller path="/Login" view-name="login" />
   <mvc:view-controller path="/index" view-name="index" />
   <mvc:view-controller path="/**" view-name="index" />
-  <mvc:annotation-driven/>
+  <mvc:annotation-driven validator="globalValidator"/>
   
- 
+  <bean id="globalValidator" class="com.osfletes.web.validator.ValidatorFactory">
+  	<property name="validators">
+  		<map>
+  			<entry key="com.osfletes.web.dto.OfertaDTO" value-ref="ofertaValidator"/>
+  		</map>
+  	</property>
+  </bean>  
+    
+  <bean id="ofertaValidator" class="com.osfletes.web.validator.OfertaValidator"></bean>
   
   <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -36,6 +45,7 @@
 	<property name="basenames">
 		<list>
 			<value>messages</value>
+			<value>errors</value>
 		</list>
 	</property>
   </bean>  

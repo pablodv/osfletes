@@ -1,0 +1,12 @@
+div .error{
+	border: solid;
+	border-color: red;
+	border-width:1px;
+	background-color: #f8abab;
+	font-family: Arial;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}

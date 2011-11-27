@@ -1,14 +1,17 @@
 package com.osfletes.web.dto;
 
 import java.math.BigDecimal;
+import java.util.Date;
+
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 public class OfertaDTO {
-//	@NumberFormat(style=Style.CURRENCY)
+	@NumberFormat(style=Style.NUMBER)
 	private BigDecimal valorOferta;
 	private Long id;
 	private Long anuncioId;
-//	@DateTimeFormat(iso=ISO.DATE)
-//	private Date fechaServicio;
+	private Date fechaServicio;
 	
 	
 	
@@ -30,12 +33,12 @@ public class OfertaDTO {
 	public void setAnuncioId(Long anuncioId) {
 		this.anuncioId = anuncioId;
 	}
-//	public Date getFechaServicio() {
-//		return fechaServicio;
-//	}
-//	public void setFechaServicio(Date fechaServicio) {
-//		this.fechaServicio = fechaServicio;
-//	}
+	public Date getFechaServicio() {
+		return fechaServicio;
+	}
+	public void setFechaServicio(Date fechaServicio) {
+		this.fechaServicio = fechaServicio;
+	}
 	
 	
 	

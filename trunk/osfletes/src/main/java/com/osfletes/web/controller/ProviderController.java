@@ -6,8 +6,11 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,8 +74,8 @@ public class ProviderController {
 		return ofertasDto;
 	  }
 	
-	/*@ExceptionHandler(BindException.class)
-	  public ModelAndView handleNullPointerException(BindException ex) {
-		return new ModelAndView("/ofertar").addObject(ex.getBindingResult());
-	  }*/
+	@ExceptionHandler(ConversionFailedException.class)
+	  public ModelAndView handleNullPointerException(ConversionFailedException ex) {
+		return new ModelAndView("/ofertar").addObject(null);
+	  }
 }

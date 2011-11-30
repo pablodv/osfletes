@@ -11,7 +11,9 @@ $(function()
 		$(".tab_content").hide();
 
 		var activeTab = $(this).find("a").attr("href");
-		$(activeTab).fadeIn();
+		$('.tab_container').load(activeTab);
+		$('.tab_container').fadeIn();
+//		$(activeTab).fadeIn();
 		return false;
 	});
 }); 

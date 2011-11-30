@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<jsp:include page="Header.jsp"></jsp:include>
+	<jsp:include page="commons.jsp"></jsp:include>
 </head>
 <body>
 	<div class="main_container border-round">

@@ -6,10 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,23 +32,23 @@ public class ProviderController {
 	
 	@RequestMapping(value="/ofertar" , method= RequestMethod.GET)
 	public ModelAndView ofertar(){
-		ModelAndView mv = new ModelAndView("ofertas"); 
+		ModelAndView mv = new ModelAndView("ofertar"); 
 		mv.addObject("oferta",  new OfertaDTO());
 		return mv;
 	}
 	
 	@RequestMapping(value="/ofertar", method= RequestMethod.POST)
 	public String ofertar(@ModelAttribute("oferta") @Valid OfertaDTO oferta, BindingResult result){
-		if (result.hasErrors()) return "ofertas";
+		if (result.hasErrors()) return "ofertar";
 		Oferta ofertaObj = new Oferta();
 		ofertaObj.setValorOferta(oferta.getValorOferta());
 		ofertaService.save(ofertaObj);
 		return "redirect:ofertas"; 
 	}
 	
-	@RequestMapping(value="/ofertas")
+	@RequestMapping(value="/ofertas", method = RequestMethod.GET)
 	public ModelAndView ofertas(){
-		ModelAndView mv = new ModelAndView("ofertas-list");
+		ModelAndView mv = new ModelAndView("ofertas");
 		mv.addObject("ofertas",ofertaService.list());
 		return mv;
 	}
@@ -66,10 +64,5 @@ public class ProviderController {
 			ofertasDto.add(dto);
 		}
 		return ofertasDto;
-	  }
-	
-	@ExceptionHandler(ConversionFailedException.class)
-	  public ModelAndView handleNullPointerException(ConversionFailedException ex) {
-		return new ModelAndView("/ofertar").addObject(null);
-	  }
+	  }	
 }

@@ -14,7 +14,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 		<!-- Cambiar a isAuthenticated cuando tengamos el login -->
 		<s:intercept-url pattern="/**" access="isAnonymous()" />
 		<s:intercept-url pattern="/Constants" access="isAnonymous()" />
-		<s:intercept-url pattern="/Header" access="isAnonymous()" />
+		<s:intercept-url pattern="/commons" access="isAnonymous()" />
 		<s:intercept-url pattern="/index" access="isAuthenticated()" />
 	</s:http>
 	<s:authentication-manager >

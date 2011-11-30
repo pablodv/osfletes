@@ -30,9 +30,9 @@ public class OfertaValidator implements Validator{
 			e.rejectValue("valorOferta", "field.invalid-range");
 		}
 		
-		if(oferta.getAnuncioId() == null){
-			e.rejectValue("anuncioId", "field.empty");
-		}
+//		if(oferta.getAnuncioId() == null){
+//			e.rejectValue("anuncioId", "field.empty");
+//		}
 		
 		if(oferta.getFechaServicio() == null && !e.hasFieldErrors("fechaServicio")){
 			e.rejectValue("fechaServicio", "field.empty");

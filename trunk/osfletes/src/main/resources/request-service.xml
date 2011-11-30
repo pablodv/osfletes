@@ -35,13 +35,10 @@
   <bean id="ofertaValidator" class="com.osfletes.web.validator.OfertaValidator" scope="singleton"/>
   
   <bean id="viewResolver"   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-	    <property name="viewClass">
-	        <value>
-	            org.springframework.web.servlet.view.tiles2.TilesView
-	        </value>
-	    </property>
-	</bean>
-	<bean id="tilesConfigurer"
+		<property name="order" value="1"/>
+	    <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+  </bean>
+  <bean id="tilesConfigurer"
 	    class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 	    <property name="definitions">
 	        <list>
@@ -49,6 +46,13 @@
 	        </list>
 	    </property>
 	</bean>
+	
+  <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="order" value="2"/>
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    <property name="prefix" value="/WEB-INF/jsp/"/>
+    <property name="suffix" value=".jsp"/>
+  </bean>
   
   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 	<property name="basenames">

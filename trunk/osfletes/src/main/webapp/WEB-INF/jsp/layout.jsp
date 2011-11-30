@@ -3,14 +3,15 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<jsp:include page="Header.jsp"></jsp:include>
 </head>
 <body>
-	<div class="main_container">
-		<div class="header"><tiles:insertAttribute name="header" /></div>
+	<div class="main_container border-round">
+		<div><tiles:insertAttribute name="header" /></div>
 		<div class="body">
 			<tiles:insertAttribute name="body" />
 		</div>
-		<div class="footer"><tiles:insertAttribute name="footer" /></div>
+		<div><tiles:insertAttribute name="footer" /></div>
 	</div>
 </body>

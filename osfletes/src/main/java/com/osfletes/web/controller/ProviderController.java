@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,11 +25,6 @@ public class ProviderController {
 
 	IOfertaService ofertaService;
 	
-//	@InitBinder
-//    protected void initBinder(WebDataBinder binder) {
-//        binder.setValidator(this.ofertaValidator);
-//    }
-
 	
 	@Autowired
 	public void setOfertaService(IOfertaService ofertaService) {

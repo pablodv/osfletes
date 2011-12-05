@@ -28,11 +28,14 @@
   	<property name="validators">
   		<map>
   			<entry key="com.osfletes.web.dto.OfertaDTO" value-ref="ofertaValidator"/>
+  			<entry key="com.osfletes.web.dto.AnuncioDTO" value-ref="anuncioValidator"/>
   		</map>
   	</property>
   </bean>  
     
   <bean id="ofertaValidator" class="com.osfletes.web.validator.OfertaValidator" scope="singleton"/>
+
+  <bean id="anuncioValidator" class="com.osfletes.web.validator.AnuncioValidator" scope="singleton"/>
   
   <bean id="viewResolver"   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="order" value="1"/>

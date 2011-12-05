@@ -2,12 +2,26 @@ package com.osfletes.web.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 public class AnuncioDTO {
 	private Long id;
+	
+	@DateTimeFormat
 	private Date fechaDesde;
+	
+	@DateTimeFormat
 	private Date fechaHasta;
+	
+	@DateTimeFormat
 	private Date fechaCierre;
+	
+	@NumberFormat(style=Style.NUMBER)
 	private Integer horaDesde;
+	
+	@NumberFormat(style=Style.NUMBER)
 	private Integer horaHasta;
 	private String direccionInicial;
 	private String direccionFinal;

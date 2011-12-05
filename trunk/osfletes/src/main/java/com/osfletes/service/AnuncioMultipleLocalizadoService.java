@@ -33,9 +33,8 @@ public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<An
 		anuncio.getPersistenceManager().save(anuncio);
 		for (Direccion direccion : addresses) {
 			direccion.owner = anuncio;
-			//PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(direccion);
+			PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(direccion);
 		}
-		//PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(addresses);
 	}	
 	
 

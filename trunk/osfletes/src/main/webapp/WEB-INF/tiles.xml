@@ -15,5 +15,10 @@
 <!--         <put-attribute name="title" value="Contact Manager" /> -->
         <put-attribute name="body" value="/WEB-INF/jsp/ofertas.jsp" />
     </definition>
+
+    <definition name="anuncioMultiple" extends="base.definition">
+<!--         <put-attribute name="title" value="Contact Manager" /> -->
+        <put-attribute name="body" value="/WEB-INF/jsp/anuncioMultiple.jsp" />
+    </definition>
  
 </tiles-definitions>

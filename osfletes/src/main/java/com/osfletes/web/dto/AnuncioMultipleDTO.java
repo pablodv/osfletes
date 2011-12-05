@@ -12,11 +12,9 @@ public class AnuncioMultipleDTO {
 	public Date fechaCierre;
 	public Integer horaDesde;
 	public Integer horaHasta;
-	//public DireccionDTO direccionDTO1 = new DireccionDTO();
-	//public DireccionDTO direccionDTO2 = new DireccionDTO(); 
 	private String direccion1;
 	private String direccion2;
-	
+	private String descripcion;
 	
     //public User user;
 	
@@ -62,20 +60,6 @@ public class AnuncioMultipleDTO {
 	public void setHoraHasta(Integer horaHasta) {
 		this.horaHasta = horaHasta;
 	}
-	/*
-	public String getDireccionDTO1() {
-		return direccionDTO1.getDireccion();
-	}
-	public void setDireccionDTO1(String direccionDTO1) {
-		this.direccionDTO1.setDireccion(direccionDTO1);
-	}
-	public DireccionDTO getDireccionDTO2() {
-		return direccionDTO2;
-	}
-	public void setDireccionDTO2(DireccionDTO direccionDTO2) {
-		this.direccionDTO2 = direccionDTO2;
-	}
-	*/
 	public String getDireccion1() {
 		return direccion1;
 	}
@@ -87,6 +71,12 @@ public class AnuncioMultipleDTO {
 	}
 	public void setDireccion2(String direccion2) {
 		this.direccion2 = direccion2;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	

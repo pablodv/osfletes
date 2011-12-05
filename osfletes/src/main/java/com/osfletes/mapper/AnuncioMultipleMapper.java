@@ -20,6 +20,7 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 		dto.setFechaHasta(model.getFechaHasta());
 		dto.setHoraDesde(model.getHoraDesde());
 		dto.setHoraHasta(model.getHoraHasta());
+		dto.setDescripcion(model.getDescripcion());
 		dto.setId(model.getId());
 		
 		return dto;
@@ -53,6 +54,7 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 		model.setFechaHasta(dto.getFechaHasta());
 		model.setHoraDesde(dto.getHoraDesde());
 		model.setHoraHasta(dto.getHoraHasta());
+		model.setDescripcion(dto.getDescripcion());
 		model.setId(dto.getId());
 		
 		return model;

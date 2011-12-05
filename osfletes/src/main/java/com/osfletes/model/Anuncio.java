@@ -39,6 +39,9 @@ public class Anuncio extends Model{
     
     @Column("hora_hasta")
 	public Integer horaHasta;
+
+    @Column("descripcion")
+    public String descripcion;
     
     @Index("user_index")
     @Column("user_id")
@@ -116,6 +119,15 @@ public class Anuncio extends Model{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
     
+	
 	
 }

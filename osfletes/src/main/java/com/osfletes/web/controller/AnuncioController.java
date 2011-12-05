@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +21,6 @@ import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
 import com.osfletes.service.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
-import siena.PersistenceManagerFactory;
 
 @Controller
 public class AnuncioController {
@@ -58,8 +59,10 @@ public class AnuncioController {
 
     
 	@RequestMapping(value="/guardarAnuncio")
-	public String guardarAnuncio(@ModelAttribute("anuncioDTO") AnuncioMultipleDTO anuncioDTO){
-		
+	public String guardarAnuncio(@ModelAttribute("anuncioDTO") @Valid AnuncioMultipleDTO anuncioDTO, BindingResult result){
+
+		if (result.hasErrors()) return "anuncioMultiple";
+
 		AnuncioMultipleLocalizado anuncio = anuncioMultipleMapper.toModel(anuncioDTO);
 		
 		Direccion direccion1 = direccionMapper.fromAnuncioDTOToModel(anuncioDTO.getDireccion1(), 1);
@@ -70,13 +73,15 @@ public class AnuncioController {
 		listaDirecciones.add(direccion1);
 		listaDirecciones.add(direccion2);
 		
-		//anuncioService.save(anuncio);
 
 		anuncioService.saveWithAddresses(anuncio, listaDirecciones);
+		/*
 		for (Direccion direccion : listaDirecciones) {
 			direccion.owner = anuncio;
+			
+			//tengo que sal
 			PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(direccion);
-		}
+		}*/
 		
 		return "redirect:listarAnuncios"; 
 	}

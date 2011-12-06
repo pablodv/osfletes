@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osfletes.mapper.AnuncioMultipleMapper;
@@ -49,7 +49,7 @@ public class AnuncioController {
     	return anuncio;
     }
 
-	@RequestMapping(value="/crearAnuncio")
+	@RequestMapping(value="/crearAnuncio", method= RequestMethod.GET)
 	public ModelAndView crearAnuncio(){
 		AnuncioMultipleDTO anuncio = new AnuncioMultipleDTO();
 		ModelAndView mv = new ModelAndView("anuncioMultiple");
@@ -58,7 +58,7 @@ public class AnuncioController {
 	}
 
     
-	@RequestMapping(value="/guardarAnuncio")
+	@RequestMapping(value="/guardarAnuncio", method= RequestMethod.POST)
 	public String guardarAnuncio(@ModelAttribute("anuncioDTO") @Valid AnuncioMultipleDTO anuncioDTO, BindingResult result){
 
 		if (result.hasErrors()) return "anuncioMultiple";
@@ -99,9 +99,13 @@ public class AnuncioController {
     
     
 	@RequestMapping(value="/anuncio")
-	public String saveAnuncio(HttpServletRequest request, HttpServletResponse response){
+	public String borrarAnuncio(@ModelAttribute("anuncioDTO")AnuncioMultipleDTO anuncioDTO){
 		
-		return "redirect:index"; 
+		AnuncioMultipleLocalizado anuncio = anuncioService.getById(anuncioDTO.getId());
+		
+		anuncioService.delete(anuncio);
+		
+		return "redirect:listarAnuncios";
 	}
 
 	public void setDireccionMapper(DireccionMapper direccionMapper) {

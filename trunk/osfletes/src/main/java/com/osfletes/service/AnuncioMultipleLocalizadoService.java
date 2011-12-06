@@ -37,5 +37,13 @@ public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<An
 		}
 	}	
 	
+	@Transactional
+	public void delete(AnuncioMultipleLocalizado anuncio){
+		List<Direccion> direcciones = anuncio.getListaDirecciones().fetch();
+		PersistenceManagerFactory.getPersistenceManager(Direccion.class).delete(direcciones);
+		
+		anuncio.delete();
+	}
+	
 
 }

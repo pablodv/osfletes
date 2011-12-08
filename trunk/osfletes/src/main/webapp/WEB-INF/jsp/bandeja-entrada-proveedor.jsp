@@ -10,7 +10,10 @@
 </head>
 
 <ul class="tabs">
-    <li class="rounded"><a href="/perfil"><spring:message code="proveedor.be.tab.perfil"/></a></li>
-    <li class="rounded"><a href="/anuncios"><spring:message code="proveedor.be.tab.anuncios"/></a></li>
-    <li class="rounded"><a href="/ofertas"><spring:message code="proveedor.be.tab.ofertas"/></a></li>
+    <li class="rounded"><a href="perfil"><spring:message code="proveedor.be.tab.perfil"/></a></li>
+    <li class="rounded"><a href="anuncios"><spring:message code="proveedor.be.tab.anuncios"/></a></li>
+    <li class="rounded"><a href="ofertas"><spring:message code="proveedor.be.tab.ofertas"/></a></li>
 </ul>
+
+<div class="tab_container">
+</div>

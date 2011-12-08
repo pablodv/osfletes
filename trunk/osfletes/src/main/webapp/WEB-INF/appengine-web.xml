@@ -15,6 +15,7 @@
 		<include path="/js/*.js"/>
 		<include path="/imagenes/*.jpg"/>
 		<include path="/imagenes/*.png"/>
+		<include path="/imagenes/*.gif"/>
 	</static-files>
 	
 	<sessions-enabled>true</sessions-enabled>

@@ -65,4 +65,29 @@ public class ProviderController {
 		}
 		return ofertasDto;
 	  }	
+	
+	@RequestMapping(value="/perfil")
+	//@Secured('isAuthenticated()')
+	public ModelAndView miPerfil(){
+		/*User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		GrantedAuthority authority	= principal.getAuthorities().iterator().next();
+		   
+		if(authority.getAuthority().equals(RolesEnum.ROL_USER)){
+		   ModelAndView mv = new ModelAndView("usuario");
+		   return mv;
+		}else if(authority.getAuthority().equals(RolesEnum.ROL_PROVEEDOR)){*/
+		   ModelAndView mv = new ModelAndView("proveedor");
+		   return mv;
+		 /*  
+		}else{
+		   //TODO esto deberia ser un error
+		   ModelAndView mv = new ModelAndView("index");
+		   return mv;
+		}*/
+	}
+	
+//	@RequestMapping(value="/anuncios")
+//	public ModelAndView getAnuncios(){
+//		
+//	}
 }

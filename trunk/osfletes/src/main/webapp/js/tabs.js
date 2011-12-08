@@ -8,12 +8,11 @@ $(function()
        {
 		$("ul.tabs li").removeClass("active");
 		$(this).addClass("active");
-		$(".tab_content").hide();
+		$(".tab_container").hide();
 
 		var activeTab = $(this).find("a").attr("href");
 		$('.tab_container').load(activeTab);
 		$('.tab_container').fadeIn();
-//		$(activeTab).fadeIn();
 		return false;
 	});
 }); 

@@ -1,47 +1,52 @@
 package com.osfletes.service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import siena.Model;
-import siena.PersistenceManager;
-import siena.PersistenceManagerFactory;
-import siena.Query;
 
-public abstract class GenericSienaServiceImpl<T extends Model> implements IService<T>{
+import com.osfletes.dao.GenericSienaDAO;
 
+public abstract class GenericSienaServiceImpl<T extends Model,K extends GenericSienaDAO<T>> implements IService<T>{
+
+	protected K dao;
+	
+	@Autowired
+	public void setDao(K dao) {
+		this.dao = dao;
+	}
+	
 	@Override
 	@Transactional
 	public void save(T obj) {
-		obj.insert();
-		obj.getPersistenceManager().save(obj);
+		dao.save(obj);
 	}
 
 	@Override
 	@Transactional(readOnly=true)
 	public List<T> list() {
-		return Model.all(getRepresentedClass()).fetch();
+		return dao.list();
 	}
 
 	@Override
 	@Transactional
 	public void delete(T obj) {
-		obj.getPersistenceManager().delete(obj);
+		dao.delete(obj);
 	}
 	
 	@Override
 	public T getById(Object id) {
-		PersistenceManager pm= getPersistenceManager();
-		Query<T> q = pm.createQuery(getRepresentedClass());
-		q.filter("id", id);
-		return q.get();
+		return dao.getById(id);
 	}
 	
-	protected PersistenceManager getPersistenceManager(){
-		return PersistenceManagerFactory.getPersistenceManager(getRepresentedClass());
+	@Transactional
+	public void saveAll(List<T> objList){
+		for(T obj:objList){
+			dao.save(obj);
+		}
 	}
-
-	protected abstract Class<T> getRepresentedClass();
-
 }

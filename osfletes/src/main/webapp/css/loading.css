@@ -1,23 +1,21 @@
+#loading{
+	display: none;
+}
 *.loading-indicator {
-	margin-left:auto;
-	margin-bottom:auto;
-	text-align:center;	
-	
+	background-image: url("/imagenes/loading.gif");
+	width: 31px;
+	height: 31px;
+	margin: auto;	
 }
-*.loading-indicator > *{
-	margin: auto;
-}
+
 
 *.loading-indicator-overlay {
 	background-color:#EEEEEE;
 	border:1px solid #CCCCCC;
-	height:10px;
+	height:31px;
 	width:200px;
 	position:fixed;
-	margin-left:-100px;
-	margin-top:-5px;
-	left:50%;
-	top:30%;	
 	display:table;
 	text-align:center;
+	line-height: 50px;
 }

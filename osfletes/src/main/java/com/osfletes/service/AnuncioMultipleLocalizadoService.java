@@ -2,20 +2,26 @@ package com.osfletes.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import siena.PersistenceManagerFactory;
 
+import com.osfletes.dao.AnuncioMultipleLocalizadoDAO;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
 
 @Service(value="anuncioMultipleLocalizadoService")
-public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<AnuncioMultipleLocalizado> implements IAnuncioService{
+public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<AnuncioMultipleLocalizado,AnuncioMultipleLocalizadoDAO> implements IAnuncioService{
 
-	@Override
-	protected Class<AnuncioMultipleLocalizado> getRepresentedClass() {
-		return AnuncioMultipleLocalizado.class;
+	@Autowired
+	IDireccionService direccionService;
+	
+	
+
+	public void setDireccionService(IDireccionService direccionService) {
+		this.direccionService = direccionService;
 	}
 
 	@Override
@@ -28,13 +34,10 @@ public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<An
 
 	@Transactional
 	public void saveWithAddresses(AnuncioMultipleLocalizado anuncio,List<Direccion> addresses) {
-		
-		anuncio.insert();
-		anuncio.getPersistenceManager().save(anuncio);
 		for (Direccion direccion : addresses) {
 			direccion.owner = anuncio;
-			PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(direccion);
 		}
+		this.dao.save(anuncio);
 	}	
 	
 	@Transactional
@@ -44,6 +47,8 @@ public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<An
 		
 		anuncio.delete();
 	}
+
+	
 	
 
 }

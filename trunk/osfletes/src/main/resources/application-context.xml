@@ -29,7 +29,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>com.osfletes.model.Anuncio</value>
+                <value>com.osfletes.model.AnuncioMultipleLocalizado</value>
                 <value>com.osfletes.model.Direccion</value>
                 <value>com.osfletes.model.Oferta</value>
                 <value>com.osfletes.security.User</value>

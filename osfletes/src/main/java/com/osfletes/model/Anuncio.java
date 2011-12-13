@@ -2,17 +2,19 @@ package com.osfletes.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+import com.osfletes.model.hibernate.ObjetoPersistente;
 import com.osfletes.security.User;
 
-public class Anuncio{
+@Entity
+public class Anuncio extends ObjetoPersistente{
 	
-	public Long id;
 	
 	public Date fechaDesde;
 
 	public Date fechaHasta;
-    
-	public Date fechaCreacion;
     
 	public Date fechaCierre;
     
@@ -22,16 +24,11 @@ public class Anuncio{
 
     public String descripcion;
     
+    @Transient
     public User user;
     
 	
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+   
 
 	public Date getFechaDesde() {
 		return fechaDesde;

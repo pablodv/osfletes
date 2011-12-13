@@ -12,8 +12,8 @@ public class DireccionMapper implements IMapper<Direccion,DireccionDTO>{
 		if(model.direccion!=null){
 			dto.setDireccion(model.direccion);
 		}
-		if(model.id!=null){
-			dto.setId(model.id);
+		if(model.getId()!=null){
+			dto.setId(model.getId());
 		}
 		if(model.latitud!=null){
 			dto.setLatitud(model.latitud);

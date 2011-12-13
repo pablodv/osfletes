@@ -2,9 +2,13 @@ package com.osfletes.model;
 
 import java.math.BigDecimal;
 
-public class Direccion {
+import javax.persistence.Transient;
+
+import com.osfletes.model.hibernate.ObjetoPersistente;
+
+public class Direccion extends ObjetoPersistente {
 	
-	public Long id;
+	
 
     	
 	public String direccion;
@@ -17,6 +21,6 @@ public class Direccion {
     
     public Integer posicion;
     
-   
+    @Transient
 	public AnuncioMultipleLocalizado owner;
 }

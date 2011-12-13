@@ -1,5 +1,6 @@
 package com.osfletes.web.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,7 +10,7 @@ import org.springframework.format.annotation.NumberFormat.Style;
 public class OfertaDTO {
 	@NumberFormat(style=Style.NUMBER)
 	private BigDecimal valorOferta;
-	private Long id;
+	private Serializable id;
 	private Long anuncioId;
 	private Date fechaServicio;
 	
@@ -21,10 +22,13 @@ public class OfertaDTO {
 	public void setValorOferta(BigDecimal valorOferta) {
 		this.valorOferta = valorOferta;
 	}
-	public Long getId() {
+	
+	
+	
+	public Serializable getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Serializable id) {
 		this.id = id;
 	}
 	public Long getAnuncioId() {

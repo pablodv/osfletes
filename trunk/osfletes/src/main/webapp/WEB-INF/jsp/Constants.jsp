@@ -4,4 +4,5 @@
 
 var JsonUrls = {
 GET_ALL_OFFERS 		: "<c:url value="/getOfertas"/>",
+OBTENER_ANUNCIOS_FILTRADOS 		: "<c:url value="/obtenerAnunciosFiltrados"/>",
 };

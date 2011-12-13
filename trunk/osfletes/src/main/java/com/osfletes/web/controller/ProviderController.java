@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osfletes.model.Oferta;
-import com.osfletes.service.IOfertaService;
+import com.osfletes.service.interfaces.IOfertaService;
 import com.osfletes.web.dto.OfertaDTO;
 
 @Controller
@@ -49,13 +49,13 @@ public class ProviderController {
 	@RequestMapping(value="/ofertas", method = RequestMethod.GET)
 	public ModelAndView ofertas(){
 		ModelAndView mv = new ModelAndView("ofertas");
-		mv.addObject("ofertas",ofertaService.list());
+		mv.addObject("ofertas",ofertaService.getAll());
 		return mv;
 	}
 	
 	@RequestMapping(value="/getOfertas")
 	public @ResponseBody List<OfertaDTO> getOfertas(){
-		List<Oferta> ofertas = ofertaService.list();
+		List<Oferta> ofertas = ofertaService.getAll();
 		List<OfertaDTO> ofertasDto = new ArrayList<OfertaDTO>(ofertas.size());
 		for(Oferta oferta : ofertas){
 			OfertaDTO dto = new OfertaDTO();

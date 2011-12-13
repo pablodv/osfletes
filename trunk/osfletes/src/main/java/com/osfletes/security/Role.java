@@ -1,21 +1,16 @@
-package com.osfletes.model;
+package com.osfletes.security;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import siena.Column;
-import siena.Generator;
-import siena.Id;
-import siena.Model;
 
+public class Role implements GrantedAuthority {
 
-public class Role extends Model implements GrantedAuthority {
-
-	@Id(Generator.AUTO_INCREMENT)
+	
 	public Long id;
 	
 	public String role;
 
-    @Column("user_id")
+    
 	public User user;
 	
 	@Override

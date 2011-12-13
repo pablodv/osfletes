@@ -13,14 +13,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osfletes.mapper.AnuncioMultipleMapper;
 import com.osfletes.mapper.DireccionMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
-import com.osfletes.service.IAnuncioService;
+import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
+import com.osfletes.web.dto.FiltroDTO;
 
 @Controller
 public class AnuncioController {
@@ -73,8 +75,8 @@ public class AnuncioController {
 		listaDirecciones.add(direccion1);
 		listaDirecciones.add(direccion2);
 		
-
-		anuncioService.saveWithAddresses(anuncio, listaDirecciones);
+        //TODO este save loco con hibernate ya no es necesario
+		//anuncioService.saveWithAddresses(anuncio, listaDirecciones);
 		/*
 		for (Direccion direccion : listaDirecciones) {
 			direccion.owner = anuncio;
@@ -89,7 +91,7 @@ public class AnuncioController {
 	@RequestMapping(value="/listarAnuncios")
 	public ModelAndView listarAnuncios(){
 		ModelAndView mv = new ModelAndView("listaAnuncios");
-		List<AnuncioMultipleLocalizado> lista = anuncioService.list();
+		List<AnuncioMultipleLocalizado> lista = anuncioService.getAll();
 		
 		List<AnuncioMultipleDTO> dtoList = anuncioMultipleMapper.toDTO(lista);
 		
@@ -111,6 +113,12 @@ public class AnuncioController {
 	public void setDireccionMapper(DireccionMapper direccionMapper) {
 		this.direccionMapper = direccionMapper;
 	}
+	
+	@RequestMapping(value="/obtenerAnunciosFiltrados")
+	public @ResponseBody List<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
+		List<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
+		return anuncioMultipleMapper.toDTO(anuncios);
+	 }	
 	
 	
 }

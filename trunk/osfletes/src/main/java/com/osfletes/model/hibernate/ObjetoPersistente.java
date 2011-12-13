@@ -5,6 +5,7 @@ package com.osfletes.model.hibernate;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,13 +38,17 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
 	protected Long id;
 	
 	@Temporal(TemporalType.DATE)
+    @Column(name="FECHA_ULTIMA_MODIFICACION")
 	protected Date fechaModificacion;
 	@Temporal(TemporalType.DATE)
+    @Column(name="FECHA_CREACION")
 	protected Date fechaCreacion;
 	
 	@ManyToOne
+    @Column(name="USUARIO_CREACION")
 	protected User usuarioCreacion;
 	@ManyToOne
+    @Column(name="USUARIO_CREACION")
 	protected User usuarioModificacion;
 
 	@Override

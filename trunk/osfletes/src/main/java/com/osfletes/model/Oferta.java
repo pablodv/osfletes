@@ -11,12 +11,14 @@ import com.osfletes.security.User;
 
 @Entity
 public class Oferta extends ObjetoPersistente {
-
 	
+	private static final long serialVersionUID = 915473460883012433L;
+
 	@Transient
 	private Anuncio anuncio;
 	
 	private Date fechaServicio;
+	
 	@Transient
 	private User proveedor;
 	

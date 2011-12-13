@@ -2,32 +2,38 @@ package com.osfletes.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.osfletes.model.hibernate.ObjetoPersistente;
 import com.osfletes.security.User;
 
-@Entity
-public class Anuncio extends ObjetoPersistente{
+@MappedSuperclass
+public abstract class Anuncio extends ObjetoPersistente{
 	
-	
+	private static final long serialVersionUID = -1960041916990966080L;
+
+	@Temporal(TemporalType.DATE)
+    @Column(name="FECHA_DESDE")
 	public Date fechaDesde;
-
+	@Temporal(TemporalType.DATE)
+    @Column(name="FECHA_HASTA")
 	public Date fechaHasta;
-    
+	@Temporal(TemporalType.DATE)
+    @Column(name="FECHA_CIERRE")
 	public Date fechaCierre;
-    
+    @Column(name="HORA_DESDE")
     public Integer horaDesde;
-    
+    @Column(name="HORA_HASTA")
     public Integer horaHasta;
-
+    @Column(name="DESCRIPCION")
     public String descripcion;
     
-    @Transient
+    @ManyToOne
     public User user;
-    
-	
    
 
 	public Date getFechaDesde() {

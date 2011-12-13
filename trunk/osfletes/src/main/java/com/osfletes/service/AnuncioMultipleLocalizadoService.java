@@ -30,7 +30,7 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 	@Transactional
 	public void saveWithAddresses(AnuncioMultipleLocalizado anuncio,List<Direccion> addresses) {
 		for (Direccion direccion : addresses) {
-			direccion.owner = anuncio;
+			//direccion.owner = anuncio;
 		}
 		this.dao.save(anuncio);
 	}	

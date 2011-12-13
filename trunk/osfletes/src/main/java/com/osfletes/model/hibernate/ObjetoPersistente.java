@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -14,7 +15,6 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.CallbackException;
 import org.hibernate.Session;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.classic.ValidationFailure;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -33,8 +33,7 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid",strategy="uuid")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	protected Long id;
 	
 	@Temporal(TemporalType.DATE)

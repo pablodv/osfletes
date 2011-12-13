@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.osfletes.model.hibernate.ObjetoPersistente;
 
 
-@Entity(name="PROP_USERS")
+@Entity
 public class User extends ObjetoPersistente implements UserDetails {
 
 	private static final long serialVersionUID = 4079664434226649300L;

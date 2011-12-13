@@ -15,13 +15,36 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
   
-   <context:component-scan  base-package="com.osfletes.dao"/>
-   
-	
-    <context:component-scan  base-package="com.osfletes.service"/>
+   <context:property-placeholder location="classpath:db.properties"/>
     
-    <tx:annotation-driven transaction-manager="transactionManager" />
-    <bean id="transactionManager"     class="com.osfletes.SienaTransactionManager" >
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
     </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+       <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.osfletes.model.Anuncio</value>
+                <value>com.osfletes.model.Direccion</value>
+                <value>com.osfletes.model.Oferta</value>
+                <value>com.osfletes.security.User</value>
+                <value>com.osfletes.security.Role</value>
+            </list>
+        </property>
+    </bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager" >
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <context:component-scan  base-package="com.osfletes.dao"/>
+   <context:component-scan  base-package="com.osfletes.service"/>
     	
 </beans>

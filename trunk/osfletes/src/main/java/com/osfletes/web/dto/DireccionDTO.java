@@ -1,9 +1,10 @@
 package com.osfletes.web.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class DireccionDTO {
-	private Long id;
+	private Serializable id;
 
 	private String direccion;
     
@@ -13,11 +14,13 @@ public class DireccionDTO {
     
 	private Integer posicion;
 
-	public Long getId() {
+	
+
+	public Serializable getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Serializable id) {
 		this.id = id;
 	}
 

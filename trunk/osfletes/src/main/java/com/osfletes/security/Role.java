@@ -1,16 +1,19 @@
 package com.osfletes.security;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import org.springframework.security.core.GrantedAuthority;
 
+import com.osfletes.model.hibernate.ObjetoPersistente;
 
-public class Role implements GrantedAuthority {
+@Entity
+public class Role extends ObjetoPersistente implements GrantedAuthority {
 
-	
-	public Long id;
 	
 	public String role;
 
-    
+    @Transient
 	public User user;
 	
 	@Override

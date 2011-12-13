@@ -10,14 +10,14 @@ import javax.persistence.Entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.osfletes.model.hibernate.ObjetoPersistente;
+
 
 @Entity(name="PROP_USERS")
-public class User implements UserDetails {
+public class User extends ObjetoPersistente implements UserDetails {
 
 	private static final long serialVersionUID = 4079664434226649300L;
 	
-	public Long id;
-
 	public String password;
 	
     public String username;

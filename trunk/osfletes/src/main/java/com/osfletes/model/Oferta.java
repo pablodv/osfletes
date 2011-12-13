@@ -3,32 +3,27 @@ package com.osfletes.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+import com.osfletes.model.hibernate.ObjetoPersistente;
 import com.osfletes.security.User;
 
-
-public class Oferta {
+@Entity
+public class Oferta extends ObjetoPersistente {
 
 	
-	private Long id;
-	
+	@Transient
 	private Anuncio anuncio;
 	
-	private Date fechaCreacion;
-	
 	private Date fechaServicio;
-	
+	@Transient
 	private User proveedor;
 	
 	private BigDecimal valorOferta;
 	
 	
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public Anuncio getAnuncio() {
 		return anuncio;
 	}

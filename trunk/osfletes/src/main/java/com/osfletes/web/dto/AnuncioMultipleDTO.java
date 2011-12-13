@@ -1,11 +1,11 @@
 package com.osfletes.web.dto;
 
+import java.io.Serializable;
 import java.util.Date;
-import com.osfletes.web.dto.DireccionDTO;
 
 public class AnuncioMultipleDTO {
 
-	public Long id;
+	public Serializable id;
 	public Date fechaDesde;
 	public Date fechaHasta;
 	public Date fechaCreacion;
@@ -18,14 +18,15 @@ public class AnuncioMultipleDTO {
 	
     //public User user;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public Date getFechaDesde() {
 		return fechaDesde;
+	}
+	public Serializable getId() {
+		return id;
+	}
+	public void setId(Serializable id) {
+		this.id = id;
 	}
 	public void setFechaDesde(Date fechaDesde) {
 		this.fechaDesde = fechaDesde;

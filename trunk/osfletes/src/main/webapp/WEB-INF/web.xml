@@ -58,8 +58,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<param-value>
 		classpath*:/application-context.xml,
 		classpath*:/application-context-mappers.xml,
-		classpath*:/services.xml,
-		classpath*:/security.xml
+		classpath*:/application-context-services.xml,
+		classpath*:/application-context-security.xml
 		</param-value>
 	</context-param>
 	
@@ -69,7 +69,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:/request-service.xml</param-value>
+            <param-value>classpath*:/application-context-mvc.xml</param-value>
        </init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -79,17 +79,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
-     
-    
-	
-	<servlet>
-		<servlet-name>fletes</servlet-name>
-		<servlet-class>com.osfletes.OSFletesAppServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>fletes</servlet-name>
-		<url-pattern>/fletes</url-pattern>
-	</servlet-mapping>
 	
 	<servlet-mapping>
     	<servlet-name>default</servlet-name>

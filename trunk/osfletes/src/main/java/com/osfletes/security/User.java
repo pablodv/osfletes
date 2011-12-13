@@ -5,7 +5,9 @@ package com.osfletes.security;
 
 import java.util.Collection;
 
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.osfletes.model.hibernate.ObjetoPersistente;
 
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class User extends ObjetoPersistente implements UserDetails {
 
 	private static final long serialVersionUID = 4079664434226649300L;

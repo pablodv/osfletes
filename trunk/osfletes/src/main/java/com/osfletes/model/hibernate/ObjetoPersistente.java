@@ -35,7 +35,7 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
 	@Id
 	@GeneratedValue(generator="system-uuid")
 	@GenericGenerator(name="system-uuid",strategy="uuid")
-	protected Serializable id;
+	protected Long id;
 	
 	@Temporal(TemporalType.DATE)
 	protected Date fechaModificacion;
@@ -133,14 +133,17 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
     }
 
 
-	public Serializable getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(Serializable id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+
+
+	
 
 
 	

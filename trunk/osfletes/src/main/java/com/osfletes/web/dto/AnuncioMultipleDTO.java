@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class AnuncioMultipleDTO {
 
-	public Serializable id;
+	public Long id;
 	public Date fechaDesde;
 	public Date fechaHasta;
 	public Date fechaCreacion;
@@ -22,12 +22,18 @@ public class AnuncioMultipleDTO {
 	public Date getFechaDesde() {
 		return fechaDesde;
 	}
-	public Serializable getId() {
+	
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(Serializable id) {
+
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 	public void setFechaDesde(Date fechaDesde) {
 		this.fechaDesde = fechaDesde;
 	}

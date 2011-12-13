@@ -2,7 +2,7 @@
 	display: none;
 }
 *.loading-indicator {
-	background-image: url("/imagenes/loading.gif");
+	background-image: url("../imagenes/loading.gif");
 	width: 31px;
 	height: 31px;
 	margin: auto;	

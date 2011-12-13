@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
 <head>
-	<script type="text/javascript" src="<c:url value="/js/filtro.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/js/busqueda-anuncios.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/static/js/filtro.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/static/js/busqueda-anuncios.js"/>"></script>
 </head>
 
 <div id="anuncio">

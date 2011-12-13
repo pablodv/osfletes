@@ -3,9 +3,9 @@
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
 <head>
 
-	<script type="text/javascript" src="<c:url value="/js/provider.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/js/tabs.js"/>"></script>
-	<link rel="stylesheet" type="text/css" href="<c:url value="/css/tabs.css"/>"></link>
+	<script type="text/javascript" src="<c:url value="/static/js/provider.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/static/js/tabs.js"/>"></script>
+	<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/tabs.css"/>"></link>
 
 </head>
 

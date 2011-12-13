@@ -12,8 +12,6 @@
 	<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 	<spring.version>3.0.0.RELEASE</spring.version>
 	<hibernate.version>3.3.1.GA</hibernate.version>
-	<gae.version>1.5.3</gae.version>
-	<gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
 	<!--Default enviroment	-->
 	<enviroment>dev</enviroment>
   </properties>
@@ -102,7 +100,6 @@
 					<wtpversion>2.0</wtpversion>
 					<classpathContainers>
 					   <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-					   <classpathContainer>com.google.appengine.eclipse.core.GAE_CONTAINER</classpathContainer>
 					</classpathContainers>
 				</configuration>
 				
@@ -116,27 +113,6 @@
 						<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 					</configuration>
 			    </plugin>
-			<plugin>
-                <groupId>net.kindleit</groupId>
-                <artifactId>maven-gae-plugin</artifactId>
-                <version>0.8.4</version>
-                <configuration>
-                    <port>29080</port>
-                    <debugPort>29081</debugPort>
-                    <monitorPort>29090</monitorPort>
-                    <serverId>appengine.google.com</serverId>
-					<sdkDir>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}/</sdkDir>
-					<appDir>${basedir}/target/${project.artifactId}-${project.version}</appDir>
-                </configuration>
-                <dependencies>
-					<dependency>
-						<groupId>com.google.appengine</groupId>
-						<artifactId>appengine-java-sdk</artifactId>
-						<version>${gae.version}</version>
-						<type>zip</type>
-					</dependency>
-				</dependencies>
-            </plugin>
         </plugins>
         
   </build>
@@ -322,6 +298,29 @@
         <artifactId>slf4j-api</artifactId>
         <version>1.6.1</version>
     </dependency>
+    
+    <!-- hibernate dependecy -->
+    <dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-annotations</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+	<dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.2.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.1</version>
+    </dependency>
    
     <!-- Servlet API -->
 		<dependency>
@@ -356,7 +355,7 @@
 		<version>1.4</version>
 	</dependency>
 		
-	<!--app engine related dependencies-->
+	<!--app engine related dependencies>
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
@@ -410,12 +409,12 @@
             <version>1.0.0-b6</version>
         </dependency>
         
-        <!-- Borrar esto que es para generar el schema con siena-->
+        < Borrar esto que es para generar el schema con siena>
         <dependency>
         	<groupId>org.apache.ddlutils</groupId>
 			<artifactId>ddlutils</artifactId>
 			<version>1.0</version>
-		</dependency>
+		</dependency-->
 		
 		<dependency>
 		    <groupId>org.apache.tiles</groupId>
@@ -451,12 +450,12 @@
         
 </dependencies>
 
-	<pluginRepositories>
+	<!-- pluginRepositories>
         <pluginRepository>
             <id>gae-plugin</id>
             <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
         </pluginRepository>
-    </pluginRepositories>
+    </pluginRepositories-->
     <repositories>
     	<repository>
     		<id>mvn1</id>

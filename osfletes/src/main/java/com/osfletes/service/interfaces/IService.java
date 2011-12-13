@@ -1,4 +1,4 @@
-package com.osfletes.service;
+package com.osfletes.service.interfaces;
 
 import java.util.List;
 

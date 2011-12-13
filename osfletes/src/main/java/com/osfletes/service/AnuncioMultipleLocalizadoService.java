@@ -6,14 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import siena.PersistenceManagerFactory;
-
-import com.osfletes.dao.AnuncioMultipleLocalizadoDAO;
+import com.osfletes.dao.hibernate.AnuncioMultipleLocalizadoDAO;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
+import com.osfletes.service.interfaces.IAnuncioService;
+import com.osfletes.service.interfaces.IDireccionService;
+import com.osfletes.web.dto.FiltroDTO;
 
 @Service(value="anuncioMultipleLocalizadoService")
-public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<AnuncioMultipleLocalizado,AnuncioMultipleLocalizadoDAO> implements IAnuncioService{
+public class AnuncioMultipleLocalizadoService extends GenericServiceImplementacion<AnuncioMultipleLocalizado,AnuncioMultipleLocalizadoDAO> implements IAnuncioService{
 
 	@Autowired
 	IDireccionService direccionService;
@@ -24,13 +25,7 @@ public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<An
 		this.direccionService = direccionService;
 	}
 
-	@Override
-	@Transactional
-	public void saveRollback(AnuncioMultipleLocalizado obj) {
-		obj.insert();
-		obj.getPersistenceManager().save(obj);
-		throw new RuntimeException();
-	}
+	
 
 	@Transactional
 	public void saveWithAddresses(AnuncioMultipleLocalizado anuncio,List<Direccion> addresses) {
@@ -40,12 +35,11 @@ public class AnuncioMultipleLocalizadoService extends GenericSienaServiceImpl<An
 		this.dao.save(anuncio);
 	}	
 	
-	@Transactional
-	public void delete(AnuncioMultipleLocalizado anuncio){
-		List<Direccion> direcciones = anuncio.getListaDirecciones().fetch();
-		PersistenceManagerFactory.getPersistenceManager(Direccion.class).delete(direcciones);
-		
-		anuncio.delete();
+	
+
+	@Override
+	public List<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro) {
+		return this.dao.findAnuncios(filtro);
 	}
 
 	

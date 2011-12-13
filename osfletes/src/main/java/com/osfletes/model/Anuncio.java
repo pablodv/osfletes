@@ -2,61 +2,30 @@ package com.osfletes.model;
 
 import java.util.Date;
 
-import siena.Column;
-import siena.DateTime;
-import siena.Generator;
-import siena.Id;
-import siena.Index;
-import siena.Model;
-import siena.Query;
-import siena.Table;
+import com.osfletes.security.User;
 
-@Table("anuncios")
-public class Anuncio extends Model{
+public class Anuncio{
 	
-	@Index(value = { "anuncio_index" })
-	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
 	
-	@DateTime
-    @Column("fecha_desde")
 	public Date fechaDesde;
 
-	@DateTime
-    @Column("fecha_hasta")
 	public Date fechaHasta;
     
-	@DateTime
-    @Column("fecha_creacion")
 	public Date fechaCreacion;
     
-	@DateTime
-    @Column("fecha_cierre")
 	public Date fechaCierre;
     
-    @Column("hora_desde")
-	public Integer horaDesde;
+    public Integer horaDesde;
     
-    @Column("hora_hasta")
-	public Integer horaHasta;
+    public Integer horaHasta;
 
-    @Column("descripcion")
     public String descripcion;
     
-    @Index("user_index")
-    @Column("user_id")
     public User user;
     
 	
-    static Query<Anuncio> all() {
-        return Model.all(Anuncio.class);
-    }
- 
-    public static Anuncio findById(Long id) {
-        return all().filter("id", id).get();
-    }
-
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 

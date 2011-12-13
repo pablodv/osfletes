@@ -6,14 +6,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.osfletes.dao.hibernate.UserDAO;
+import com.osfletes.security.User;
+import com.osfletes.service.interfaces.IUserService;
+
 @Service(value="userService")
-public class UserService implements UserDetailsService {
+public class UserService extends GenericServiceImplementacion<User, UserDAO> implements IUserService, UserDetailsService {
 
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException, DataAccessException {
-		//TODO implementar un encontrar unico con jdo
-		return null;
+	public UserDetails loadUserByUsername(String userName)	throws UsernameNotFoundException, DataAccessException {
+		return dao.loadUserByUserName(userName);
 	}
 
 }
-

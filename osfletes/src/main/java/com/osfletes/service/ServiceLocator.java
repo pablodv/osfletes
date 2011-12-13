@@ -2,6 +2,8 @@ package com.osfletes.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.osfletes.service.interfaces.IAnuncioService;
+
 public class ServiceLocator {
 
   private static ServiceLocator INSTANCE;

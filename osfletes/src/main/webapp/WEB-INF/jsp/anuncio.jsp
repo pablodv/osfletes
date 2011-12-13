@@ -3,9 +3,7 @@
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
 <head>
 	<script type="text/javascript" src="<c:url value="/js/anuncio.js"/>"></script>
-	<script>
-		<c:out value="anuncio.direccion1"></c:out>
-	</script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
 
 <div id="anuncio">

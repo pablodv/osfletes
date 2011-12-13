@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.osfletes.dao.hibernate.AnuncioMultipleLocalizadoDAO;
 import com.osfletes.mapper.AnuncioMultipleMapper;
 import com.osfletes.mapper.DireccionMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
@@ -75,15 +76,9 @@ public class AnuncioController {
 		listaDirecciones.add(direccion1);
 		listaDirecciones.add(direccion2);
 		
-        //TODO este save loco con hibernate ya no es necesario
-		//anuncioService.saveWithAddresses(anuncio, listaDirecciones);
-		/*
-		for (Direccion direccion : listaDirecciones) {
-			direccion.owner = anuncio;
-			
-			//tengo que sal
-			PersistenceManagerFactory.getPersistenceManager(Direccion.class).save(direccion);
-		}*/
+		anuncio.listaDirecciones = listaDirecciones;
+		
+		anuncioService.save(anuncio);
 		
 		return "redirect:listarAnuncios"; 
 	}
@@ -118,7 +113,19 @@ public class AnuncioController {
 	public @ResponseBody List<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
 		List<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
 		return anuncioMultipleMapper.toDTO(anuncios);
-	 }	
+	 }
+
+	public IAnuncioService getAnuncioService() {
+		return anuncioService;
+	}
+
+	public AnuncioMultipleMapper getAnuncioMultipleMapper() {
+		return anuncioMultipleMapper;
+	}
+
+	public DireccionMapper getDireccionMapper() {
+		return direccionMapper;
+	}	
 	
 	
 }

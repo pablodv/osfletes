@@ -1,5 +1,5 @@
 body{
-	background-image: url("/imagenes/back.png");
+	background-image: url("../imagenes/back.png");
 }
 .main_container{
 	width: 940px;
@@ -47,7 +47,7 @@ body{
 .header .logo{
 	width: 245px;
 	height: 100px;
-	background-image: url("/imagenes/camion-rezise.png");
+	background-image: url("../imagenes/camion-rezise.png");
 	background-color: transparent;
 	margin-right: 10px;
 	margin-left: auto;
@@ -68,7 +68,7 @@ body{
 }
 
 .footer .division-line{
-	background-image: url("/imagenes/guion.png");
+	background-image: url("../imagenes/guion.png");
 	background-position: 0px 0px;
 	background-repeat: repeat-x;
 	width: 700px;

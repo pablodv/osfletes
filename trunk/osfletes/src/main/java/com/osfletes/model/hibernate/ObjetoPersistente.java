@@ -45,10 +45,8 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
 	protected Date fechaCreacion;
 	
 	@ManyToOne
-    @Column(name="USUARIO_CREACION")
 	protected User usuarioCreacion;
 	@ManyToOne
-    @Column(name="USUARIO_CREACION")
 	protected User usuarioModificacion;
 
 	@Override

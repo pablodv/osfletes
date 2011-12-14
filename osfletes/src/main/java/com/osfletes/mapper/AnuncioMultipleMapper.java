@@ -3,13 +3,18 @@ package com.osfletes.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Direccion;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 
 public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,AnuncioMultipleDTO>{
 
+	@Autowired
+	private DireccionMapper direccionMapper;
 
+	
 	@Override
 	public AnuncioMultipleDTO toDTO(AnuncioMultipleLocalizado model) {
 		AnuncioMultipleDTO dto = new AnuncioMultipleDTO();
@@ -58,7 +63,24 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 		model.setDescripcion(dto.getDescripcion());
 		model.setId(dto.getId());
 		
+		Direccion direccion1 = direccionMapper.fromAnuncioDTOToModel(dto.getDireccion1());
+		direccion1.setPosicion(1);
+
+		Direccion direccion2 = direccionMapper.fromAnuncioDTOToModel(dto.getDireccion2());
+		direccion2.setPosicion(2);
+
+		model.getListaDirecciones().add(direccion1);
+		model.getListaDirecciones().add(direccion2);
+		
 		return model;
+	}
+
+	public DireccionMapper getDireccionMapper() {
+		return direccionMapper;
+	}
+
+	public void setDireccionMapper(DireccionMapper direccionMapper) {
+		this.direccionMapper = direccionMapper;
 	}
 
 }

@@ -14,7 +14,7 @@ public class AnuncioMultipleLocalizado extends Anuncio{
 	private static final long serialVersionUID = 1367436832646814145L;
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="anuncio_id")
+	@JoinColumn(name="ANUNCIO_ID")
 	public List<Direccion> listaDirecciones;
 
 	public List<Direccion> getListaDirecciones() {

@@ -49,11 +49,10 @@ public class DireccionMapper implements IMapper<Direccion,DireccionDTO>{
 		return model;
 	}
 	
-	public Direccion fromAnuncioDTOToModel(String direccion, Integer posicion){
+	public Direccion fromAnuncioDTOToModel(String direccion){
 		Direccion model = new Direccion();
 		
 		model.direccion = direccion;
-		model.posicion = posicion;
 		
 		return model;
 	}

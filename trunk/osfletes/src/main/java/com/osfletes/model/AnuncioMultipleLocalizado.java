@@ -1,5 +1,6 @@
 package com.osfletes.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,9 @@ public class AnuncioMultipleLocalizado extends Anuncio{
 	public List<Direccion> listaDirecciones;
 
 	public List<Direccion> getListaDirecciones() {
+		if(this.listaDirecciones == null){
+			listaDirecciones = new ArrayList<Direccion>();
+		}
 		return listaDirecciones;
 	}
 

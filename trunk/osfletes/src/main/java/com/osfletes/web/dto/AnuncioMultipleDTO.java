@@ -1,7 +1,8 @@
 package com.osfletes.web.dto;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AnuncioMultipleDTO {
 
@@ -15,6 +16,8 @@ public class AnuncioMultipleDTO {
 	private String direccion1;
 	private String direccion2;
 	private String descripcion;
+	
+	private List<DireccionDTO> listaDireccionesDTO;
 	
     //public User user;
 	
@@ -85,6 +88,13 @@ public class AnuncioMultipleDTO {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
+	public List<DireccionDTO> getListaDireccionesDTO() {
+		if(this.listaDireccionesDTO==null){
+			this.listaDireccionesDTO = new ArrayList<DireccionDTO>();
+		}
+		return listaDireccionesDTO;
+	}
+	public void setListaDireccionesDTO(List<DireccionDTO> listaDireccionesDTO) {
+		this.listaDireccionesDTO = listaDireccionesDTO;
+	}
 }

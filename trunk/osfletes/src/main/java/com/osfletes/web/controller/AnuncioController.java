@@ -1,6 +1,5 @@
 package com.osfletes.web.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.osfletes.dao.hibernate.AnuncioMultipleLocalizadoDAO;
 import com.osfletes.mapper.AnuncioMultipleMapper;
-import com.osfletes.mapper.DireccionMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
-import com.osfletes.model.Direccion;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroDTO;
@@ -34,9 +30,6 @@ public class AnuncioController {
 	@Autowired
 	private AnuncioMultipleMapper anuncioMultipleMapper;
 
-	@Autowired
-	private DireccionMapper direccionMapper;
-	
 
 	public void setAnuncioMultipleMapper(AnuncioMultipleMapper anuncioMultipleMapper) {
 		this.anuncioMultipleMapper = anuncioMultipleMapper;
@@ -68,16 +61,6 @@ public class AnuncioController {
 
 		AnuncioMultipleLocalizado anuncio = anuncioMultipleMapper.toModel(anuncioDTO);
 		
-		Direccion direccion1 = direccionMapper.fromAnuncioDTOToModel(anuncioDTO.getDireccion1(), 1);
-
-		Direccion direccion2 = direccionMapper.fromAnuncioDTOToModel(anuncioDTO.getDireccion2(), 2);
-
-		List<Direccion> listaDirecciones = new ArrayList<Direccion>();
-		listaDirecciones.add(direccion1);
-		listaDirecciones.add(direccion2);
-		
-		anuncio.listaDirecciones = listaDirecciones;
-		
 		anuncioService.save(anuncio);
 		
 		return "redirect:listarAnuncios"; 
@@ -105,10 +88,6 @@ public class AnuncioController {
 		return "redirect:listarAnuncios";
 	}
 
-	public void setDireccionMapper(DireccionMapper direccionMapper) {
-		this.direccionMapper = direccionMapper;
-	}
-	
 	@RequestMapping(value="/obtenerAnunciosFiltrados")
 	public @ResponseBody List<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
 		List<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
@@ -123,9 +102,4 @@ public class AnuncioController {
 		return anuncioMultipleMapper;
 	}
 
-	public DireccionMapper getDireccionMapper() {
-		return direccionMapper;
-	}	
-	
-	
 }

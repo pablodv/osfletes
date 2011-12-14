@@ -11,7 +11,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.osfletes.security.User;
 
-@Entity
+@Entity(name="PROVEEDOR")
 @PrimaryKeyJoinColumn(name="USER_ID")
 public class Proveedor extends User{
 	

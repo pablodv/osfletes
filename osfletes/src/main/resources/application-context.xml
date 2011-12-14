@@ -34,6 +34,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
                 <value>com.osfletes.model.Oferta</value>
                 <value>com.osfletes.security.User</value>
                 <value>com.osfletes.security.Role</value>
+                <value>com.osfletes.model.Proveedor</value>
             </list>
         </property>
     </bean>

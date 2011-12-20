@@ -29,7 +29,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>com.osfletes.model.Anuncio</value>
+                <value>com.osfletes.model.AnuncioMultipleLocalizado</value>
                 <value>com.osfletes.model.Direccion</value>
                 <value>com.osfletes.model.Oferta</value>
                 <value>com.osfletes.security.User</value>
@@ -45,6 +45,18 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     </bean>
     
     <context:component-scan  base-package="com.osfletes.dao"/>
+   <context:component-scan  base-package="com.osfletes.service"/>
+    	
+    	
+<!-- mappers -->
+
+	<bean id="anuncioMultipleMapper"     class="com.osfletes.mapper.AnuncioMultipleMapper" />
+	<bean id="direccionMapper" class="com.osfletes.mapper.DireccionMapper" />    
+
+<!-- service -->
+
+    <bean id="serviceLocator" class="com.osfletes.service.ServiceLocator" factory-method="getInstance"/> 
+   <context:component-scan  base-package="com.osfletes.dao"/>
    <context:component-scan  base-package="com.osfletes.service"/>
     	
 </beans>

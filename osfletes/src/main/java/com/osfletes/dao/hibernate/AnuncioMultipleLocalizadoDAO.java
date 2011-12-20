@@ -2,6 +2,7 @@ package com.osfletes.dao.hibernate;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,18 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 	}
 
 	public List<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro) {
-		return null;		
+		Query q=null;
+		if((filtro.getFechaDesde()!=null)&&(filtro.getFechaDesde()==null)){
+			q = createHqlQuery("select aml from AnuncioMultipleLocalizado aml where aml.fechaDesde > :fechaDesde");
+			q.setParameter(":fechaDesde", filtro.getFechaDesde());
+		}else if((filtro.getFechaDesde()!=null)&&(filtro.getFechaDesde()!=null)){
+			q = createHqlQuery("select aml from AnuncioMultipleLocalizado aml where aml.fechaDesde >= :fechaDesde and aml.fechaHasta<= :fechaHasta");
+			q.setParameter(":fechaDesde", filtro.getFechaDesde());
+			q.setParameter(":fechaHasta", filtro.getFechaHasta());
+		}
+		
+		return q.list();
+		
 	}
 
 

@@ -76,11 +76,11 @@ public class AnuncioServiceTest {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, 2000);
 		calendar.set(Calendar.MONTH, 0);//enero
-		calendar.set(Calendar.DAY_OF_MONTH,10);
+		calendar.set(Calendar.DAY_OF_MONTH,1);
 		
 		filtro.setFechaDesde(calendar.getTime());
 		
-		calendar.set(Calendar.YEAR, 2005);
+		calendar.set(Calendar.YEAR, 2011);
 		calendar.set(Calendar.MONTH, 0);//enero
 		calendar.set(Calendar.DAY_OF_MONTH,5);
 		

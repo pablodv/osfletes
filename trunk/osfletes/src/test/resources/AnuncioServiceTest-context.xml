@@ -44,13 +44,13 @@ http://www.springframework.org/schema/context/spring-context.xsd">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-    <context:component-scan  base-package="com.osfletes.dao"/>
-   <context:component-scan  base-package="com.osfletes.service"/>
+   <context:component-scan base-package="com.osfletes.dao"/>
+   <context:component-scan base-package="com.osfletes.service"/>
     	
     	
 <!-- mappers -->
 
-	<bean id="anuncioMultipleMapper"     class="com.osfletes.mapper.AnuncioMultipleMapper" />
+	<bean id="anuncioMultipleMapper" class="com.osfletes.mapper.AnuncioMultipleMapper" />
 	<bean id="direccionMapper" class="com.osfletes.mapper.DireccionMapper" />    
 
 <!-- service -->

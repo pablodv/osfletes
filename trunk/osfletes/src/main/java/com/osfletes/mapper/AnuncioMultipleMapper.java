@@ -35,15 +35,9 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 		
 		List<AnuncioMultipleDTO> listaDtos = new ArrayList<AnuncioMultipleDTO>();
 		AnuncioMultipleDTO dto =null;
-		List<Direccion> lista;
 		for (AnuncioMultipleLocalizado model : list) {
-			//TODO: arreglar
-//			lista = model.getListaDirecciones().fetch();
-//			dto = toDTO(model);
-//			for (Direccion dir : lista) {
-//				dto.setDireccion1(dir.direccion);
-//			}
-//			listaDtos.add(dto);
+			dto = toDTO(model);
+			listaDtos.add(dto);
 		}
 		return listaDtos;
 	}

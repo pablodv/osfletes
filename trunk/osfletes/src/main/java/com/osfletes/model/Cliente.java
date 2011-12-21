@@ -9,19 +9,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.osfletes.security.User;
+
 @Entity(name="CLIENTE")
 @PrimaryKeyJoinColumn(name="USER_ID")
-public class Cliente {
+public class Cliente extends User{
+	
+	private static final long serialVersionUID = 676773547191009733L;
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="CLIENTE_ID")
-	private List<? extends Anuncio> listaAnuncios;
+	private List<AnuncioMultipleLocalizado> listaAnuncios;
 
-	public List<? extends Anuncio> getListaAnuncios() {
+	public List<AnuncioMultipleLocalizado> getListaAnuncios() {
 		return listaAnuncios;
 	}
 
-	public void setListaAnuncios(List<? extends Anuncio> listaAnuncios) {
+	public void setListaAnuncios(List<AnuncioMultipleLocalizado> listaAnuncios) {
 		this.listaAnuncios = listaAnuncios;
 	}
 }

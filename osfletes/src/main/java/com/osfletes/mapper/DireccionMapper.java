@@ -1,5 +1,7 @@
 package com.osfletes.mapper;
 
+import java.util.List;
+
 import com.osfletes.model.Direccion;
 import com.osfletes.web.dto.DireccionDTO;
 
@@ -55,6 +57,12 @@ public class DireccionMapper implements IMapper<Direccion,DireccionDTO>{
 		model.direccion = direccion;
 		
 		return model;
+	}
+
+	@Override
+	public List<DireccionDTO> listToDto(List<Direccion> lista) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

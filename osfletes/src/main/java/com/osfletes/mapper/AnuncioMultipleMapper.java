@@ -31,17 +31,6 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 		return dto;
 	}
 
-	public List<AnuncioMultipleDTO> toDTO(List<AnuncioMultipleLocalizado> list) {
-		
-		List<AnuncioMultipleDTO> listaDtos = new ArrayList<AnuncioMultipleDTO>();
-		AnuncioMultipleDTO dto =null;
-		for (AnuncioMultipleLocalizado model : list) {
-			dto = toDTO(model);
-			listaDtos.add(dto);
-		}
-		return listaDtos;
-	}
-	
 	
 	@Override
 	public AnuncioMultipleLocalizado toModel(AnuncioMultipleDTO dto) {
@@ -67,6 +56,17 @@ public class AnuncioMultipleMapper implements IMapper<AnuncioMultipleLocalizado,
 		model.getListaDirecciones().add(direccion2);
 		
 		return model;
+	}
+
+	@Override
+	public List<AnuncioMultipleDTO> listToDto(List<AnuncioMultipleLocalizado> lista) {
+		List<AnuncioMultipleDTO> listaDtos = new ArrayList<AnuncioMultipleDTO>();
+		AnuncioMultipleDTO dto =null;
+		for (AnuncioMultipleLocalizado model : lista) {
+			dto = toDTO(model);
+			listaDtos.add(dto);
+		}
+		return listaDtos;
 	}
 
 	public DireccionMapper getDireccionMapper() {

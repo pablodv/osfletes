@@ -71,7 +71,7 @@ public class AnuncioController {
 		ModelAndView mv = new ModelAndView("listaAnuncios");
 		List<AnuncioMultipleLocalizado> lista = anuncioService.getAll();
 		
-		List<AnuncioMultipleDTO> dtoList = anuncioMultipleMapper.toDTO(lista);
+		List<AnuncioMultipleDTO> dtoList = anuncioMultipleMapper.listToDto(lista);
 		
 		mv.addObject("lista",dtoList);
 		return mv;
@@ -91,7 +91,7 @@ public class AnuncioController {
 	@RequestMapping(value="/obtenerAnunciosFiltrados")
 	public @ResponseBody List<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
 		List<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
-		return anuncioMultipleMapper.toDTO(anuncios);
+		return anuncioMultipleMapper.listToDto(anuncios);
 	 }
 
 	public IAnuncioService getAnuncioService() {

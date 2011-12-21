@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.ManyToOne;
 
 import com.osfletes.model.hibernate.ObjetoPersistente;
 import com.osfletes.security.User;
@@ -14,24 +14,18 @@ public class Oferta extends ObjetoPersistente {
 	
 	private static final long serialVersionUID = 915473460883012433L;
 
-	@Transient
-	private Anuncio anuncio;
+	@ManyToOne
+	private AnuncioMultipleLocalizado anuncio;
 	
 	private Date fechaServicio;
 	
-	@Transient
+	@ManyToOne
 	private User proveedor;
 	
 	private BigDecimal valorOferta;
 	
 	
 	
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
-	}
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
@@ -55,6 +49,12 @@ public class Oferta extends ObjetoPersistente {
 	}
 	public void setValorOferta(BigDecimal valorOferta) {
 		this.valorOferta = valorOferta;
+	}
+	public AnuncioMultipleLocalizado getAnuncio() {
+		return anuncio;
+	}
+	public void setAnuncio(AnuncioMultipleLocalizado anuncio) {
+		this.anuncio = anuncio;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.licitaciones.oferta;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.Oferta;
+import com.osfletes.model.Proveedor;
 import com.osfletes.service.interfaces.IOfertaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,8 +24,12 @@ public class OfertaServiceTest {
 		Oferta oferta = new Oferta();
 		
 		AnuncioMultipleLocalizado anuncio = new AnuncioMultipleLocalizado();
+		Proveedor proveedor = new Proveedor();
 		
+		oferta.setProveedor(proveedor);
 		oferta.setAnuncio(anuncio);
+		oferta.setValorOferta(new BigDecimal(10));
+		
 		
 		ofertaService.save(oferta);
 		

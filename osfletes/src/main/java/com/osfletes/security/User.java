@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.osfletes.model.hibernate.ObjetoPersistente;
 
-@Entity
+@Entity(name="USER")
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class User extends ObjetoPersistente implements UserDetails {
 

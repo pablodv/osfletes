@@ -1,7 +1,9 @@
 package com.osfletes.mapper;
 
-public interface IMapper<T,E>{
-	public E toDTO(T model);
-	public T toModel(E dto);
+import java.util.List;
 
+public interface IMapper<M,D>{
+	public D toDTO(M model);
+	public M toModel(D dto);
+	public List<D> listToDto(List<M> lista);
 }

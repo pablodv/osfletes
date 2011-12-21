@@ -1,5 +1,7 @@
 package com.osfletes.mapper;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.osfletes.model.Cliente;
@@ -17,7 +19,7 @@ public class ClienteMapper implements IMapper<Cliente,ClienteDTO>{
 		dto.setPassword(model.getPassword());
 		dto.setId(model.getId());
 		
-		dto.getListaAnuncios().addAll(anuncioMultipleMapper.toDTO(model.getListaAnuncios()));
+		dto.getListaAnuncios().addAll(anuncioMultipleMapper.listToDto(model.getListaAnuncios()));
 		
 		return dto;
 	}
@@ -38,6 +40,12 @@ public class ClienteMapper implements IMapper<Cliente,ClienteDTO>{
 
 	public void setAnuncioMultipleMapper(AnuncioMultipleMapper anuncioMultipleMapper) {
 		this.anuncioMultipleMapper = anuncioMultipleMapper;
+	}
+
+	@Override
+	public List<ClienteDTO> listToDto(List<Cliente> lista) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

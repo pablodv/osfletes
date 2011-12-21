@@ -16,15 +16,10 @@ import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroDTO;
-/*
-classpath*:/application-context.xml,
-classpath*:/application-context-mappers.xml,
-classpath*:/application-context-services.xml,
-classpath*:/application-context-security.xml
-*/
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/AnuncioServiceTest-context.xml"})
-//@ContextConfiguration(locations={"/AnuncioServiceTest-context.xml"})
 public class AnuncioServiceTest {
 	
 	

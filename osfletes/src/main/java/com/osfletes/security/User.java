@@ -1,10 +1,6 @@
 package com.osfletes.security;
 
-
-
-
 import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,7 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.osfletes.model.hibernate.ObjetoPersistente;
-
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)

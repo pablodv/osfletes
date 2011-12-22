@@ -3,6 +3,7 @@ package com.osfletes.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -22,9 +23,11 @@ public class Oferta extends ObjetoPersistente {
 	@ManyToOne
 	private User proveedor;
 	
+	@Column(name="VALOR_OFERTA")
 	private BigDecimal valorOferta;
 	
-	
+	@Column(name="VENCIDA")
+	private Boolean vencida = false;
 	
 	public Date getFechaCreacion() {
 		return fechaCreacion;
@@ -55,6 +58,12 @@ public class Oferta extends ObjetoPersistente {
 	}
 	public void setAnuncio(AnuncioMultipleLocalizado anuncio) {
 		this.anuncio = anuncio;
+	}
+	public Boolean getVencida() {
+		return vencida;
+	}
+	public void setVencida(Boolean vencida) {
+		this.vencida = vencida;
 	}
 	
 	

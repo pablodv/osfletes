@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -16,7 +17,10 @@ public class AnuncioMultipleLocalizado extends Anuncio{
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="ANUNCIO_ID")
-	public List<Direccion> listaDirecciones;
+	private List<Direccion> listaDirecciones;
+	
+	@Column(name="Vencido")
+	private Boolean vencido = false;
 
 	public List<Direccion> getListaDirecciones() {
 		if(this.listaDirecciones == null){
@@ -27,6 +31,14 @@ public class AnuncioMultipleLocalizado extends Anuncio{
 
 	public void setListaDirecciones(List<Direccion> listaDirecciones) {
 		this.listaDirecciones = listaDirecciones;
+	}
+
+	public Boolean getVencido() {
+		return vencido;
+	}
+
+	public void setVencido(Boolean vencido) {
+		this.vencido = vencido;
 	}
 	
 }

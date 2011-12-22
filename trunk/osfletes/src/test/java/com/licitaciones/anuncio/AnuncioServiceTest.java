@@ -18,6 +18,7 @@ import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroDTO;
 
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/AnuncioServiceTest-context.xml"})
 public class AnuncioServiceTest {

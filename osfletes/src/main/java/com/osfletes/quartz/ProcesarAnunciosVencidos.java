@@ -11,15 +11,17 @@ import org.slf4j.LoggerFactory;
 
 public class ProcesarAnunciosVencidos implements Job{
 
-    private static Logger _log = (Logger) LoggerFactory.getLogger(ProcesarAnunciosVencidos.class);
+    //private static Logger _log = (Logger) LoggerFactory.getLogger(ProcesarAnunciosVencidos.class);
 	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		//System.out.println("procesando anuncios ....");
+		System.out.println("procesando anuncios ....");
         // This job simply prints out its job name and the
         // date and time that it is running
+		/*
         JobKey jobKey = context.getJobDetail().getKey();
-        _log.info("SimpleJob says: " + jobKey + " executing at " + new Date());		
+        _log.info("SimpleJob says: " + jobKey + " executing at " + new Date());
+		 */		
 	}
 
 }

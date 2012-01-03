@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.model.ResultadoPaginado;
 
 public interface IAnuncioService extends IGenericService<AnuncioMultipleLocalizado> {
 	
@@ -14,6 +15,6 @@ public interface IAnuncioService extends IGenericService<AnuncioMultipleLocaliza
 	 * @param filtro
 	 * @return
 	 */
-	public List<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro);
+	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro);
 
 }

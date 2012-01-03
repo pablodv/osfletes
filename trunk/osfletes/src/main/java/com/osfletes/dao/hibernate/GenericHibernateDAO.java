@@ -11,6 +11,7 @@ import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.osfletes.dao.interfaces.IGenericDAO;
+import com.osfletes.web.model.ResultadoPaginado;
 
 /**
  * Implementacion Generica para <i><b>Hibernate</b></i> y <i><b>Spring</b></i>,
@@ -26,7 +27,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 		implements IGenericDAO<T> {
 
 	protected Class<T> representedClass;
-
+	protected final Integer PAGE_SIZE = 10;
 	
 
 	public abstract Class<T> getRepresentedClass();
@@ -226,5 +227,16 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
       }
       
       return result;
+    }
+    
+    protected ResultadoPaginado<T> findPageByCriteria(Criteria criteria, Integer page){
+    	ResultadoPaginado<T> resultado = new ResultadoPaginado<T>();
+    	resultado.setPagina(page);
+    	resultado.setCantidad( new Double(Math.ceil(count(criteria)/PAGE_SIZE)).intValue()  );
+
+    	criteria.setFirstResult(PAGE_SIZE * page-1);
+        criteria.setMaxResults(PAGE_SIZE);
+        resultado.setResultados(findByCriteria(criteria));
+        return resultado;
     }
 }

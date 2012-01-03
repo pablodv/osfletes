@@ -10,6 +10,7 @@ import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.service.interfaces.IDireccionService;
 import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.model.ResultadoPaginado;
 
 @Service(value="anuncioMultipleLocalizadoService")
 public class AnuncioMultipleLocalizadoService extends GenericServiceImplementacion<AnuncioMultipleLocalizado,AnuncioMultipleLocalizadoDAO> implements IAnuncioService{
@@ -25,7 +26,8 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 	
 
 	@Override
-	public List<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro) {
+	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro) {
+		
 		return this.dao.findAnuncios(filtro);
 	}
 

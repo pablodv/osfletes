@@ -7,9 +7,7 @@ function getOfertas(){
 	var url = JsonUrls['GET_ALL_OFFERS'];
 	
 	$.ajax({
-	    type: "post",
 	    url: url,
-	    dataType: "json",
 	    data: null,
 	    success: function(data){
 	    	for(i=0;i<data.length;i++){

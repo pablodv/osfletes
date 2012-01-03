@@ -25,11 +25,16 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 
 	public List<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro) {
 		Query q=null;
-		if((filtro.getFechaDesde()!=null)&&(filtro.getFechaDesde()==null)){
+		if((filtro.getFechaDesde()!=null)&&(filtro.getFechaHasta()==null)){
 			q = createHqlQuery("select aml from anuncioMultipeLocalizado aml where aml.fechaDesde > :fechaDesde");
-			q.setParameter(":fechaDesde", filtro.getFechaDesde());
+			//q.setParameter(":fechaDesde", filtro.getFechaDesde());
+			q.setProperties(filtro);
 		}else if((filtro.getFechaDesde()!=null)&&(filtro.getFechaDesde()!=null)){
 			q = createHqlQuery("from anuncioMultipeLocalizado as aml where (aml.fechaDesde > :fechaDesde) and (aml.fechaHasta < :fechaHasta)");
+			q.setProperties(filtro);
+		}else if((filtro.getFechaDesde()==null)&&(filtro.getFechaHasta()!=null)){
+			q = createHqlQuery("select aml from anuncioMultipeLocalizado aml where aml.fechaHasta < :fechaHasta");
+			//q.setParameter(":fechaHasta", filtro.getFechaHasta());
 			q.setProperties(filtro);
 		}
 		List<AnuncioMultipleLocalizado> lista = q.list();

@@ -2,9 +2,15 @@ package com.osfletes.security;
 
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,7 +26,20 @@ public abstract class User extends ObjetoPersistente implements UserDetails {
 	
     public String username;
 	
-    @Override
+    @ManyToMany(targetEntity=Role.class,fetch=FetchType.LAZY)
+	  @Cascade(value={CascadeType.DELETE_ORPHAN,CascadeType.PERSIST, CascadeType.SAVE_UPDATE})
+	  @JoinTable(
+	       name="USER_ROLE",
+	       joinColumns=@JoinColumn(name="USER_ID"),
+	       inverseJoinColumns=@JoinColumn(name="ROLE_ID"))
+	private Collection<GrantedAuthority> authorities;
+	
+	@Override
+	public Collection<GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -32,6 +51,7 @@ public abstract class User extends ObjetoPersistente implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -47,6 +67,7 @@ public abstract class User extends ObjetoPersistente implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -58,10 +79,8 @@ public abstract class User extends ObjetoPersistente implements UserDetails {
 		this.username = username;
 	}
 
-
-	@Override
-	public Collection<GrantedAuthority> getAuthorities() {
-		return null;
+	public void setAuthorities(Collection<GrantedAuthority> authorities) {
+		this.authorities = authorities;
 	}
 
 	

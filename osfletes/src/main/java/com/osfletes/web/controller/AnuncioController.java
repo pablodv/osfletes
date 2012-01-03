@@ -4,11 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,7 @@ import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.model.ResultadoPaginado;
 
 @Controller
 public class AnuncioController {
@@ -89,9 +92,14 @@ public class AnuncioController {
 	}
 
 	@RequestMapping(value="/obtenerAnunciosFiltrados")
-	public @ResponseBody List<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
-		List<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
-		return anuncioMultipleMapper.listToDto(anuncios);
+	public @ResponseBody ResultadoPaginado<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
+		filtro.setPagina(1);
+		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
+		ResultadoPaginado<AnuncioMultipleDTO> resultado = new ResultadoPaginado<AnuncioMultipleDTO>();
+		resultado.setCantidad(anuncios.getCantidad());
+		resultado.setPagina(anuncios.getPagina());
+		resultado.setResultados(anuncioMultipleMapper.toDTO(anuncios.getResultados()));
+		return resultado;
 	 }
 
 	public IAnuncioService getAnuncioService() {
@@ -100,6 +108,12 @@ public class AnuncioController {
 
 	public AnuncioMultipleMapper getAnuncioMultipleMapper() {
 		return anuncioMultipleMapper;
+	}
+	
+	@RequestMapping(value="/testdisplaytag")
+	public String  testdisplaytag(HttpServletRequest request,
+		    HttpServletResponse response) {
+		return  "displaytagtest";
 	}
 
 }

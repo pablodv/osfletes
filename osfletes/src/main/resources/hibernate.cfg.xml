@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
        	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">validate</property>
 		<property name="query.substitutions">1 true,0 false, yes 'Y', no 'N'</property>
-		<property name="show_sql">false</property>
+		<property name="show_sql">true</property>
 		<property name="connection.useUnicode">true</property>
 		<property name="connection.characterEncoding">utf-8</property>
  

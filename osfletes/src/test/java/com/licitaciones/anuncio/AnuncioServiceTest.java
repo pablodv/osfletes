@@ -16,6 +16,7 @@ import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.model.ResultadoPaginado;
 
 
 
@@ -36,8 +37,13 @@ public class AnuncioServiceTest {
 	@Test
 	public void saveDummy(){
 		
-		AnuncioMultipleDTO anuncioMultipleDTO = new AnuncioMultipleDTO();
+		AnuncioMultipleDTO a1 = new AnuncioMultipleDTO("01/01/2000","01/01/2001",1,2,"ff","dd","desc");
+		AnuncioMultipleDTO a2 = new AnuncioMultipleDTO("01/01/2001","01/01/2002",1,2,"ff","dd","desc");
+		AnuncioMultipleDTO a3 = new AnuncioMultipleDTO("01/01/2002","01/01/2003",1,2,"ff","dd","desc");
+		AnuncioMultipleDTO a4 = new AnuncioMultipleDTO("01/01/2003","01/01/2004",1,2,"ff","dd","desc");
+		AnuncioMultipleDTO a5 = new AnuncioMultipleDTO("01/01/2004","01/01/2005",1,2,"ff","dd","desc");
 		
+		/*
 		anuncioMultipleDTO.setDescripcion("desc 1");
 		anuncioMultipleDTO.setDireccion1("direccion 1");
 		anuncioMultipleDTO.setDireccion2("direccion 2");
@@ -46,7 +52,7 @@ public class AnuncioServiceTest {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, 2000);
 		calendar.set(Calendar.MONTH, 0);//enero
-		calendar.set(Calendar.DAY_OF_MONTH,5);
+		calendar.set(Calendar.DAY_OF_MONTH,1);
 		
 		anuncioMultipleDTO.setFechaDesde(calendar.getTime());
 		calendar.set(Calendar.YEAR, 2010);
@@ -57,12 +63,25 @@ public class AnuncioServiceTest {
 		anuncioMultipleDTO.setFechaHasta(calendar.getTime());
 		anuncioMultipleDTO.setHoraDesde(1);
 		anuncioMultipleDTO.setHoraHasta(2);
+		*/
+		AnuncioMultipleLocalizado anuncio1;
+		AnuncioMultipleLocalizado anuncio2;
+		AnuncioMultipleLocalizado anuncio3;
+		AnuncioMultipleLocalizado anuncio4;
+		AnuncioMultipleLocalizado anuncio5;
 		
-		AnuncioMultipleLocalizado anuncio;
+		anuncio1 = anuncioMultipleMapper.toModel(a1);
+		anuncio2 = anuncioMultipleMapper.toModel(a2);
+		anuncio3 = anuncioMultipleMapper.toModel(a3);
+		anuncio4 = anuncioMultipleMapper.toModel(a4);
+		anuncio5 = anuncioMultipleMapper.toModel(a5);
 		
-		anuncio = anuncioMultipleMapper.toModel(anuncioMultipleDTO);
+		anuncioService.save(anuncio1);
+		anuncioService.save(anuncio2);
+		anuncioService.save(anuncio3);
+		anuncioService.save(anuncio4);
+		anuncioService.save(anuncio5);
 		
-		anuncioService.save(anuncio);
 	}
 
 	@Test
@@ -70,7 +89,7 @@ public class AnuncioServiceTest {
 		FiltroDTO filtro = new FiltroDTO();
 		
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.YEAR, 2000);
+		calendar.set(Calendar.YEAR, 1999);
 		calendar.set(Calendar.MONTH, 0);//enero
 		calendar.set(Calendar.DAY_OF_MONTH,1);
 		
@@ -78,10 +97,14 @@ public class AnuncioServiceTest {
 		
 		calendar.set(Calendar.YEAR, 2011);
 		calendar.set(Calendar.MONTH, 0);//enero
-		calendar.set(Calendar.DAY_OF_MONTH,5);
+		calendar.set(Calendar.DAY_OF_MONTH,1);
 		
 		filtro.setFechaHasta(calendar.getTime());
-		List<AnuncioMultipleLocalizado> lista = anuncioService.findAnuncios(filtro);
+		filtro.setPagina(1);
+
+		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
+		
+		List<AnuncioMultipleLocalizado> lista = anuncios.getResultados();
 		lista.size();
 	}
 	

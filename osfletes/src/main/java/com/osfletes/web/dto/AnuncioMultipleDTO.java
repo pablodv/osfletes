@@ -1,6 +1,7 @@
 package com.osfletes.web.dto;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,48 @@ public class AnuncioMultipleDTO {
 	
     //public User user;
 	
+	public AnuncioMultipleDTO(){
+		
+	}
+	public AnuncioMultipleDTO(String fechaDesde,String fechaHasta,Integer horaDesde,
+			Integer horaHasta,String direccion1,String direccion2,String descripcion){
+		
+		Calendar calendar = Calendar.getInstance();
+		/*******fecha desde********/
+		String[] strings = fechaDesde.split("/");
+		
+		Integer anio = Integer.parseInt(strings[2]);
+		Integer mes = Integer.parseInt(strings[1]);
+		Integer dia = Integer.parseInt(strings[0]);
+		
+		calendar.set(Calendar.YEAR, anio);
+		calendar.set(Calendar.MONTH, mes-1);//enero
+		calendar.set(Calendar.DAY_OF_MONTH,dia);
+		
+		setFechaDesde(calendar.getTime());
+		
+		/*********fecha hasta********/
+		strings = fechaHasta.split("/");
+
+		anio = Integer.parseInt(strings[2]);
+		mes = Integer.parseInt(strings[1]);
+		dia = Integer.parseInt(strings[0]);
+		
+		calendar.set(Calendar.YEAR, anio);
+		calendar.set(Calendar.MONTH, mes-1);//enero
+		calendar.set(Calendar.DAY_OF_MONTH,dia);
+		
+		setFechaHasta(calendar.getTime());
+		
+		/*********hora desde********/
+		
+		setHoraDesde(horaDesde);
+		setHoraHasta(horaHasta);
+		setDireccion1(direccion1);
+		setDireccion2(direccion2);
+		setDescripcion(descripcion);
+
+	}
 	
 	public Date getFechaDesde() {
 		return fechaDesde;

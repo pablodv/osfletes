@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
+import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.model.ResultadoPaginado;
 
 
 public class ProcesarAnunciosVencidosJob{
@@ -28,7 +30,11 @@ public class ProcesarAnunciosVencidosJob{
 		
 		filtroDTO.setFechaHasta(cal.getTime());
 		
-		List<AnuncioMultipleLocalizado> lista = getAnuncioService().findAnuncios(filtroDTO);
+		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtroDTO);
+		
+		List<AnuncioMultipleLocalizado> lista = anuncios.getResultados();
+		
+		
 		
 		for (AnuncioMultipleLocalizado anuncioMultipleLocalizado : lista) {
 			anuncioMultipleLocalizado.setVencido(true);

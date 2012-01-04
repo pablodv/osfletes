@@ -98,7 +98,7 @@ public class AnuncioController {
 		ResultadoPaginado<AnuncioMultipleDTO> resultado = new ResultadoPaginado<AnuncioMultipleDTO>();
 		resultado.setCantidad(anuncios.getCantidad());
 		resultado.setPagina(anuncios.getPagina());
-		resultado.setResultados(anuncioMultipleMapper.toDTO(anuncios.getResultados()));
+		resultado.setResultados(anuncioMultipleMapper.listToDto(anuncios.getResultados()));
 		return resultado;
 	 }
 

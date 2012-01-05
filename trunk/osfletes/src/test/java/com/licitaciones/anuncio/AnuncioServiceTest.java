@@ -1,7 +1,6 @@
 package com.licitaciones.anuncio;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -95,11 +94,13 @@ public class AnuncioServiceTest {
 		
 		filtro.setFechaDesde(calendar.getTime());
 		
+		/*
 		calendar.set(Calendar.YEAR, 2011);
 		calendar.set(Calendar.MONTH, 0);//enero
 		calendar.set(Calendar.DAY_OF_MONTH,1);
 		
 		filtro.setFechaHasta(calendar.getTime());
+		*/
 		filtro.setPagina(1);
 
 		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);

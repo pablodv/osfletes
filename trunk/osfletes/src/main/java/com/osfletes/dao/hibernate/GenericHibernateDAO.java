@@ -180,6 +180,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 	 */
 	protected Integer count(Criteria criteria) {
 		Integer count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		criteria.setProjection(null);
 		return count;
 	}
 	
@@ -232,11 +233,33 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
     protected ResultadoPaginado<T> findPageByCriteria(Criteria criteria, Integer page){
     	ResultadoPaginado<T> resultado = new ResultadoPaginado<T>();
     	resultado.setPagina(page);
-    	resultado.setCantidad( new Double(Math.ceil(count(criteria)/PAGE_SIZE)).intValue()  );
+    	
+    	resultado.setCantidad( new Double(Math.ceil(new Float(count(criteria))/new Float(PAGE_SIZE))).intValue()  );
 
-    	criteria.setFirstResult(PAGE_SIZE * page-1);
+    	criteria.setFirstResult(PAGE_SIZE * (page-1));
         criteria.setMaxResults(PAGE_SIZE);
         resultado.setResultados(findByCriteria(criteria));
         return resultado;
     }
+
+    protected ResultadoPaginado<T> findPageByQuery(Query query, Integer page){
+    	ResultadoPaginado<T> resultado = new ResultadoPaginado<T>();
+    	resultado.setPagina(page);
+    	resultado.setCantidad( new Double(Math.ceil(count(query)/PAGE_SIZE)).intValue()  );
+
+    	query.setFirstResult(PAGE_SIZE * page-1);
+        query.setMaxResults(PAGE_SIZE);
+        resultado.setResultados(findByQuery(query));
+        return resultado;
+    }
+
+	private Integer count(Query query) {
+		Integer count = (Integer) query.list().size();
+		return count;
+	}
+
+	private List<T> findByQuery(Query query) {
+		return query.list();
+	}
+    
 }

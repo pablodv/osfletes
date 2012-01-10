@@ -27,7 +27,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 		implements IGenericDAO<T> {
 
 	protected Class<T> representedClass;
-	protected final Integer PAGE_SIZE = 10;
+	protected final Integer PAGE_SIZE = 5;
 	
 
 	public abstract Class<T> getRepresentedClass();
@@ -179,8 +179,10 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 	 * @return
 	 */
 	protected Integer count(Criteria criteria) {
+		
 		Integer count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 		criteria.setProjection(null);
+		criteria.setResultTransformer(Criteria.ROOT_ENTITY);
 		return count;
 	}
 	
@@ -236,6 +238,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
     	
     	resultado.setCantidad( new Double(Math.ceil(new Float(count(criteria))/new Float(PAGE_SIZE))).intValue()  );
 
+    	
     	criteria.setFirstResult(PAGE_SIZE * (page-1));
         criteria.setMaxResults(PAGE_SIZE);
         resultado.setResultados(findByCriteria(criteria));

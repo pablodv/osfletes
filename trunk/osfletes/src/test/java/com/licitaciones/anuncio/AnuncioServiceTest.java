@@ -42,27 +42,6 @@ public class AnuncioServiceTest {
 		AnuncioMultipleDTO a4 = new AnuncioMultipleDTO("01/01/2003","01/01/2004",1,2,"ff","dd","desc");
 		AnuncioMultipleDTO a5 = new AnuncioMultipleDTO("01/01/2004","01/01/2005",1,2,"ff","dd","desc");
 		
-		/*
-		anuncioMultipleDTO.setDescripcion("desc 1");
-		anuncioMultipleDTO.setDireccion1("direccion 1");
-		anuncioMultipleDTO.setDireccion2("direccion 2");
-		anuncioMultipleDTO.setFechaCierre(new Date());
-		anuncioMultipleDTO.setFechaCreacion(new Date());
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.YEAR, 2000);
-		calendar.set(Calendar.MONTH, 0);//enero
-		calendar.set(Calendar.DAY_OF_MONTH,1);
-		
-		anuncioMultipleDTO.setFechaDesde(calendar.getTime());
-		calendar.set(Calendar.YEAR, 2010);
-		calendar.set(Calendar.MONTH, 0);//enero
-		calendar.set(Calendar.DAY_OF_MONTH,1);
-		
-		
-		anuncioMultipleDTO.setFechaHasta(calendar.getTime());
-		anuncioMultipleDTO.setHoraDesde(1);
-		anuncioMultipleDTO.setHoraHasta(2);
-		*/
 		AnuncioMultipleLocalizado anuncio1;
 		AnuncioMultipleLocalizado anuncio2;
 		AnuncioMultipleLocalizado anuncio3;
@@ -88,7 +67,7 @@ public class AnuncioServiceTest {
 		FiltroDTO filtro = new FiltroDTO();
 		
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.YEAR, 1999);
+		calendar.set(Calendar.YEAR, 2004);
 		calendar.set(Calendar.MONTH, 0);//enero
 		calendar.set(Calendar.DAY_OF_MONTH,1);
 		

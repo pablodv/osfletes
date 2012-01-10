@@ -70,9 +70,9 @@ function dibujar_tabla(settings){
 function dibujar_fila(elemento,columnas){
 	
 	var tr = $('<tr>');
-	$(tr).append('<input type="radio" name="element" value="'+elemento['id']+'"/>');
+	$(tr).append('<td><input type="radio" name="element" value="'+elemento['id']+'"/></td>');
 	for(var i=0;i<columnas.length;i++){
-		$(tr).append('<td>'+ elemento[columnas[i]] +'</td>');
+		$(tr).append('<td>'+ elemento[columnas[i].propiedad] +'</td>');
 	}
 	
 	return $(tr);
@@ -110,7 +110,7 @@ function createPagination(cantPaginas,selectedPage,functionParam){
 }
 
 function primero(funcion_paginar,selectedPage){
-	var pagina = $('<span id="primero" class="pagina">Primero</span>');
+	var pagina = $('<span id="primero" class="pagina">&lt;&lt;</span>');
 	$(pagina).click(
 			function(){
 				if(!$(this).hasClass('deshabilitado')){
@@ -126,7 +126,7 @@ function primero(funcion_paginar,selectedPage){
 }
 
 function previo(funcion_paginar,selectedPage){
-	var pagina = $('<span id="previo" class="pagina">Previo</span>');
+	var pagina = $('<span id="previo" class="pagina">&lt;</span>');
 	$(pagina).click(
 			function(){
 				if(!$(this).hasClass('deshabilitado')){
@@ -138,7 +138,7 @@ function previo(funcion_paginar,selectedPage){
 }
 
 function ultimo(funcion_paginar,paginaSeleccionada,cantPaginas){
-	var pagina = $('<span id="ultimo" class="pagina">Ultimo</span>');
+	var pagina = $('<span id="ultimo" class="pagina">&gt;&gt;</span>');
 	$(pagina).click(
 			function(){
 				if(!$(this).hasClass('deshabilitado')){
@@ -150,7 +150,7 @@ function ultimo(funcion_paginar,paginaSeleccionada,cantPaginas){
 }
 
 function proximo(funcion_paginar,paginaSeleccionada,cantPaginas){
-	var pagina = $('<span id="proximo" class="pagina">Proximo</span>');
+	var pagina = $('<span id="proximo" class="pagina">&gt;</span>');
 	$(pagina).click(
 			function(){
 				if(!$(this).hasClass('deshabilitado')){

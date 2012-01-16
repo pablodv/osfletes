@@ -3,8 +3,6 @@
   $.fn.busqueda = function(options) {
 	  
 	  var settings = $.extend( {
-	      'funcioncabezera'	: function(){alert('Te olvidaste la funcion de cabezera');},
-	      'funcionfila' 		: function(){alert('Te olvidaste la funcion de dibujar fila');},
 	      'funcionpaginacion'	: function(){alert('Te olvidaste la funcion de paginacion');}
 	  }, options);
 

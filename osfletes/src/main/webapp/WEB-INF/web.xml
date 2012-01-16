@@ -57,7 +57,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		classpath*:/application-context.xml,
-		classpath*:/application-context-quartz.xml,
 		classpath*:/application-context-mappers.xml,
 		classpath*:/application-context-services.xml,
 		classpath*:/application-context-security.xml

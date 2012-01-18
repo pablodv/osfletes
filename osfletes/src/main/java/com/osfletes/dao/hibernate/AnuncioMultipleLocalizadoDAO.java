@@ -26,23 +26,32 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 
 	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroAnuncioDTO filtro) {
 		
+		StringBuffer sb =new StringBuffer();
+		
+		sb.append("from anuncioMultipeLocalizado aml where 1=1 ");
+		
 		Query query = null;
-		Criteria criteria = this.createCriteria();
-		if((filtro.getFechaDesde()!=null)&&(filtro.getFechaHasta()==null)){
-			query = this.createHqlQuery("from anuncioMultipeLocalizado aml where aml.fechaDesde>= :fechaDesde");
-			query.setProperties(filtro);
-			
-		}else if((filtro.getFechaDesde()!=null)&&(filtro.getFechaDesde()!=null)){
-			query = this.createHqlQuery("from anuncioMultipeLocalizado aml where aml.fechaDesde>= :fechaDesde and aml.fechaHasta <= :fechaHasta");
-			query.setProperties(filtro);
-			
-			
-		}else if((filtro.getFechaDesde()==null)&&(filtro.getFechaHasta()!=null)){
-			query = this.createHqlQuery("from anuncioMultipeLocalizado aml where aml.fechaHasta <= :fechaHasta");
-			query.setProperties(filtro);
-			
+		
+		if((filtro.getFechaDesde()!=null)){
+			sb.append("and aml.fechaDesde>= :fechaDesde ");
+
+		}
+		if((filtro.getFechaHasta()!=null)){
+			sb.append("and aml.fechaHasta>= :fechaHasta ");
 			
 		}
+		if((filtro.getHoraDesde()!=null)){
+			sb.append("and aml.horaDesde>= :horaDesde ");
+			
+		}
+		if((filtro.getHoraHasta()!=null)){
+			sb.append("and aml.horaHasta>= :horaHasta ");
+			
+		}
+		
+		query = this.createHqlQuery(sb.toString());
+		query.setProperties(filtro);
+		
 		
 		return this.findPageByQuery(query, filtro.getPagina());
 

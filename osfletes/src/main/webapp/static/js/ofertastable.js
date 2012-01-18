@@ -8,8 +8,8 @@ function busqueda(pagina){
 	    data: {'pagina':pagina},
 	    success: function(resultado_paginado){
 	    	$('#latabla').busqueda({
-	    	'botonera'			: [{title:'ofertar',image:'url("../imagenes/camion.png")',funcion:function(){alert('ofertar');}}],
-			'columnas'			:[{title:'Identificador',propiedad:'id'}, {title:'Descripcion',propiedad:'descripcion'}],
+	    	'botonera'			: [{title:'ofertar',imagen:'url("static/imagenes/add.png")',funcion:function(){alert('ofertar');}}],
+			'element_props'			:[{title:'Identificador',prop:'id'}, {title:'Descripcion',prop:'descripcion'}],
 			'funcionpaginacion' : busqueda,
 			'resultado'			: resultado_paginado
 		});	    		

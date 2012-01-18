@@ -1,0 +1,102 @@
+.busqueda_container{
+	width: 900px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.pagination_container{
+	padding: 10px;
+	line-height: 28px;
+	text-align: center;	
+}
+
+.pagination_container .pagina{
+	background-color: gray;
+	padding: 5px;
+	height:28px;
+	cursor: pointer;
+	font-family: Arial;
+	color: white;
+}
+
+.pagination_container span[name="pagina"]:hover{
+	background-position: 0px -30px;	
+}
+
+.pagination_container .seleccionada{
+	background-color: red;
+}
+
+.pagination_container .deshabilitado{
+	background-color: gray;
+}
+
+.botonera_container{
+	height: 28px;
+	width: 100%;
+	background-color: gray;
+	
+	
+}
+.botonera_container .botonera {
+	height: 100%;
+	display: table;
+}
+
+.botonera .boton_container{
+	display: table-cell;
+	vertical-align: middle;
+	display: table-cell;
+	vertical-align: middle;
+	
+}
+
+.boton_container .boton{
+	width: 16px;
+	height: 16px;
+	float: left;
+	cursor: pointer;
+	margin: 5px;
+	
+}
+
+
+.busqueda_container table{
+	border-collapse: collapse;
+    border-spacing: 0;
+    font-family: arial;
+    width: 100%;
+    margin-top: 20px;    
+}
+
+.busqueda_container table td {
+	padding: 5px;
+	border-right: solid;
+	border-bottom: solid;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-color: #ACACAC;
+	font-size: 14px;
+}
+
+.busqueda_container table td.centered{
+	text-align: center;
+}
+
+td.first {
+	
+	border-left: solid;
+	border-left-width: 1px;
+	font-size: 14px;
+	width: 10px;
+}
+
+.busqueda_container table th{
+	font-size: 17px;
+	font-weight: normal;
+	border: solid;
+	border-width: 2px;
+	border-color: gray;
+	background-color: #ACACAC;
+}

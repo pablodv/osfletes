@@ -93,7 +93,6 @@ public class AnuncioController {
 
 	@RequestMapping(value="/obtenerAnunciosFiltrados")
 	public @ResponseBody ResultadoPaginado<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
-		filtro.setPagina(1);
 		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
 		ResultadoPaginado<AnuncioMultipleDTO> resultado = new ResultadoPaginado<AnuncioMultipleDTO>();
 		resultado.setCantidad(anuncios.getCantidad());

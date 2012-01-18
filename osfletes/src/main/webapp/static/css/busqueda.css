@@ -21,7 +21,7 @@
 }
 
 .pagination_container span[name="pagina"]:hover{
-	background-position: 0px -30px;	
+	background-color: #525252;
 }
 
 .pagination_container .seleccionada{

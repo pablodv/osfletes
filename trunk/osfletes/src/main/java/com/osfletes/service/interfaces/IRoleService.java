@@ -9,4 +9,7 @@ public interface IRoleService extends IGenericService<Role> {
 	@Transactional(readOnly=true)
 	public Role getClientRole();
 
+	@Transactional(readOnly=true)
+	public Role getProviderRole();
+
 }

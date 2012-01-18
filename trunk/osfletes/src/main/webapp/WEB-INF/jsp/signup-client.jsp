@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
 <head>
-<script type="text/javascript" src="<c:url value="/static/js/registrarse.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/signup-client.js"/>"></script>
 </head>
 
-<c:url value="/registrarse" var="action"/>
+<c:url value="/signup-client" var="action"/>
 	<form:form action="${action}" commandName="formreg" method="POST" id="form">
 		<div class="form">
 			<div class="form_row" >

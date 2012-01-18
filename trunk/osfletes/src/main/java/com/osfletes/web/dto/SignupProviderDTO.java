@@ -1,6 +1,6 @@
 package com.osfletes.web.dto;
 
-public class RegistroDTO {
+public class SignupProviderDTO {
 	private String mail;
 	private String password;
 	
@@ -16,6 +16,4 @@ public class RegistroDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osfletes.service.interfaces.IClienteService;
-import com.osfletes.web.dto.RegistroDTO;
+import com.osfletes.web.dto.SignupClientDTO;
 
 @Controller
 public class ClientController {
@@ -22,15 +22,15 @@ public class ClientController {
 		this.clienteService = clienteService;
 	}
 
-	@RequestMapping(value="/registrarse", method=RequestMethod.GET)
+	@RequestMapping(value="/signup-client", method=RequestMethod.GET)
 	public ModelAndView registrarse(){
-		ModelAndView mv = new ModelAndView("registrarse");
-		mv.addObject("formreg",new RegistroDTO());
+		ModelAndView mv = new ModelAndView("signup-client");
+		mv.addObject("formreg",new SignupClientDTO());
 		return mv;
 	}
 	
-	@RequestMapping(value="/registrarse", method=RequestMethod.POST)
-	public ModelAndView crearCliente(@ModelAttribute("formreg") @Valid RegistroDTO registro){
+	@RequestMapping(value="/signup-client", method=RequestMethod.POST)
+	public ModelAndView crearCliente(@ModelAttribute("formreg") @Valid SignupClientDTO registro){
 		clienteService.createClient(registro);
 		return new ModelAndView("perfil");
 	}

@@ -16,9 +16,14 @@
         <put-attribute name="body" value="/WEB-INF/jsp/bandeja-entrada-proveedor.jsp" />
     </definition>
     
-    <definition name="registrarse" extends="base.definition">
-		<put-attribute name="title" value="registrarse" />
-        <put-attribute name="body" value="/WEB-INF/jsp/registrarse.jsp" />
+    <definition name="signup-client" extends="base.definition">
+		<put-attribute name="title" value="signup" />
+        <put-attribute name="body" value="/WEB-INF/jsp/signup-client.jsp" />
+    </definition>
+    
+    <definition name="signup-provider" extends="base.definition">
+		<put-attribute name="title" value="signup" />
+        <put-attribute name="body" value="/WEB-INF/jsp/signup-provider.jsp" />
     </definition>
 
     <definition name="anuncioMultiple" extends="base.definition">

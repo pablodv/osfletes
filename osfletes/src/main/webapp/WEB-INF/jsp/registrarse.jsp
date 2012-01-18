@@ -2,13 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
 <head>
-
-	
-
+<script type="text/javascript" src="<c:url value="/static/js/registrarse.js"/>"></script>
 </head>
 
 <c:url value="/registrarse" var="action"/>
-	<form:form action="${action}" commandName="formreg" method="POST" >
+	<form:form action="${action}" commandName="formreg" method="POST" id="form">
 		<div class="form">
 			<div class="form_row" >
 				<div class="name"><label><spring:message code="registro.mail"/></label></div>
@@ -20,6 +18,6 @@
 				<div><form:input path="password"/></div> 
 				<form:errors path="password" element="div" cssClass="error" ></form:errors>
 			</div>
-			<div class="button_container"><span class="button-class"><spring:message code="registro.boton.registrarse"/></span></div>
+			<div class="button_container"><span id="registrarse" class="button-class"><spring:message code="registro.boton.registrarse"/></span></div>
 		</div>
 	</form:form>

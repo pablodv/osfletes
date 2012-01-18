@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import com.osfletes.model.hibernate.ObjetoPersistente;
 import com.osfletes.security.User;
 
-@Entity
+@Entity(name="OFERTA")
 public class Oferta extends ObjetoPersistente {
 	
 	private static final long serialVersionUID = 915473460883012433L;

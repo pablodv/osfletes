@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import com.osfletes.model.hibernate.ObjetoPersistente;
 
-@Entity
+@Entity(name="ROLE")
 public class Role extends ObjetoPersistente implements GrantedAuthority {
 
 	

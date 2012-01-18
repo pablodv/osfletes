@@ -33,7 +33,7 @@ public class AnuncioServiceTest {
 	@Autowired
 	private DireccionMapper direccionMapper;
 	
-	//@Test
+	@Test
 	public void saveDummy(){
 		
 		AnuncioMultipleDTO a1 = new AnuncioMultipleDTO("01/01/2000","01/01/2001",1,2,"ff","dd","desc");

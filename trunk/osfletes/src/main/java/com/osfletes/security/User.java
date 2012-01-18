@@ -18,7 +18,7 @@ import com.osfletes.model.hibernate.ObjetoPersistente;
 
 @Entity(name="USER")
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class User extends ObjetoPersistente implements UserDetails {
+public class User extends ObjetoPersistente implements UserDetails {
 
 	private static final long serialVersionUID = 4079664434226649300L;
 	

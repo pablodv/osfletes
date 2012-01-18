@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,9 +45,9 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
     @Column(name="FECHA_CREACION")
 	protected Date fechaCreacion;
 	
-	@ManyToOne
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
 	protected User usuarioCreacion;
-	@ManyToOne
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
 	protected User usuarioModificacion;
 
 	@Override

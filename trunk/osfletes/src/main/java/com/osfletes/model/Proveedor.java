@@ -12,7 +12,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import com.osfletes.security.User;
 
 @Entity(name="PROVEEDOR")
-@PrimaryKeyJoinColumn(name="USER_ID")
 public class Proveedor extends User{
 	
 	private static final long serialVersionUID = 2834989615724331733L;

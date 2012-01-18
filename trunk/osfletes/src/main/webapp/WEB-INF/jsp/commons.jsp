@@ -7,4 +7,5 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/loading.css"/>"></link>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/error.css"/>"></link>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/layout.css"/>"></link>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/busqueda.css"/>"></link>
 

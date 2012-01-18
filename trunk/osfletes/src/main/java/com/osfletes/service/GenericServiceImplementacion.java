@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.osfletes.dao.hibernate.GenericHibernateDAO;
+import com.osfletes.dao.interfaces.IGenericDAO;
 import com.osfletes.service.interfaces.IGenericService;
 
 
 
-public abstract class GenericServiceImplementacion<T,K extends GenericHibernateDAO<T>> implements IGenericService<T>{
+public abstract class GenericServiceImplementacion<T,K extends IGenericDAO<T>> implements IGenericService<T>{
 
 	protected K dao; 
 	

@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-@Entity(name="anuncioMultipeLocalizado")
+@Entity(name="ANUNCIO_MULT_LOCALIZADO")
 public class AnuncioMultipleLocalizado extends Anuncio{
 	
 	private static final long serialVersionUID = 1367436832646814145L;

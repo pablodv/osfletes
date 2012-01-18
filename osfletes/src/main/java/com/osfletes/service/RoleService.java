@@ -12,7 +12,12 @@ public class RoleService extends GenericServiceImplementacion<Role, IRoleDAO> im
 
 	@Override
 	public Role getClientRole() {
-		return dao.getRole(RolesEnum.ROL_CLIENTE.getRolName());
+		return dao.getRole(RolesEnum.ROL_CLIENT.getRolName());
+	}
+
+	@Override
+	public Role getProviderRole() {
+		return dao.getRole(RolesEnum.ROL_PROV.getRolName());
 	}
 
 }

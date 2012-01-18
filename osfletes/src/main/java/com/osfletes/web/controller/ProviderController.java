@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osfletes.model.Oferta;
+import com.osfletes.service.ServiceLocator;
 import com.osfletes.service.interfaces.IOfertaService;
 import com.osfletes.web.dto.OfertaDTO;
+import com.osfletes.web.dto.SignupProviderDTO;
+import com.osfletes.web.dto.SignupClientDTO;
 
 @Controller
 public class ProviderController {
@@ -90,4 +93,17 @@ public class ProviderController {
 //	public ModelAndView getAnuncios(){
 //		
 //	}
+	
+	@RequestMapping(value="/signup-provider", method=RequestMethod.GET)
+	public ModelAndView registrarse(){
+		ModelAndView mv = new ModelAndView("signup-provider");
+		mv.addObject("signup-form",new SignupProviderDTO());
+		return mv;
+	}
+	
+	@RequestMapping(value="/signup-provider", method=RequestMethod.POST)
+	public ModelAndView crearCliente(@ModelAttribute("signup-form") @Valid SignupProviderDTO reg){
+		ServiceLocator.getProviderService().createProvider(reg);
+		return new ModelAndView("perfil");
+	}
 }

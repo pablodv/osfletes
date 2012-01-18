@@ -3,6 +3,7 @@ package com.osfletes.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.osfletes.service.interfaces.IAnuncioService;
+import com.osfletes.service.interfaces.IProveedorService;
 import com.osfletes.service.interfaces.IRoleService;
 import com.osfletes.service.interfaces.IUserService;
 
@@ -13,6 +14,7 @@ public class ServiceLocator {
   private IAnuncioService anuncioService;
   private IUserService userService;
   private IRoleService roleService;
+  private IProveedorService providerService;
   
   // constructor privado
   private ServiceLocator() {/*Singleton*/}
@@ -51,6 +53,17 @@ public class ServiceLocator {
 	public void setRoleService(IRoleService roleService) {
 		this.roleService = roleService;
 	}
+
+	public static IProveedorService getProviderService() {
+		return INSTANCE.providerService;
+	}
+
+	@Autowired
+	public void setProviderService(IProveedorService providerService) {
+		this.providerService = providerService;
+	}
+	
+	
   
   
 }

@@ -11,14 +11,14 @@ import com.osfletes.dao.hibernate.ClienteDAO;
 import com.osfletes.model.Cliente;
 import com.osfletes.security.Role;
 import com.osfletes.service.interfaces.IClienteService;
-import com.osfletes.web.dto.RegistroDTO;
+import com.osfletes.web.dto.SignupClientDTO;
 
 @Service(value="clienteService")
 public class ClientService extends GenericServiceImplementacion<Cliente,ClienteDAO> implements IClienteService{
 
 	@Override
 	@Transactional
-	public void createClient(RegistroDTO registro) {
+	public void createClient(SignupClientDTO registro) {
 		Cliente cliente = new Cliente();
 		cliente.setUsername(registro.getMail());
 		cliente.setPassword(registro.getPassword());

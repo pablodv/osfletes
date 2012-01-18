@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
-import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 
@@ -20,7 +20,7 @@ public class ProcesarAnunciosVencidosJob{
 	public void execute(){
 		System.out.println("procesando anuncios ....");
 		
-		FiltroDTO filtroDTO = new FiltroDTO();
+		FiltroAnuncioDTO filtroDTO = new FiltroAnuncioDTO();
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.DAY_OF_MONTH, -1);
 		cal.set(Calendar.HOUR_OF_DAY, 23);

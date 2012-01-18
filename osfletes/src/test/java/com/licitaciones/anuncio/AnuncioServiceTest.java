@@ -14,7 +14,7 @@ import com.osfletes.mapper.DireccionMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
-import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 
@@ -33,7 +33,7 @@ public class AnuncioServiceTest {
 	@Autowired
 	private DireccionMapper direccionMapper;
 	
-	@Test
+	//@Test
 	public void saveDummy(){
 		
 		AnuncioMultipleDTO a1 = new AnuncioMultipleDTO("01/01/2000","01/01/2001",1,2,"ff","dd","desc");
@@ -92,10 +92,12 @@ public class AnuncioServiceTest {
 	}
 
 	@Test
-	public void testFindFechas(){
-		FiltroDTO filtro = new FiltroDTO();
+	public void testFindFechasFechaDesde(){
+		FiltroAnuncioDTO filtro = new FiltroAnuncioDTO();
 		
 		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+
 		calendar.set(Calendar.YEAR, 2000);
 		calendar.set(Calendar.MONTH, 0);//enero
 		calendar.set(Calendar.DAY_OF_MONTH,1);
@@ -116,6 +118,58 @@ public class AnuncioServiceTest {
 		List<AnuncioMultipleLocalizado> lista = anuncios.getResultados();
 		lista.size();
 	}
+
+	
+	@Test
+	public void testFindFechasFechaDesdeYHasta(){
+		FiltroAnuncioDTO filtro = new FiltroAnuncioDTO();
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.set(Calendar.YEAR, 2004);
+		calendar.set(Calendar.MONTH, 0);//enero
+		calendar.set(Calendar.DAY_OF_MONTH,7);
+		
+		
+		filtro.setFechaDesde(calendar.getTime());
+		
+		calendar.set(Calendar.YEAR, 2005);
+		calendar.set(Calendar.MONTH, 0);//enero
+		calendar.set(Calendar.DAY_OF_MONTH,1);
+		
+		filtro.setFechaHasta(calendar.getTime());
+		/*
+		*/
+		filtro.setPagina(1);
+
+		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
+		
+		List<AnuncioMultipleLocalizado> lista = anuncios.getResultados();
+		lista.size();
+	}
+
+	
+	@Test
+	public void testFindFechasFechaHasta(){
+		FiltroAnuncioDTO filtro = new FiltroAnuncioDTO();
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+
+		
+		calendar.set(Calendar.YEAR, 2004);
+		calendar.set(Calendar.MONTH, 11);//enero
+		calendar.set(Calendar.DAY_OF_MONTH,31);
+		
+		filtro.setFechaHasta(calendar.getTime());
+		filtro.setPagina(1);
+
+		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
+		
+		List<AnuncioMultipleLocalizado> lista = anuncios.getResultados();
+		lista.size();
+	}
+	
 	
 	@Test
 	public void deleteDummy(){

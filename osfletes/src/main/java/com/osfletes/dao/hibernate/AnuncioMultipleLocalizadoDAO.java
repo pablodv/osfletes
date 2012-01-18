@@ -1,15 +1,14 @@
 package com.osfletes.dao.hibernate;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
-import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 @Repository
@@ -25,30 +24,29 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 		return AnuncioMultipleLocalizado.class;
 	}
 
-	
-	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro) {
-		Criteria criteria = this.createCriteria();
-		criteria.add(Restrictions.eq("horaDesde", 12));
-		criteria.setProjection(Property.forName("id"));
-		//TODO FIND ANUNCIOS
-		return this.findPageByCriteria(criteria, filtro.getPagina());
-	}
-	
-	
-	/*public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroDTO filtro) {
+	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroAnuncioDTO filtro) {
+		
+		Query query = null;
 		Criteria criteria = this.createCriteria();
 		if((filtro.getFechaDesde()!=null)&&(filtro.getFechaHasta()==null)){
-			criteria.add(Restrictions.ge("fechaDesde",filtro.getFechaDesde()));
+			query = this.createHqlQuery("from anuncioMultipeLocalizado aml where aml.fechaDesde>= :fechaDesde");
+			query.setProperties(filtro);
 			
 		}else if((filtro.getFechaDesde()!=null)&&(filtro.getFechaDesde()!=null)){
-			criteria.add(Restrictions.ge("fechaDesde",filtro.getFechaDesde()));
-			criteria.add(Restrictions.le("fechaHasta",filtro.getFechaHasta()));
+			query = this.createHqlQuery("from anuncioMultipeLocalizado aml where aml.fechaDesde>= :fechaDesde and aml.fechaHasta <= :fechaHasta");
+			query.setProperties(filtro);
+			
+			
 		}else if((filtro.getFechaDesde()==null)&&(filtro.getFechaHasta()!=null)){
-			criteria.add(Restrictions.le("fechaHasta",filtro.getFechaHasta()));
+			query = this.createHqlQuery("from anuncioMultipeLocalizado aml where aml.fechaHasta <= :fechaHasta");
+			query.setProperties(filtro);
+			
+			
 		}
-		return this.findPageByCriteria(criteria, filtro.getPagina());
+		
+		return this.findPageByQuery(query, filtro.getPagina());
 
-	}*/
+	}
 	
 
 }

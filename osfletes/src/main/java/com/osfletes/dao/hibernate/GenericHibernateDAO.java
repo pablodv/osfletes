@@ -27,7 +27,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 		implements IGenericDAO<T> {
 
 	protected Class<T> representedClass;
-	protected final Integer PAGE_SIZE = 5;
+	protected final Integer PAGE_SIZE = 20;
 	
 
 	public abstract Class<T> getRepresentedClass();
@@ -250,7 +250,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
     	resultado.setPagina(page);
     	resultado.setCantidad( new Double(Math.ceil(count(query)/PAGE_SIZE)).intValue()  );
 
-    	query.setFirstResult(PAGE_SIZE * page-1);
+    	query.setFirstResult(PAGE_SIZE * (page-1));
         query.setMaxResults(PAGE_SIZE);
         resultado.setResultados(findByQuery(query));
         return resultado;

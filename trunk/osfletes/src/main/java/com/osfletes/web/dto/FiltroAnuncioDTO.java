@@ -2,10 +2,13 @@ package com.osfletes.web.dto;
 
 import java.util.Date;
 
-public class FiltroDTO {
+public class FiltroAnuncioDTO {
 	private Date fechaDesde;
 	private Date fechaHasta;
 	private Date fechaCierre;
+	private Integer horaDesde;
+	private Integer horaHasta;
+	
 	private Integer pagina;
 	
 	public Date getFechaDesde() {
@@ -31,6 +34,18 @@ public class FiltroDTO {
 	}
 	public void setPagina(Integer pagina) {
 		this.pagina = pagina;
+	}
+	public Integer getHoraDesde() {
+		return horaDesde;
+	}
+	public void setHoraDesde(Integer horaDesde) {
+		this.horaDesde = horaDesde;
+	}
+	public Integer getHoraHasta() {
+		return horaHasta;
+	}
+	public void setHoraHasta(Integer horaHasta) {
+		this.horaHasta = horaHasta;
 	}
 	
 	

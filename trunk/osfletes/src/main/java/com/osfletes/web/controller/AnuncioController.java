@@ -21,7 +21,7 @@ import com.osfletes.mapper.AnuncioMultipleMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
-import com.osfletes.web.dto.FiltroDTO;
+import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 @Controller
@@ -92,7 +92,7 @@ public class AnuncioController {
 	}
 
 	@RequestMapping(value="/obtenerAnunciosFiltrados")
-	public @ResponseBody ResultadoPaginado<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroDTO filtro ){
+	public @ResponseBody ResultadoPaginado<AnuncioMultipleDTO> getAnunciosFiltrados(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filtro ){
 		ResultadoPaginado<AnuncioMultipleLocalizado> anuncios = anuncioService.findAnuncios(filtro);
 		ResultadoPaginado<AnuncioMultipleDTO> resultado = new ResultadoPaginado<AnuncioMultipleDTO>();
 		resultado.setCantidad(anuncios.getCantidad());

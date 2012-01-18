@@ -2,14 +2,12 @@ package com.osfletes.web.dto;
 
 import java.util.Date;
 
-public class FiltroAnuncioDTO {
+public class FiltroAnuncioDTO extends GenericFilterDTO{
 	private Date fechaDesde;
 	private Date fechaHasta;
 	private Date fechaCierre;
 	private Integer horaDesde;
 	private Integer horaHasta;
-	
-	private Integer pagina;
 	
 	public Date getFechaDesde() {
 		return fechaDesde;
@@ -29,12 +27,6 @@ public class FiltroAnuncioDTO {
 	public void setFechaCierre(Date fechaCierre) {
 		this.fechaCierre = fechaCierre;
 	}
-	public Integer getPagina() {
-		return pagina;
-	}
-	public void setPagina(Integer pagina) {
-		this.pagina = pagina;
-	}
 	public Integer getHoraDesde() {
 		return horaDesde;
 	}
@@ -47,7 +39,5 @@ public class FiltroAnuncioDTO {
 	public void setHoraHasta(Integer horaHasta) {
 		this.horaHasta = horaHasta;
 	}
-	
-	
 	
 }

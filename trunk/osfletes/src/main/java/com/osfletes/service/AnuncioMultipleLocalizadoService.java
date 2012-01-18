@@ -28,7 +28,9 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 	@Override
 	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroAnuncioDTO filtro) {
 		
-		return this.dao.findAnuncios(filtro);
+		ResultadoPaginado<AnuncioMultipleLocalizado> resultadoPaginado = dao.findAnuncios(filtro);
+		
+		return resultadoPaginado;
 	}
 
 }

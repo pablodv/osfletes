@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-@Entity(name="ANUNCIO_MULT_LOCALIZADO")
+@Entity(name="ANUNCIO_MULTIPLE")
 public class AnuncioMultipleLocalizado extends Anuncio{
 	
 	private static final long serialVersionUID = 1367436832646814145L;
@@ -19,7 +19,7 @@ public class AnuncioMultipleLocalizado extends Anuncio{
 	@JoinColumn(name="ANUNCIO_ID")
 	private List<Direccion> listaDirecciones;
 	
-	@Column(name="Vencido")
+	@Column(name="VENCIDO")
 	private Boolean vencido = false;
 
 	public List<Direccion> getListaDirecciones() {

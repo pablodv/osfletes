@@ -28,7 +28,7 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 		
 		StringBuffer sb =new StringBuffer();
 		
-		sb.append("from anuncioMultipeLocalizado aml where 1=1 ");
+		sb.append("from ANUNCIO_MULTIPLE aml where 1=1 ");
 		
 		Query query = null;
 		
@@ -46,6 +46,10 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 		}
 		if((filtro.getHoraHasta()!=null)){
 			sb.append("and aml.horaHasta>= :horaHasta ");
+			
+		}
+		if((filtro.getFechaCierre()!=null)){
+			sb.append("and aml.fechaCierre>= :fechaCierre ");
 			
 		}
 		

@@ -57,7 +57,7 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 		query.setProperties(filtro);
 		
 		
-		return this.findPageByQuery(query, filtro.getPagina());
+		return this.findPageByQuery(query, filtro);
 
 	}
 	

@@ -11,6 +11,7 @@ import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.osfletes.dao.interfaces.IGenericDAO;
+import com.osfletes.web.dto.GenericFilterDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 /**
@@ -27,7 +28,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 		implements IGenericDAO<T> {
 
 	protected Class<T> representedClass;
-	protected final Integer PAGE_SIZE = 20;
+	//protected final Integer PAGE_SIZE = 20;
 	
 
 	public abstract Class<T> getRepresentedClass();
@@ -232,26 +233,26 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
       return result;
     }
     
-    protected ResultadoPaginado<T> findPageByCriteria(Criteria criteria, Integer page){
+    protected <E extends GenericFilterDTO> ResultadoPaginado<T> findPageByCriteria(Criteria criteria, E filterDTO){
     	ResultadoPaginado<T> resultado = new ResultadoPaginado<T>();
-    	resultado.setPagina(page);
+    	resultado.setPagina(filterDTO.getPage());
     	
-    	resultado.setCantidad( new Double(Math.ceil(new Float(count(criteria))/new Float(PAGE_SIZE))).intValue()  );
+    	resultado.setCantidad( new Double(Math.ceil(new Float(count(criteria))/new Float(filterDTO.getPageSize()))).intValue()  );
 
     	
-    	criteria.setFirstResult(PAGE_SIZE * (page-1));
-        criteria.setMaxResults(PAGE_SIZE);
+    	criteria.setFirstResult(filterDTO.getPageSize() * (filterDTO.getPage()-1));
+        criteria.setMaxResults(filterDTO.getPageSize());
         resultado.setResultados(findByCriteria(criteria));
         return resultado;
     }
 
-    protected ResultadoPaginado<T> findPageByQuery(Query query, Integer page){
+    protected <E extends GenericFilterDTO> ResultadoPaginado<T> findPageByQuery(Query query, E filterDTO){
     	ResultadoPaginado<T> resultado = new ResultadoPaginado<T>();
-    	resultado.setPagina(page);
-    	resultado.setCantidad( new Double(Math.ceil(count(query)/PAGE_SIZE)).intValue()  );
+    	resultado.setPagina(filterDTO.getPage());
+    	resultado.setCantidad( new Double(Math.ceil(count(query)/filterDTO.getPageSize())).intValue()  );
 
-    	query.setFirstResult(PAGE_SIZE * (page-1));
-        query.setMaxResults(PAGE_SIZE);
+    	query.setFirstResult(filterDTO.getPageSize() * (filterDTO.getPage()-1));
+        query.setMaxResults(filterDTO.getPageSize());
         resultado.setResultados(findByQuery(query));
         return resultado;
     }

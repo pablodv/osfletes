@@ -1,0 +1,16 @@
+.button_container {
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    margin: 40px;
+    width: 726px;
+}
+
+.button_container .button-class{
+	font-size: 26px;
+	margin-right: 3px;
+	float: left;
+	width: 300px;
+	
+}
+

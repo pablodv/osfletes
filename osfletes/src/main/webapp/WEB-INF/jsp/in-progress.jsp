@@ -1,0 +1,1 @@
+<img src="static/imagenes/in_progress.jpg" style="margin:auto;"/>

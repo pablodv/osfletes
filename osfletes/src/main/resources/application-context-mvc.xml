@@ -18,10 +18,16 @@
 
   <context:component-scan base-package="com.osfletes.web.controller"/>
   <s:global-method-security secured-annotations="enabled" />
-  <mvc:view-controller path="/Constants" view-name="Constants" />
-  <mvc:view-controller path="/Login" view-name="login" />
+  <mvc:view-controller path="/client-constants" view-name="client-constants" />
+  <mvc:view-controller path="/common-constants" view-name="common-constants" />
+  <mvc:view-controller path="/provider-constants" view-name="provider-constants" />
+  <mvc:view-controller path="/admin-constants" view-name="admin-constants" />
+  <mvc:view-controller path="/login" view-name="login" />
   <mvc:view-controller path="/index" view-name="index" />
+  <mvc:view-controller path="/in-progress" view-name="in-progress" />
+  <mvc:view-controller path="/**" view-name="index" />
   <mvc:annotation-driven validator="globalValidator"/>
+  
   
  
   

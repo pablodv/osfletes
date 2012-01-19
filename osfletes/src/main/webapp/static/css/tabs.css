@@ -16,10 +16,10 @@ ul.tabs li {
 	margin-bottom: -1px;
 	overflow: hidden;
 	position: relative;
-	border-top-radius: 10px;
-	-moz-border-radius-topright: 10px;
-	-ms-border-top-radius: 10px;
-	-webkit-border-top-radius: 10px;
+	border-top-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-ms-border-top-radius: 3px;
+	-webkit-border-top-radius: 3px;
 	background-color: #dddf36;
 }
 ul.tabs li a {

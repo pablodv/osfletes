@@ -3,16 +3,15 @@
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
 <head>
 
-	<script type="text/javascript" src="<c:url value="/static/js/provider.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/static/js/tabs.js"/>"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/tabs.css"/>"></link>
 
 </head>
 
 <ul class="tabs">
-    <li class="rounded"><a href="perfil"><spring:message code="proveedor.be.tab.perfil"/></a></li>
-    <li class="rounded"><a href="testdisplaytag"><spring:message code="proveedor.be.tab.anuncios"/></a></li>
-    <li class="rounded"><a href="ofertas"><spring:message code="proveedor.be.tab.ofertas"/></a></li>
+    <li class="rounded"><a href="in-progress"><spring:message code="client.tab.perfil"/></a></li>
+    <li class="rounded"><a href="in-progress"><spring:message code="client.tab.anuncios"/></a></li>
+    <li class="rounded"><a href="in-progress"><spring:message code="client.tab.contratos"/></a></li>
 </ul>
 
 <div class="tab_container">

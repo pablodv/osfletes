@@ -1,6 +1,8 @@
 package com.osfletes.security;
 
 import java.util.Collection;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -33,6 +35,9 @@ public class User extends ObjetoPersistente implements UserDetails {
 	       joinColumns=@JoinColumn(name="USER_ID"),
 	       inverseJoinColumns=@JoinColumn(name="ROLE_ID"))
 	private Collection<GrantedAuthority> authorities;
+    
+    @Column(name="ENABLE")
+    private boolean enable;
 	
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
@@ -51,7 +56,6 @@ public class User extends ObjetoPersistente implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -67,8 +71,13 @@ public class User extends ObjetoPersistente implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		return enable;
+	}
+	
+	
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 
 	public void setPassword(String password) {

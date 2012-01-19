@@ -2,7 +2,7 @@ $(function(){
 	$('#buscar').click(function(){busqueda(1);});
 });
 function busqueda(pagina){
-	var url = JsonUrls['OBTENER_ANUNCIOS_FILTRADOS'];
+	var url = ProviderUrls['OBTENER_ANUNCIOS_FILTRADOS'];
 	$.ajax({
 	    url: url,
 	    data: {'pagina':pagina},

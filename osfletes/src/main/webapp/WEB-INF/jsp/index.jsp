@@ -1,5 +1,3 @@
-<html>
-<body>
-	hello the world!!!!
-</body>
-</html>
+<div>
+	MOSTRI ESTA ES LA PAGINA DE INICIO ESTO SE LO DEJAMOS AL DISEÑADOR EL RESTO ES NUESTRO
+</div>

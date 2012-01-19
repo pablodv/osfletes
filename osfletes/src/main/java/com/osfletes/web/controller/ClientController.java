@@ -3,6 +3,7 @@ package com.osfletes.web.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class ClientController {
 	}
 
 	@RequestMapping(value="/signup-client", method=RequestMethod.GET)
+	@Secured(value="IS_AUTHENTICATED_ANONYMOUSLY")
 	public ModelAndView registrarse(){
 		ModelAndView mv = new ModelAndView("signup-client");
 		mv.addObject("formreg",new SignupClientDTO());
@@ -30,9 +32,10 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value="/signup-client", method=RequestMethod.POST)
+	@Secured(value="IS_AUTHENTICATED_ANONYMOUSLY")
 	public ModelAndView crearCliente(@ModelAttribute("formreg") @Valid SignupClientDTO registro){
 		clienteService.createClient(registro);
-		return new ModelAndView("perfil");
+		return new ModelAndView("index");
 	}
 	
 }

@@ -1,18 +1,35 @@
 (function( $ ){
 
-  $.fn.busqueda = function(options) {
-	  
-	  var settings = $.extend( {
-	      'funcionpaginacion'	: function(){alert('Te olvidaste la funcion de paginacion');}
-	  }, options);
-
-	  var container = $('<div class="busqueda_container">');
-	  $(container).append(dibujar_botonera(settings.botonera));
-	  $(container).append(dibujar_tabla(settings.element_props,settings.resultado));
-	  $(container).append(createPagination(settings.resultado['cantidad'],settings.resultado['pagina'],settings.funcionpaginacion));
-	  $(this).html($(container));
-	  return this;
-  };
+    var methods = {
+		init : function(options) {
+		  
+		  var settings = $.extend( {
+		      'funcionpaginacion'	: function(){alert('Te olvidaste la funcion de paginacion');}
+		  }, options);
+	
+		  var container = $('<div class="busqueda_container">');
+		  $(container).append(dibujar_botonera(settings.botonera));
+		  $(container).append(dibujar_tabla(settings.element_props,settings.resultado));
+		  $(container).append(createPagination(settings.resultado['cantidad'],settings.resultado['pagina'],settings.funcionpaginacion));
+		  $(this).html($(container));
+		  return this;
+	  },
+	  selected : function(){ return $('input[name=element]:checked').val(); },
+	  page: function(){ return $('.pagination_container .seleccionada').attr('id');}
+    };
+    
+    $.fn.busqueda = function(method){
+    	// Method calling logic
+        if ( methods[method] ) {
+          return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        } else if ( typeof method === 'object' || ! method ) {
+          return methods.init.apply( this, arguments );
+        } else {
+          $.error( 'Method ' +  method + ' does not exist on busqueda' );
+        }  
+    };
+  
+  
 })( jQuery );
 
 function dibujar_botonera(botones){
@@ -92,7 +109,7 @@ function dibujarfila(element_props,element){
 function solve_bool_value(props,element){
 	input = $("<input>");
 	$(input).attr("type", 'checkbox');
-	$(input).attr("disabled", disabled);
+	$(input).attr("disabled", 'disabled');
 	
 	if(element[props.prop] != null && element[props.prop] == 1){
 		$(input).attr("checked","checked");
@@ -254,4 +271,12 @@ function Boton(title,imagen,funcion){
 	this.imagen =imagen;
 	this.funcion = funcion
 	
+}
+
+function get_selected_id(){
+	return $('input[name=element]:checked').val();
+}
+
+function get_active_page(){
+	return $('.pagination_container .seleccionada').attr('id');
 }

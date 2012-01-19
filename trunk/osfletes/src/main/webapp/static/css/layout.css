@@ -1,5 +1,6 @@
 body{
 	background-image: url("../imagenes/back.png");
+	margin: 0px;
 }
 
 .main_container{
@@ -7,6 +8,7 @@ body{
 	overflow:hidden;
 	margin: auto;
 	background-color: #f9fb62;
+	margin-top: 20px;
 }
 
 * {
@@ -15,10 +17,10 @@ body{
 }
 
 .border-round{
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-ms-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 .float-left{
@@ -94,14 +96,38 @@ body{
 	line-height:30px;
 	text-align: center;
 	text-transform: uppercase;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-ms-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-webkit-border-radius: 2px;
 	cursor: pointer;
 }
 
 *.button-class:hover{
+	background-color: #525252;
+}
+
+.tiny-button-class{
+	background-color: gray;
+	color: white;
+	font-weight: bold;
+	font-size: 11px;
+	padding-left : 7px;
+	padding-right : 7px;
+	padding-top: 3px;
+	padding-bottom:3px;
+	line-height:20px;
+	text-align: center;
+	text-transform: uppercase;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	cursor: pointer;
+	
+}
+
+*.tiny-button-class:hover{
 	background-color: #525252;
 }
 
@@ -149,5 +175,14 @@ body{
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
+}
+
+.header-buttons-container{
+	float: right;
+	padding: 10px;
+}
+
+.header-buttons-container .tiny-button-class{
+	margin-right: 2px;
 }
 

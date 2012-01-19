@@ -3,9 +3,12 @@ package com.osfletes.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,7 +22,6 @@ import com.osfletes.service.ServiceLocator;
 import com.osfletes.service.interfaces.IOfertaService;
 import com.osfletes.web.dto.OfertaDTO;
 import com.osfletes.web.dto.SignupProviderDTO;
-import com.osfletes.web.dto.SignupClientDTO;
 
 @Controller
 public class ProviderController {
@@ -69,41 +71,25 @@ public class ProviderController {
 		return ofertasDto;
 	  }	
 	
-	@RequestMapping(value="/perfil")
-	//@Secured('isAuthenticated()')
-	public ModelAndView miPerfil(){
-		/*User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		GrantedAuthority authority	= principal.getAuthorities().iterator().next();
-		   
-		if(authority.getAuthority().equals(RolesEnum.ROL_USER)){
-		   ModelAndView mv = new ModelAndView("usuario");
-		   return mv;
-		}else if(authority.getAuthority().equals(RolesEnum.ROL_PROVEEDOR)){*/
-		   ModelAndView mv = new ModelAndView("proveedor");
-		   return mv;
-		 /*  
-		}else{
-		   //TODO esto deberia ser un error
-		   ModelAndView mv = new ModelAndView("index");
-		   return mv;
-		}*/
+	
+	@RequestMapping(value="/ver-anuncios")
+	public String  verAnuncios(HttpServletRequest request,
+		    HttpServletResponse response) {
+		return  "provider-tab-anuncio";
 	}
 	
-//	@RequestMapping(value="/anuncios")
-//	public ModelAndView getAnuncios(){
-//		
-//	}
-	
 	@RequestMapping(value="/signup-provider", method=RequestMethod.GET)
-	public ModelAndView registrarse(){
+	@Secured(value="IS_AUTHENTICATED_ANONYMOUSLY")
+	public ModelAndView signUp(){
 		ModelAndView mv = new ModelAndView("signup-provider");
 		mv.addObject("signup-form",new SignupProviderDTO());
 		return mv;
 	}
 	
 	@RequestMapping(value="/signup-provider", method=RequestMethod.POST)
-	public ModelAndView crearCliente(@ModelAttribute("signup-form") @Valid SignupProviderDTO reg){
+	@Secured(value="IS_AUTHENTICATED_ANONYMOUSLY")
+	public ModelAndView signUp(@ModelAttribute("signup-form") @Valid SignupProviderDTO reg){
 		ServiceLocator.getProviderService().createProvider(reg);
-		return new ModelAndView("perfil");
+		return new ModelAndView("index");
 	}
 }

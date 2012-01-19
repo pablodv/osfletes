@@ -1,7 +1,7 @@
 $(function(){
-	$('#signin').click(sign_in);
+	$('#signup-button').click(function(){sign_up()});
 });
 
-function sign_in(){
+function sign_up(){
 	$('#form').submit();
 }

@@ -1,7 +1,7 @@
 package com.osfletes.security;
 
 public enum RolesEnum {
-     ROL_ADMIN("ROL_ADMIN"),ROL_CLIENT("ROL_CLIENT"),ROL_PROV("ROL_PROV");
+     ROLE_ADMIN("ROLE_ADMIN"),ROLE_CLIENT("ROLE_CLIENT"),ROLE_PROV("ROLE_PROV");
      
      private String rol;
      

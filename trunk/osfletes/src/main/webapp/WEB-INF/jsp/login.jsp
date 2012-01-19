@@ -8,15 +8,15 @@ div,span{
 	margin: 10px;
 	padding: 3px;
 	}
-*.body{
+body{
 	background-color: gray;
 	}
-*.error{
+.error{
 	font-family: monospace;
 	font-weight: bold;
 	color: red;
 	}
-*.login-box{
+.login-box{
 	display: table;
 	vertical-align: middle;
 	width:200px;
@@ -29,24 +29,24 @@ div,span{
 	margin-left:-100px;
 	position: absolute;
 	}
-*.login-box > div,span{
+.login-box > div,span{
 	position: static;
 	}
-*.login-param{
+.login-param{
 	display: table-row;
 	font-family: monospace;
 	font-weight: bold;
 	color: white;
 	margin:auto;
 	}
-*.login-cell{
+.login-cell{
 	display:table-cell;
 	background-color:oliveaqua;
 	font-family: sans-serif;
 	font-size: small;
 	margin:auto;
 	}
-*.login-foot{
+.login-foot{
 	display:table-cell;
 	background-color:oliveaqua;
 	font-family: sans-serif;
@@ -56,7 +56,7 @@ div,span{
 	}
 -->
 </style>
-<body class="body">
+<body>
  <div class="login-box">
 	<form name="f" action="${action}" method="POST">
 	 	<span class="login-param">

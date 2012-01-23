@@ -10,6 +10,7 @@
 
 <ul class="tabs">
     <li class="rounded"><a href="manage-users">Usuarios</a></li>
+    <li class="rounded"><a href="manage-roles">Roles</a></li>
 </ul>
 
 <div class="tab_container">

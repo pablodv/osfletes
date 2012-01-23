@@ -1,5 +1,5 @@
 body{
-	background-image: url("../imagenes/back.png");
+	background-color: #f4f3f8;
 	margin: 0px;
 }
 
@@ -7,7 +7,7 @@ body{
 	width: 940px;
 	overflow:hidden;
 	margin: auto;
-	background-color: #f9fb62;
+	background-color: #D4CAF9;
 	margin-top: 20px;
 }
 
@@ -31,7 +31,7 @@ body{
 	line-height: 100px;
 	text-align: center;
 	vertical-align: middle;
-	background-color: #3adf3a;
+	background-color: #5F528F;
 	height: 100px;
 	margin: 5px;
 }
@@ -101,6 +101,7 @@ body{
 	-ms-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 *.button-class:hover{
@@ -124,6 +125,7 @@ body{
 	-ms-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	cursor: pointer;
+	text-decoration: none;
 	
 }
 

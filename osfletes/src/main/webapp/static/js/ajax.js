@@ -5,9 +5,39 @@ $(function() {
 		});
 	$('body').ajaxStart(function(){showLoading();});
 	$('body').ajaxComplete(function(){removeLoading();});
+	$('body').ajaxSuccess(function(response,data,options){ajax_response(response,data,options)});
 	$('body').ajaxError(function(event, request, settings){showError(settings.url);})
 
 });
+
+function ajax_response(response,data,options){
+	if(data == null || data == '' || options.dataType != 'json'){
+		return ;
+	}
+
+	
+	data = eval("(" + data.responseText + ')');
+	
+	
+	if(data.success != null && !data.success){
+		if(data.errors != null){
+			write_errors(data.errors);
+		}
+		
+	}
+
+	if(data.message != null && data.message != ''){
+		show_message();
+	}
+}
+
+function write_errors(errors){
+	for(var i=0;i<errors.length;i++){
+		error = $('<span>');
+		error.text('mensaje');
+		$('*[name='+errors[i].field+']').after(error);
+	}
+}
 
 function crear_overlay(){
 	// fondo transparente

@@ -4,9 +4,9 @@ $(function(){
 });
 
 function signin(){
-	window.open(Urls['SIGNIN'],'_self');	
+	window.open(PublicUrls['SIGNIN'],'_self');	
 }
 
 function signup(){
-	window.open(Urls['SIGNUP'],'_self');	
+	window.open(PublicUrls['SIGNUP'],'_self');	
 }

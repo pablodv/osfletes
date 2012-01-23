@@ -1,8 +1,7 @@
 .logbar{
-	line-height: 30px;
-	background-color: #a29c04;	
+	background-color: #5F528F;	
 	width: 100%;
-	height: 30px;
+	height: 40px;
 }
 
 .logbar .buttons-container{
@@ -13,3 +12,18 @@
 .logbar .tiny-button-class{
 	margin-right: 2px;
 }
+
+.buttons-container > ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.buttons-container > ul > li{
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	line-height: 40px;
+} 
+

@@ -17,32 +17,37 @@
 						  ">
 
   <context:component-scan base-package="com.osfletes.web.controller"/>
-  <s:global-method-security secured-annotations="enabled" />
+  <s:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
   <mvc:view-controller path="/client-constants" view-name="client-constants" />
-  <mvc:view-controller path="/common-constants" view-name="common-constants" />
+  <mvc:view-controller path="/public-common-constants" view-name="public-common-constants" />
+  <mvc:view-controller path="/private-common-constants" view-name="private-common-constants" />
   <mvc:view-controller path="/provider-constants" view-name="provider-constants" />
   <mvc:view-controller path="/admin-constants" view-name="admin-constants" />
   <mvc:view-controller path="/login" view-name="login" />
   <mvc:view-controller path="/index" view-name="index" />
   <mvc:view-controller path="/in-progress" view-name="in-progress" />
   <mvc:view-controller path="/**" view-name="index" />
-  <mvc:annotation-driven validator="globalValidator"/>
   
-  
- 
-  
-  <bean id="globalValidator" class="com.osfletes.web.validator.ValidatorFactory" scope="singleton" >
+  <mvc:annotation-driven validator="globalValidator"/>						  
+	<bean id="globalValidator" class="com.osfletes.web.validator.ValidatorFactory" scope="singleton" >
   	<property name="validators">
   		<map>
   			<entry key="com.osfletes.web.dto.OfertaDTO" value-ref="ofertaValidator"/>
   			<entry key="com.osfletes.web.dto.AnuncioDTO" value-ref="anuncioValidator"/>
+  			<entry key="com.osfletes.web.dto.RoleDTO" value-ref="roleValidator"/>
   		</map>
   	</property>
   </bean>  
     
   <bean id="ofertaValidator" class="com.osfletes.web.validator.OfertaValidator" scope="singleton"/>
-
   <bean id="anuncioValidator" class="com.osfletes.web.validator.AnuncioValidator" scope="singleton"/>
+  <bean id="roleValidator" class="com.osfletes.web.validator.RoleValidator" scope="singleton"/>
+  
+  
+  
+ 
+  
+  
   
   <bean id="viewResolver"   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="order" value="2"/>

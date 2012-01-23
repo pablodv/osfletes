@@ -61,6 +61,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		classpath*:/application-context-services.xml,
 <!-- 		classpath*:/application-context-quartz.xml, -->
 		classpath*:/application-context-security.xml
+		
 		</param-value>
 	</context-param>
 	

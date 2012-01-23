@@ -1,0 +1,36 @@
+.popup{
+	position: absolute;
+	z-index: 9999;
+	background-color: white;
+	padding: 10px;
+	border: solid;
+	border-width: 1px;
+}
+
+.popup .buttons-container{
+	position: relative;
+}
+
+.popup .body{
+	margin: auto;
+	width: auto; 
+}
+
+.popup .buttons-container ul{
+	list-style: none;
+	float: right;
+}
+
+.popup .buttons-container ul li{
+	float: left;
+	margin-right: 5px;
+}
+
+.popup .title{
+	text-align: center;
+	line-height: 30px;
+	text-transform: uppercase;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	margin-bottom: 10px;
+}

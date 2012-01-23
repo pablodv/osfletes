@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <head>
+	<jsp:include page="busqueda.jsp"></jsp:include>
 	<script type="text/javascript" src="<c:url value="/static/js/abm-user.js"/>"></script>
 </head>
 

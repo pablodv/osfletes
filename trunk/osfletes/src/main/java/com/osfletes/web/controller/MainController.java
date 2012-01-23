@@ -1,5 +1,7 @@
 package com.osfletes.web.controller;
 
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import com.osfletes.security.User;
 public class MainController {
 
 	@RequestMapping(value="/inbox")
+	@PreAuthorize("isAuthenticated()")
 	public ModelAndView inbox(){
 		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		GrantedAuthority authority	= principal.getAuthorities().iterator().next();

@@ -4,26 +4,36 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="procesarAnunciosVencidosJob" class="com.osfletes.quartz.ProcesarAnunciosVencidosJob" />
 	
-	<!--   create the Job -->
+	<!-- quartz 1.6.1 -->
 	
-	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="procesarAnunciosVencidosJob" />
-		<property name="targetMethod" value="execute" />
-	</bean>
-	
-	<!--  create the Trigger with a Schedule that runs every 5 seconds --> 
-	
-	<bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-		<property name="jobDetail" ref="jobDetail" />
-		<property name="cronExpression" value="0 0 5 * * ?" />
-	</bean>
-	
-	<!--   schedule the Job -->
-	
-	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<property name="triggers" ref="trigger" />
-	</bean>
-	
+
+  <bean name="jobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+    <property name="jobClass" value="com.osfletes.quartz.ProcesarAnunciosVencidosJob" />
+    <property name="jobDataAsMap">
+      <map>
+        <entry key="anuncioService">
+          <ref bean="anuncioMultipleLocalizadoService" />
+        </entry>
+      </map>
+    </property>
+  </bean>
+  
+  
+  <bean id="jobDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="jobDetail" />
+    <property name="cronExpression" value="0/60 * * * * ?" />
+  </bean>
+  
+  
+  <bean id="schedulerFactoryBean"
+    class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <property name="triggers">
+      <list>
+        <ref bean="jobDetailTrigger" />
+      </list>
+    </property>
+  </bean>
+  
+  	
 </beans>

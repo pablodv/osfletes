@@ -3,21 +3,37 @@ package com.osfletes.quartz;
 import java.util.Calendar;
 import java.util.List;
 
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.quartz.StatefulJob;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
-import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 
-public class ProcesarAnunciosVencidosJob{
+public class ProcesarAnunciosVencidosJob extends QuartzJobBean implements StatefulJob{
 	
-	@Autowired
 	private IAnuncioService anuncioService;
 	
 	public void execute(){
+	}
+
+	public IAnuncioService getAnuncioService() {
+		return anuncioService;
+	}
+
+	@Autowired
+	public void setAnuncioService(IAnuncioService anuncioService) {
+		this.anuncioService = anuncioService;
+	}
+
+	@Override
+	protected void executeInternal(JobExecutionContext arg0)
+			throws JobExecutionException {
 		System.out.println("procesando anuncios ....");
 		
 		FiltroAnuncioDTO filtroDTO = new FiltroAnuncioDTO();
@@ -40,14 +56,7 @@ public class ProcesarAnunciosVencidosJob{
 			anuncioMultipleLocalizado.setVencido(true);
 			anuncioService.saveOrUpdate(anuncioMultipleLocalizado);
 		}
-	}
-
-	public IAnuncioService getAnuncioService() {
-		return anuncioService;
-	}
-
-	public void setAnuncioService(IAnuncioService anuncioService) {
-		this.anuncioService = anuncioService;
+		
 	}
 	
 }

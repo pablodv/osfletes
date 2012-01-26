@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,8 @@ public class ClientController {
 	
 	@RequestMapping(value="/signup-client", method=RequestMethod.POST)
 	@Secured(value="IS_AUTHENTICATED_ANONYMOUSLY")
-	public ModelAndView crearCliente(@ModelAttribute("formreg") @Valid SignupClientDTO registro){
+	public ModelAndView crearCliente(@ModelAttribute("formreg") @Valid SignupClientDTO registro, BindingResult result){
+		if (result.hasErrors()) return new ModelAndView("signup-client");
 		clienteService.createClient(registro);
 		return new ModelAndView("index");
 	}

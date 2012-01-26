@@ -35,6 +35,8 @@
   			<entry key="com.osfletes.web.dto.OfertaDTO" value-ref="ofertaValidator"/>
   			<entry key="com.osfletes.web.dto.AnuncioDTO" value-ref="anuncioValidator"/>
   			<entry key="com.osfletes.web.dto.RoleDTO" value-ref="roleValidator"/>
+  			<entry key="com.osfletes.web.dto.SignupClientDTO" value-ref="signUpClientValidator"/>
+  			<entry key="com.osfletes.web.dto.SignupProviderDTO" value-ref="signUpProviderValidator"/>
   		</map>
   	</property>
   </bean>  
@@ -42,6 +44,8 @@
   <bean id="ofertaValidator" class="com.osfletes.web.validator.OfertaValidator" scope="singleton"/>
   <bean id="anuncioValidator" class="com.osfletes.web.validator.AnuncioValidator" scope="singleton"/>
   <bean id="roleValidator" class="com.osfletes.web.validator.RoleValidator" scope="singleton"/>
+  <bean id="signUpClientValidator" class="com.osfletes.web.validator.SignupClientValidator" scope="singleton"/>
+  <bean id="signUpProviderValidator" class="com.osfletes.web.validator.SignupProviderValidator" scope="singleton"/>
   
   
   
@@ -78,6 +82,6 @@
 	</property>
   </bean> 
   
-  
+   <bean id="jsonMessageResolver" class="com.osfletes.web.controller.JsonErrorMesagesResolver" factory-method="getInstance"/>
 	
 </beans>

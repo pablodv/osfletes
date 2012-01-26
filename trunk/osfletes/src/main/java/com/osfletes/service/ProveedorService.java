@@ -30,4 +30,9 @@ public class ProveedorService extends GenericServiceImplementacion<Proveedor,Pro
 		this.save(provider);
 	}
 
+	@Override
+	public boolean existUserWithMail(String mail) {
+		return dao.existUserWithMail(mail);
+	}
+
 }

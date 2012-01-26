@@ -7,4 +7,5 @@ public interface IClienteService extends IGenericService<Cliente> {
 
 	void createClient(SignupClientDTO registro);
 
+	public boolean existUserWithMail(String mail);
 }

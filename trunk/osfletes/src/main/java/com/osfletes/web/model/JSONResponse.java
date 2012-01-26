@@ -1,4 +1,4 @@
-package com.osfletes.web.dto;
+package com.osfletes.web.model;
 
 import java.util.List;
 

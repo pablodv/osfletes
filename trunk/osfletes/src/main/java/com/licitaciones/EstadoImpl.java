@@ -36,7 +36,7 @@ public class EstadoImpl implements Estado {
 
 	@Override
 	public int executeAction(Transaction transaction) throws InvalidTransactionException {
-		int resultState = transaction.getIdentityVector() & transactionsVector;
+		int resultState = ((int)Math.pow(2,transaction.getIdentityVector())) & transactionsVector;
 		if(resultState == 0){
 			throw new InvalidTransactionException();
 		}

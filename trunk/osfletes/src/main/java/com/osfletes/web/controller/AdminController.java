@@ -14,10 +14,10 @@ import com.osfletes.security.Role;
 import com.osfletes.security.User;
 import com.osfletes.service.ServiceLocator;
 import com.osfletes.service.interfaces.IUserService;
-import com.osfletes.web.dto.JSONResponse;
 import com.osfletes.web.dto.RoleDTO;
 import com.osfletes.web.dto.RoleFilterDTO;
 import com.osfletes.web.dto.UserFilterDTO;
+import com.osfletes.web.model.JSONResponse;
 import com.osfletes.web.model.ResultadoPaginado;
 
 @Controller

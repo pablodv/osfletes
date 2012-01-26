@@ -48,7 +48,7 @@ public class Workflow {
 		return transactions;
 	}
 	
-	private Transaction getTransactionById(int id){
+	public Transaction getTransactionById(int id){
 		return transactions.get(id);
 	}
 	

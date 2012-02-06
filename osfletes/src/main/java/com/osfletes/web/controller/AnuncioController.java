@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +12,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.licitaciones.exception.BusinessException;
 import com.osfletes.mapper.AnuncioMultipleMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroAnuncioDTO;
+import com.osfletes.web.model.JSONResponse;
 import com.osfletes.web.model.ResultadoPaginado;
 
 @Controller
@@ -106,6 +108,26 @@ public class AnuncioController {
 
 	public AnuncioMultipleMapper getAnuncioMultipleMapper() {
 		return anuncioMultipleMapper;
+	}
+	
+	public @ResponseBody JSONResponse publicarAnuncio(@RequestParam("anuncioId") Long anuncioId){
+		
+		JSONResponse response = new JSONResponse();
+		
+		
+		try {
+			anuncioService.publicarAnuncio(anuncioId);
+			response.setSuccess(true);
+			response.setMessage(JsonMesagesResolver.getMessage("anuncio.publicado", null, null));
+		} catch (BusinessException e) {
+			response.setSuccess(false);
+			response.setMessage(e.getMessage());
+		} catch (Exception e) {
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action", null, null));
+		}finally{
+			return response;
+		}
 	}
 	
 	

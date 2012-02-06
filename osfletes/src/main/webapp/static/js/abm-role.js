@@ -31,9 +31,7 @@ function save_role(){
 	    url: url,
 	    data: {role:$('#role_name').val()},
 	    success: function(response){
-	    	if(!response){
-	    		alert('error');
-	    	}
+	    	$('#edition-div').modalpop('close');
 		}
 	});
 }

@@ -15,4 +15,6 @@ public interface Estado {
 	public boolean isStartState();
 
 	public int executeAction(Transaction transaction) throws InvalidTransactionException;
+
+	public void executeInitAction(Object obj, Object... args);
 }

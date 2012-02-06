@@ -1,5 +1,5 @@
-package com.osfletes.web.controller;
 
+package com.osfletes.web.controller;
 import javax.validation.Valid;
 
 import org.springframework.security.access.annotation.Secured;

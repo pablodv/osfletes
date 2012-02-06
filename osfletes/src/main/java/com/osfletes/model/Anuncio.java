@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.osfletes.model.hibernate.ObjetoPersistente;
 import com.osfletes.security.User;
@@ -34,6 +35,9 @@ public abstract class Anuncio extends ObjetoPersistente{
     
     @ManyToOne
     public User user;
+    
+    @Transient
+    public int estado;
    
 
 	public Date getFechaDesde() {
@@ -98,6 +102,14 @@ public abstract class Anuncio extends ObjetoPersistente{
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
     
 	

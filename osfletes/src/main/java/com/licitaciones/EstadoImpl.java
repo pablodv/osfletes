@@ -9,6 +9,7 @@ public class EstadoImpl implements Estado {
 	private String name;
 	private boolean finalState;
 	private boolean startState;
+	private EstadoAction action;
 	
 	private EstadoImpl(){};
 	
@@ -43,7 +44,7 @@ public class EstadoImpl implements Estado {
 		return   Integer.numberOfTrailingZeros(resultState);
 		
 	}
-
+	
 	@Override
 	public boolean isFinalState() {
 		return finalState;
@@ -69,6 +70,11 @@ public class EstadoImpl implements Estado {
 	@Override
 	public int hashCode() {
 		return Integer.valueOf(identityVector).hashCode();
+	}
+
+	@Override
+	public void executeInitAction(Object obj, Object... args) {
+		action.exceute(obj,args);		
 	}
 	
 	

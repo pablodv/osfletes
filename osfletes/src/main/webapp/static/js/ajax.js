@@ -27,7 +27,7 @@ function ajax_response(response,data,options){
 	}
 
 	if(data.message != null && data.message != ''){
-		show_message();
+		alert(data.message);
 	}
 }
 

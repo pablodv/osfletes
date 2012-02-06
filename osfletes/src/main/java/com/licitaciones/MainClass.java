@@ -21,7 +21,7 @@ public class MainClass {
     	System.out.println("Transactions:");
     	for(Transaction transaction: wf.getEstadoTransactions(estado.getIdentityVector())){
     		try {
-				Estado nuevoEstado = wf.executeAction(estado.getIdentityVector(), transaction.getIdentityVector());
+				Estado nuevoEstado = wf.emuleAction(estado.getIdentityVector(), transaction.getIdentityVector());
 				System.out.println(estado.getName()+ "---["+ transaction.getName() + "]--->" + nuevoEstado.getName());
 			} catch (InvalidTransactionException e) {
 				System.out.println(transaction.getName()+ " No soportada");
@@ -35,7 +35,7 @@ public class MainClass {
     	System.out.println("-------------PRUEBAAAA  Transaccion Correcta--------------");
     	System.out.println("Estado: "+wf.getStateById(1).getName());
     	System.out.println("Accion: "+wf.getTransactionById(2).getName());
-    	wf.executeAction(wf.getStateById(1).getIdentityVector(), 2);
+    	wf.emuleAction(wf.getStateById(1).getIdentityVector(), 2);
 		System.out.println("Se permite\n!");
 	} catch (InvalidTransactionException e) {
 		System.out.println("Mal!\n");
@@ -46,7 +46,7 @@ public class MainClass {
 		 System.out.println("-------------PRUEBAAAA  Transaccion Incorrecta--------------");
 	    	System.out.println("Estado: "+wf.getStateById(1).getName());
 	    	System.out.println("Accion: "+wf.getTransactionById(5).getName());
-		 wf.executeAction(1,5);
+		 wf.emuleAction(1,5);
 		 System.out.println("MAL\n!");
 		} catch (InvalidTransactionException e) {
 			System.out.println("No flaquito que estas haciendo esto no podes\n");

@@ -38,6 +38,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 				<ref local="eliminar"/>
 			</list>
 		</constructor-arg>
+		<qualifier value="workflow-anuncio"></qualifier>
 	</bean>
 	
 	<bean id="creado" class="com.licitaciones.EstadoImpl">

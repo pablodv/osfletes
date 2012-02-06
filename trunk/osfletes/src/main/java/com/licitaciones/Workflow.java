@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.licitaciones.exception.InvalidTransactionException;
+import com.osfletes.model.AnuncioMultipleLocalizado;
 
 public class Workflow {
 	private List<Estado> estados;
@@ -52,10 +53,39 @@ public class Workflow {
 		return transactions.get(id);
 	}
 	
-	public Estado executeAction(int stateId, int transactionId) throws InvalidTransactionException{
+	public void executeAction(int stateId, int transactionId, Object obj, Object ... args) throws InvalidTransactionException{
+		Estado actualState = this.getStateById(stateId);
+		Transaction transaction = this.getTransactionById(transactionId);
+		Estado newState = getStateById(actualState.executeAction(transaction));
+		newState.executeInitAction(obj,args);
+	}
+	
+	public void executeAction(int stateId, String transactionName, Object obj, Object ... args) throws InvalidTransactionException{
+		Estado actualState = this.getStateById(stateId);
+		Transaction transaction = this.getTransactionByName(transactionName);
+		Estado newState = getStateById(actualState.executeAction(transaction));
+		newState.executeInitAction(obj,args);
+	}
+	
+	public void executeAction(Estado actualState, Transaction transaction, Object obj, Object ... args) throws InvalidTransactionException{
+		Estado newState = getStateById(actualState.executeAction(transaction));
+		newState.executeInitAction(obj,args);
+	}
+	
+	public Estado emuleAction(int stateId, int transactionId) throws InvalidTransactionException{
 		Estado actualState = this.getStateById(stateId);
 		Transaction transaction = this.getTransactionById(transactionId);
 		return getStateById(actualState.executeAction(transaction));
+	}
+	
+	public Transaction getTransactionByName(String name){
+		for(Transaction transaction:transactions){
+			if(transaction.getName().equals(name)){
+				return transaction;
+			}
+		}
+		
+		return null;
 	}
 	
 }

@@ -12,7 +12,7 @@ import com.osfletes.dao.hibernate.ClienteDAO;
 import com.osfletes.model.Cliente;
 import com.osfletes.security.Role;
 import com.osfletes.service.interfaces.IClienteService;
-import com.osfletes.web.controller.JsonErrorMesagesResolver;
+import com.osfletes.web.controller.JsonMesagesResolver;
 import com.osfletes.web.dto.SignupClientDTO;
 
 @Service(value="clienteService")
@@ -23,7 +23,7 @@ public class ClientService extends GenericServiceImplementacion<Cliente,ClienteD
 	public void createClient(SignupClientDTO registro) {
 		Cliente cliente = new Cliente();
 		if(dao.existUserWithMail(registro.getMail())){
-			throw new BusinessException(JsonErrorMesagesResolver.getMessage("user.not.available", null, null));
+			throw new BusinessException(JsonMesagesResolver.getMessage("user.not.available", null, null));
 		}
 		cliente.setUsername(registro.getMail());
 		cliente.setPassword(registro.getPassword());

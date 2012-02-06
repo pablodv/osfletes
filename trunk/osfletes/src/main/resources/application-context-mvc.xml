@@ -82,6 +82,6 @@
 	</property>
   </bean> 
   
-   <bean id="jsonMessageResolver" class="com.osfletes.web.controller.JsonErrorMesagesResolver" factory-method="getInstance"/>
+   <bean id="jsonMessageResolver" class="com.osfletes.web.controller.JsonMesagesResolver" factory-method="getInstance"/>
 	
 </beans>

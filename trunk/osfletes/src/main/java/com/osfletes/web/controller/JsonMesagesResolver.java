@@ -7,18 +7,18 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 
-public class JsonErrorMesagesResolver {
+public class JsonMesagesResolver {
 
 	@Autowired
 	private MessageSource messageSource;
-	private static JsonErrorMesagesResolver INSTANCE;
+	private static JsonMesagesResolver INSTANCE;
 	
 	 // constructor privado
-	  private JsonErrorMesagesResolver() {/*Singleton*/}
+	  private JsonMesagesResolver() {/*Singleton*/}
 
-	  public static JsonErrorMesagesResolver getInstance() {
+	  public static JsonMesagesResolver getInstance() {
 	    if (INSTANCE == null) {
-	      INSTANCE = new JsonErrorMesagesResolver();
+	      INSTANCE = new JsonMesagesResolver();
 	    }
 	    return INSTANCE;
 	  }

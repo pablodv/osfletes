@@ -1,5 +1,7 @@
 package com.osfletes.service.interfaces;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.model.ResultadoPaginado;
@@ -13,6 +15,7 @@ public interface IAnuncioService extends IGenericService<AnuncioMultipleLocaliza
 	 * @param filtro
 	 * @return
 	 */
+	@Transactional
 	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroAnuncioDTO filtro);
 
 	public void publicarAnuncio(Long anuncioId);

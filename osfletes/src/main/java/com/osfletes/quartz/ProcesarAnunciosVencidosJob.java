@@ -32,8 +32,7 @@ public class ProcesarAnunciosVencidosJob extends QuartzJobBean implements Statef
 	}
 
 	@Override
-	protected void executeInternal(JobExecutionContext arg0)
-			throws JobExecutionException {
+	protected void executeInternal(JobExecutionContext arg0) throws JobExecutionException {
 		System.out.println("procesando anuncios ....");
 		
 		FiltroAnuncioDTO filtroDTO = new FiltroAnuncioDTO();
@@ -51,12 +50,17 @@ public class ProcesarAnunciosVencidosJob extends QuartzJobBean implements Statef
 		List<AnuncioMultipleLocalizado> lista = anuncios.getResultados();
 		
 		
+		try{
+			
+			for (AnuncioMultipleLocalizado anuncioMultipleLocalizado : lista) {
+				anuncioMultipleLocalizado.setVencido(true);
+				anuncioService.update(anuncioMultipleLocalizado);
+			}
 		
-		for (AnuncioMultipleLocalizado anuncioMultipleLocalizado : lista) {
-			anuncioMultipleLocalizado.setVencido(true);
-			anuncioService.saveOrUpdate(anuncioMultipleLocalizado);
+		}catch (Exception e) {
+			e.printStackTrace(); 
+			
 		}
-		
 	}
 	
 }

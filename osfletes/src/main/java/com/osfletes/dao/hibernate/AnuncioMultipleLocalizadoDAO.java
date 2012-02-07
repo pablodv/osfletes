@@ -1,9 +1,7 @@
 package com.osfletes.dao.hibernate;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,7 +35,7 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 
 		}
 		if((filtro.getFechaHasta()!=null)){
-			sb.append("and aml.fechaHasta>= :fechaHasta ");
+			sb.append("and aml.fechaHasta<= :fechaHasta ");
 			
 		}
 		if((filtro.getHoraDesde()!=null)){

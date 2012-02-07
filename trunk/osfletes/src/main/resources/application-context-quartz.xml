@@ -22,7 +22,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
   
   <bean id="jobDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
     <property name="jobDetail" ref="jobDetail" />
-    <property name="cronExpression" value="0/60 * * * * ?" />
+    <property name="cronExpression" value="0/30 * * * * ?" />
   </bean>
   
   

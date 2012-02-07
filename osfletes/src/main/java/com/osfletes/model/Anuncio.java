@@ -9,11 +9,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.licitaciones.StateAware;
 import com.osfletes.model.hibernate.ObjetoPersistente;
 import com.osfletes.security.User;
 
 @MappedSuperclass
-public abstract class Anuncio extends ObjetoPersistente{
+public abstract class Anuncio extends ObjetoPersistente implements StateAware{
 	
 	private static final long serialVersionUID = -1960041916990966080L;
 
@@ -109,6 +110,10 @@ public abstract class Anuncio extends ObjetoPersistente{
 	}
 
 	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
+	public void setState(int estado) {
 		this.estado = estado;
 	}
     

@@ -53,23 +53,26 @@ public class Workflow {
 		return transactions.get(id);
 	}
 	
-	public void executeAction(int stateId, int transactionId, Object obj, Object ... args) throws InvalidTransactionException{
+	public void executeAction(int stateId, int transactionId, StateAware obj, Object ... args) throws InvalidTransactionException{
 		Estado actualState = this.getStateById(stateId);
 		Transaction transaction = this.getTransactionById(transactionId);
 		Estado newState = getStateById(actualState.executeAction(transaction));
 		newState.executeInitAction(obj,args);
+		obj.setState(newState.getIdentityVector());
 	}
 	
-	public void executeAction(int stateId, String transactionName, Object obj, Object ... args) throws InvalidTransactionException{
+	public void executeAction(int stateId, String transactionName, StateAware obj, Object ... args) throws InvalidTransactionException{
 		Estado actualState = this.getStateById(stateId);
 		Transaction transaction = this.getTransactionByName(transactionName);
 		Estado newState = getStateById(actualState.executeAction(transaction));
 		newState.executeInitAction(obj,args);
+		obj.setState(newState.getIdentityVector());
 	}
 	
-	public void executeAction(Estado actualState, Transaction transaction, Object obj, Object ... args) throws InvalidTransactionException{
+	public void executeAction(Estado actualState, Transaction transaction, StateAware obj, Object ... args) throws InvalidTransactionException{
 		Estado newState = getStateById(actualState.executeAction(transaction));
 		newState.executeInitAction(obj,args);
+		obj.setState(newState.getIdentityVector());
 	}
 	
 	public Estado emuleAction(int stateId, int transactionId) throws InvalidTransactionException{

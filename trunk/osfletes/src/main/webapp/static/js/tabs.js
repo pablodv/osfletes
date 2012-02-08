@@ -1,18 +1,17 @@
-$(function()
+function init_tabs(container_id)
 {
-	$(".tab_content").hide();
-	$("ul.tabs li:first").addClass("active").show();
-	$(".tab_content:first").show();
+	$("#"+container_id+" > ul.tabs li:first").addClass("active").show();
+	$("#"+container_id+" > .tab_content:first").show();
 
-	$("ul.tabs li").click(function()
+	$("#"+container_id+" > ul.tabs li").click(function()
        {
-		$("ul.tabs li").removeClass("active");
+		$("#"+container_id+" > ul.tabs li").removeClass("active");
 		$(this).addClass("active");
-		$(".tab_container").hide();
+		$("#"+container_id+" > .tab_container").hide();
 
 		var activeTab = $(this).find("a").attr("href");
-		$('.tab_container').load(activeTab);
-		$('.tab_container').fadeIn();
+		$("#"+container_id+' >.tab_container').load(activeTab);
+		$("#"+container_id+' >.tab_container').fadeIn();
 		return false;
 	});
-}); 
+}

@@ -1,10 +1,8 @@
 package com.osfletes.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.licitaciones.Estado;
 import com.licitaciones.Workflow;
 import com.licitaciones.exception.BusinessException;
 import com.licitaciones.exception.InvalidTransactionException;

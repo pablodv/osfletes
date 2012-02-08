@@ -5,17 +5,15 @@
 
 	<script type="text/javascript" src="<c:url value="/static/js/tabs.js"/>"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/tabs.css"/>"></link>
-	<script type="text/javascript" src="<c:url value="/static/js/provider-inbox.js"/>"></script>
 
 </head>
 
-<div id="tabs_container">
 <ul class="tabs">
-    <li class="rounded"><a href="in-progress"><spring:message code="proveedor.be.tab.perfil"/></a></li>
-    <li class="rounded"><a href="ver-anuncios"><spring:message code="proveedor.be.tab.anuncios"/></a></li>
-    <li class="rounded"><a href="in-progress"><spring:message code="proveedor.be.tab.ofertas"/></a></li>
+    <li class="rounded"><a href="in-progress"><spring:message code="announce.tab.canceled"/></a></li>
+    <li class="rounded"><a href="in-progress"><spring:message code="announce.tab.deleted"/></a></li>
+    <li class="rounded"><a href="in-progress"><spring:message code="announce.tab.concluded"/></a></li>
+    <li class="rounded"><a href="in-progress"><spring:message code="announce.tab.uncloncuded"/></a></li>
 </ul>
 
 <div class="tab_container">
-</div>
 </div>

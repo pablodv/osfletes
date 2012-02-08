@@ -9,10 +9,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.osfletes.model.AnuncioMultipleLocalizado;
+import com.osfletes.service.ServiceLocator;
 import com.osfletes.service.interfaces.IClienteService;
+import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.dto.SignupClientDTO;
+import com.osfletes.web.model.JSONResponse;
+import com.osfletes.web.model.ResultadoPaginado;
 
 @Controller
 public class ClientController {
@@ -40,4 +46,69 @@ public class ClientController {
 		return new ModelAndView("index");
 	}
 	
+	@RequestMapping(value="/client-announcements", method= RequestMethod.GET)
+	public ModelAndView announcments(){
+		ModelAndView mv = new ModelAndView("announcement");
+		return mv;
+	}
+	
+	@RequestMapping(value="/client-created-announcements", method=RequestMethod.GET)
+	public ModelAndView clientCreatedAnnouncements(){
+		ModelAndView mv = new ModelAndView("client-created-announcements");
+		return mv;
+	}
+	
+	@RequestMapping(value="/client-created-announcements",  method=RequestMethod.POST)
+	public @ResponseBody JSONResponse clientCreatedAnnouncements(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filter){
+		JSONResponse response = new JSONResponse();
+		try {
+			ResultadoPaginado<AnuncioMultipleLocalizado> announcements = ServiceLocator.getAnuncioService().findAnuncios(filter);
+			response.setResponse(announcements);
+			response.setSuccess(true);
+		} catch (Exception e) {
+			response.setMessage("ERRRRRORRORRORR");
+			response.setSuccess(false);
+		}
+		return response;
+	}
+	
+	@RequestMapping(value="/client-published-announcements", method=RequestMethod.GET)
+	public ModelAndView clientPublishedAnnouncements(){
+		ModelAndView mv = new ModelAndView("client-published-announcements");
+		return mv;
+	}
+
+	@RequestMapping(value="/client-published-announcements",  method=RequestMethod.POST)
+	public @ResponseBody JSONResponse clientPublishedAnnouncements(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filter){
+		JSONResponse response = new JSONResponse();
+		try {
+			ResultadoPaginado<AnuncioMultipleLocalizado> announcements = ServiceLocator.getAnuncioService().findAnuncios(filter);
+			response.setResponse(announcements);
+			response.setSuccess(true);
+		} catch (Exception e) {
+			response.setMessage("ERRRRRORRORRORR");
+			response.setSuccess(false);
+		}
+		return response;
+	}
+	
+	@RequestMapping(value="/client-closed-announcements", method=RequestMethod.GET)
+	public ModelAndView clientClosedAnnouncements(){
+		ModelAndView mv = new ModelAndView("client-closed-announcements");
+		return mv;
+	}
+	
+	@RequestMapping(value="/client-closed-announcements",  method=RequestMethod.POST)
+	public @ResponseBody JSONResponse clientClosedAnnouncements(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filter){
+		JSONResponse response = new JSONResponse();
+		try {
+			ResultadoPaginado<AnuncioMultipleLocalizado> announcements = ServiceLocator.getAnuncioService().findAnuncios(filter);
+			response.setResponse(announcements);
+			response.setSuccess(true);
+		} catch (Exception e) {
+			response.setMessage("ERRRRRORRORRORR");
+			response.setSuccess(false);
+		}
+		return response;
+	}
 }

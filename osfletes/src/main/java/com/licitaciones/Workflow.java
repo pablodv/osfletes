@@ -91,4 +91,14 @@ public class Workflow {
 		return null;
 	}
 	
+	public Estado getEstadoByName(String name){
+		for(Estado estado:estados){
+			if(estado.getName().equals(name)){
+				return estado;
+			}
+		}
+		
+		return null;
+	}
+	
 }

@@ -17,6 +17,7 @@ public class ServiceLocator {
   private IRoleService roleService;
   private IProveedorService providerService;
   private IClienteService clienteService;
+ 
   
   // constructor privado
   private ServiceLocator() {/*Singleton*/}
@@ -73,6 +74,8 @@ public class ServiceLocator {
 	public void setClienteService(IClienteService clienteService) {
 		this.clienteService = clienteService;
 	}
+
+	
 	
 	
   

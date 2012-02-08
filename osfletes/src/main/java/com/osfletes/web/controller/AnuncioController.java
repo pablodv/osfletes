@@ -129,7 +129,4 @@ public class AnuncioController {
 			return response;
 		}
 	}
-	
-	
-
 }

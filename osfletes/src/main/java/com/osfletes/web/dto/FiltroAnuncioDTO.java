@@ -8,6 +8,7 @@ public class FiltroAnuncioDTO extends GenericFilterDTO{
 	private Date fechaCierre;
 	private Integer horaDesde;
 	private Integer horaHasta;
+	private int estado;
 	
 	public Date getFechaDesde() {
 		return fechaDesde;
@@ -39,5 +40,13 @@ public class FiltroAnuncioDTO extends GenericFilterDTO{
 	public void setHoraHasta(Integer horaHasta) {
 		this.horaHasta = horaHasta;
 	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
+	
 	
 }

@@ -85,4 +85,12 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 		this.save(anuncio);
 	}
 
+
+	@Override
+	public Serializable save(AnuncioMultipleLocalizado entity) {
+		entity.setEstado(0);
+		return super.save(entity);
+	}
+
+	
 }

@@ -83,7 +83,7 @@ public class Workflow {
 	
 	public Transaction getTransactionByName(String name){
 		for(Transaction transaction:transactions){
-			if(transaction.getName().equals(name)){
+			if(transaction.getName().equalsIgnoreCase(name)){
 				return transaction;
 			}
 		}

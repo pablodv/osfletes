@@ -1,8 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
 <head>
 	<script type="text/javascript" src="<c:url value='/static/js/client-created-announcements.js'/>"></script>
 </head>
 
 <jsp:include page="client-announcements-search.jsp"></jsp:include>
 <div id="resultado"></div>
+<div class="form">
+	<div class="button_container">
+		<span id="delete" class="button-class"><spring:message code="client.button.delete"/></span>
+		<span id="publish" class="button-class"><spring:message code="client.button.publish"/></span>
+	</div>
+</div>

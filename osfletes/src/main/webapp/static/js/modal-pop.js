@@ -6,7 +6,8 @@
 		  var settings = $.extend( {
 		      size:{width:400,height:300},
 		      clazz:'popup',
-		      buttons:[]
+		      buttons:[],
+		      msg:false
 		  }, options);
 		  
 		  menu = create_popup(settings,$(this));
@@ -44,6 +45,9 @@ function create_popup(settings,body){
 	$(popup).append(body);
 	$(popup).append(buttons);
 	$('body').append($(popup));
+	if(settings.msg){
+		show_popup($(popup));
+	}
 }
 
 function create_title(settings){
@@ -56,14 +60,19 @@ function create_title(settings){
 function create_buttons(settings){
 	buttons_container = $('<div class="buttons-container">');
 	buttons_list = $('<ul>');
-	button_ok = create_button({label:'ok',funcion:settings.action});
-	button_cancel = create_button({label:'cancel',funcion:function(){close_popup($('.popup'))}});
-	$(buttons_list).append($(button_ok));
-
-	for(var i=0;i<settings.buttons.length;i++){
-		button = create_button(setting.buttons[i]);
-		$(buttons_list).append($(button));
+	if(!settings.msg){
+		button_ok = create_button({label:'ok',funcion:settings.action});
+		$(buttons_list).append($(button_ok));
+		button_cancel = create_button({label:'cancel',funcion:function(){close_popup($('.popup'))}});
+		for(var i=0;i<settings.buttons.length;i++){
+			button = create_button(setting.buttons[i]);
+			$(buttons_list).append($(button));
+		}
+	}else{
+		button_cancel = create_button({label:'ok',funcion:function(){close_popup($('.popup')); $('.popup').remove();}});
 	}
+	
+
 	
 	$(buttons_list).append($(button_cancel));
 	$(buttons_container).append($(buttons_list));

@@ -46,6 +46,14 @@
         <put-attribute name="body" value="/WEB-INF/jsp/signup.jsp" />
     </definition>
     
-   
+	<definition name="select-offer" extends="base.definition">
+        <put-attribute name="title" value="OSFLETES" />
+        <put-attribute name="body" value="/WEB-INF/jsp/select-offer.jsp" />
+    </definition>
+    
+    <definition name="create-announcement" extends="base.definition">
+        <put-attribute name="title" value="OSFLETES" />
+        <put-attribute name="body" value="/WEB-INF/jsp/create-announcement.jsp" />
+    </definition>
  	
 </tiles-definitions>

@@ -74,7 +74,8 @@ public class EstadoImpl implements Estado {
 
 	@Override
 	public void executeInitAction(Object obj, Object... args) {
-		action.exceute(obj,args);		
+		if(action != null)
+			action.exceute(obj,args);		
 	}
 	
 	

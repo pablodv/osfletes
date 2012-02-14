@@ -1,6 +1,9 @@
 package com.osfletes.service;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.licitaciones.Workflow;
@@ -20,8 +23,8 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 
 	@Autowired
 	IDireccionService direccionService;
-//	@Autowired
-//	@Qualifier(value="workflow-anuncio")
+	@Autowired
+	@Qualifier(value="workflow-anuncio")
 	Workflow workflow;
 	
 
@@ -36,6 +39,13 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 		ResultadoPaginado<AnuncioMultipleLocalizado> resultadoPaginado = dao.findAnuncios(filtro);
 		
 		return resultadoPaginado;
+	}
+
+	
+
+	@Override
+	public void delete(Serializable anuncioId) {
+		ejecutarAccion((Long)anuncioId, AnuncioWFTransactionsEnum.ELIMINAR.getName());
 	}
 
 

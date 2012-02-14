@@ -47,7 +47,7 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 	public void delete(T entity) {
 		getHibernateTemplate().delete(entity);
 	}
-
+	
 	@Override
 	public List<T> findAll() {
 		return (List<T>) getHibernateTemplate().loadAll(representedClass);

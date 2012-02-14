@@ -4,17 +4,20 @@
 		init : function(options) {
 		  
 		  var settings = $.extend( {
-		      'funcionpaginacion'	: function(){alert('Te olvidaste la funcion de paginacion');}
+		      'botonera': null,
+			  'funcionpaginacion'	: function(){alert('Te olvidaste la funcion de paginacion');}
 		  }, options);
 	
 		  var container = $('<div class="busqueda_container">');
-		  $(container).append(dibujar_botonera(settings.botonera));
+		  if(settings.botonera != null){
+			  $(container).append(dibujar_botonera(settings.botonera));
+		  }
 		  $(container).append(dibujar_tabla(settings.element_props,settings.resultado));
 		  $(container).append(createPagination(settings.resultado['cantidad'],settings.resultado['pagina'],settings.funcionpaginacion));
 		  $(this).html($(container));
 		  return this;
 	  },
-	  selected : function(){ return $('input[name=element]:checked').val(); },
+	  selected : function(){ return  $('input[name=element]:checked').length == 0 ? null: $('input[name=element]:checked').val(); },
 	  page: function(){ return $('.pagination_container .seleccionada').attr('id');}
     };
     

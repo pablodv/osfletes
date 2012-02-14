@@ -27,7 +27,7 @@ function ajax_response(response,data,options){
 	}
 
 	if(data.message != null && data.message != ''){
-		alert(data.message);
+		$('<span>'+data.message+'</span>').modalpop({msg:true});
 	}
 }
 

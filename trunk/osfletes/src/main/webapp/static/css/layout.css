@@ -138,33 +138,30 @@ body{
 */
 
 .form {
-    border: 1px dashed;
+    border: 1px dotted gray;
     padding: 20px;
+    margin-bottom: 5px;
 }
 .form_row label {
     font-family: arial;
     font-size: 15px;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 .form_row input {
-    border-bottom: 1px solid gray;
     font-family: arial;
     font-size: 13px;
 }
 .form_row {
-    height: 20px;
     padding: 10px;
     width: 100%;
 }
-.form_row div {
-    float: left;
-}
+
 .form_row .name {
     width: 100px;
 }
 .form .button_container {
     margin: auto;
-    text-align: center;
+    text-align: right;
 }
 
 .form div.error{

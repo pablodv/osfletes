@@ -68,4 +68,7 @@ public interface IGenericService<T> {
 
   @Transactional(readOnly=true)
   public T getById(Serializable id);
+  
+  @Transactional
+  public void delete(Serializable entityId);
 }

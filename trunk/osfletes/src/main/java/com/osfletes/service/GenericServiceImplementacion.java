@@ -61,6 +61,12 @@ public abstract class GenericServiceImplementacion<T,K extends IGenericDAO<T>> i
 	public T getById(Serializable id){
 		return dao.findById(id);
 	}
+
+	@Override
+	public void delete(Serializable entityId) {
+		T entity = this.load(entityId);
+		dao.delete(entity);
+	}
 	
 	
 

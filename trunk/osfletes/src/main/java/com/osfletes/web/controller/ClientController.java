@@ -7,14 +7,19 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.licitaciones.exception.BusinessException;
+import com.osfletes.mapper.AnuncioMultipleMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.service.ServiceLocator;
 import com.osfletes.service.interfaces.IClienteService;
+import com.osfletes.web.dto.AnuncioMultipleDTO;
 import com.osfletes.web.dto.FiltroAnuncioDTO;
 import com.osfletes.web.dto.SignupClientDTO;
 import com.osfletes.web.model.JSONResponse;
@@ -24,6 +29,15 @@ import com.osfletes.web.model.ResultadoPaginado;
 public class ClientController {
 
 	private IClienteService clienteService;
+	
+	@Autowired
+	private AnuncioMultipleMapper anuncioMultipleMapper;
+
+
+	public void setAnuncioMultipleMapper(AnuncioMultipleMapper anuncioMultipleMapper) {
+		this.anuncioMultipleMapper = anuncioMultipleMapper;
+	}
+
 	
 	@Autowired
 	public void setClienteService(IClienteService clienteService) {
@@ -110,5 +124,96 @@ public class ClientController {
 			response.setSuccess(false);
 		}
 		return response;
+	}
+	
+	@RequestMapping(value="/create-announcement", method=RequestMethod.GET)
+	@Secured(value="ROLE_CLIENT")
+	public ModelAndView createAnnouncement(){
+		ModelAndView mv = new ModelAndView("create-announcement");
+		AnuncioMultipleDTO anuncio = new AnuncioMultipleDTO();
+		mv.addObject("anuncioDTO",anuncio);
+		return mv;
+	}
+	
+	@RequestMapping(value="/create-announcement", method= RequestMethod.POST)
+	@Secured(value="ROLE_CLIENT")
+	public ModelAndView createAnnouncement(@ModelAttribute("anuncioDTO") @Valid AnuncioMultipleDTO anuncioDTO, BindingResult result){
+
+		if (result.hasErrors()) return  new ModelAndView("create-announcement");
+
+		AnuncioMultipleLocalizado anuncio = anuncioMultipleMapper.toModel(anuncioDTO);
+		
+		ServiceLocator.getAnuncioService().save(anuncio);
+		
+		return new ModelAndView("create-announcement"); 
+	}
+	
+	
+	
+	@RequestMapping(value="/publish-announcement", method=RequestMethod.POST)
+	@Secured(value="ROLE_CLIENT")
+	public @ResponseBody JSONResponse publishAnnouncement(@RequestParam("announcementId") Long announcementId){
+		
+		JSONResponse response = new JSONResponse();
+		
+		try {
+			ServiceLocator.getAnuncioService().publicarAnuncio(announcementId);
+			response.setSuccess(true);
+			response.setMessage(JsonMesagesResolver.getMessage("anuncio.publicado", null, null));
+		} catch (BusinessException e) {
+			response.setSuccess(false);
+			response.setMessage(e.getMessage());
+		} catch (Exception e) {
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action", null, null));
+		}finally{
+			return response;
+		}
+	}
+	
+	@RequestMapping(value="/delete-announcement", method=RequestMethod.POST)
+	@Secured(value="ROLE_CLIENT")
+	public @ResponseBody JSONResponse deleteAnnouncement(@RequestParam("announcementId") Long announcementId){
+		JSONResponse response = new JSONResponse();
+		
+		try {
+			ServiceLocator.getAnuncioService().delete(announcementId);
+			response.setSuccess(true);
+			response.setMessage(JsonMesagesResolver.getMessage("anouncement.deleted", null, null));
+		} catch (BusinessException e) {
+			response.setSuccess(false);
+			response.setMessage(e.getMessage());
+		} catch (Exception e) {
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
+		}
+		
+		return response;
+		
+	}
+	
+	@RequestMapping(value="/cancel-announcement",  method=RequestMethod.POST)
+	public @ResponseBody JSONResponse cancelAnnouncements(@RequestParam("announcementId") Long announcementId){
+		JSONResponse response = new JSONResponse();
+
+		try {
+			ServiceLocator.getAnuncioService().cancelarAnuncio(announcementId);
+			response.setSuccess(true);
+			response.setMessage(JsonMesagesResolver.getMessage("anuncio.publicado", null, null));
+		} catch (BusinessException e) {
+			response.setSuccess(false);
+			response.setMessage(e.getMessage());
+		} catch (Exception e) {
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action", null, null));
+		}finally{
+			return response;
+		}
+	}
+	
+	@RequestMapping(value="/select-offer/{announcementId}", method=RequestMethod.GET)
+	public ModelAndView selectOffer(@PathVariable Long announcementId){
+		ModelAndView mv = new ModelAndView("select-offer");
+		return mv;
 	}
 }

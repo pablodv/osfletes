@@ -110,23 +110,5 @@ public class AnuncioController {
 		return anuncioMultipleMapper;
 	}
 	
-	public @ResponseBody JSONResponse publicarAnuncio(@RequestParam("anuncioId") Long anuncioId){
-		
-		JSONResponse response = new JSONResponse();
-		
-		
-		try {
-			anuncioService.publicarAnuncio(anuncioId);
-			response.setSuccess(true);
-			response.setMessage(JsonMesagesResolver.getMessage("anuncio.publicado", null, null));
-		} catch (BusinessException e) {
-			response.setSuccess(false);
-			response.setMessage(e.getMessage());
-		} catch (Exception e) {
-			response.setSuccess(false);
-			response.setMessage(JsonMesagesResolver.getMessage("error.action", null, null));
-		}finally{
-			return response;
-		}
-	}
+	
 }

@@ -37,7 +37,6 @@ public abstract class Anuncio extends ObjetoPersistente implements StateAware{
     @ManyToOne
     public User user;
     
-    @Transient
     public int estado;
    
 

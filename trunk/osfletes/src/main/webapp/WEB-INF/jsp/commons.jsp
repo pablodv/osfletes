@@ -3,10 +3,12 @@
 <%@page contentType="text/html" %>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/ajax.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/modal-pop.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/public-common-constants"/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/loading.css"/>"></link>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/error.css"/>"></link>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/layout.css"/>"></link>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/modal-pop.css"/>"></link>
 
 
 

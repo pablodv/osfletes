@@ -82,7 +82,7 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 			throw new BusinessException(JsonMesagesResolver.getMessage("error.action.invalid", null, null));
 		}
 		
-		this.save(anuncio);
+		this.saveOrUpdate(anuncio);
 	}
 
 

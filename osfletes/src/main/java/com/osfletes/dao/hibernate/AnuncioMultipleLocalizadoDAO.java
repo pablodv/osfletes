@@ -51,6 +51,10 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 			
 		}
 		
+		if(filtro.getEstado()!=null){
+			sb.append("and aml.estado = :estado ");
+		}
+		
 		query = this.createHqlQuery(sb.toString());
 		query.setProperties(filtro);
 		

@@ -18,13 +18,18 @@ public interface IAnuncioService extends IGenericService<AnuncioMultipleLocaliza
 	@Transactional
 	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(FiltroAnuncioDTO filtro);
 
+	@Transactional
 	public void publicarAnuncio(Long anuncioId);
 
+	@Transactional
 	public void cancelarAnuncio(Long anuncioId);
 
+	@Transactional
 	public void seleccionarProveedor(Long anuncioId, Long ofertaId);
 
+	@Transactional
 	public void cerrarAnuncio(Long anuncioId);
 
+	@Transactional
 	public void cerrarVencido(Long anuncioId);
 }

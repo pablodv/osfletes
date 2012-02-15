@@ -3,6 +3,7 @@ package com.osfletes.web.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.licitaciones.Workflow;
+import com.licitaciones.WorkflowLicitacionFactoryImpl;
 import com.licitaciones.exception.BusinessException;
 import com.osfletes.mapper.AnuncioMultipleMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
+import com.osfletes.model.AnuncioWFStateEnum;
 import com.osfletes.service.ServiceLocator;
 import com.osfletes.service.interfaces.IClienteService;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
@@ -31,7 +35,16 @@ public class ClientController {
 	private IClienteService clienteService;
 	
 	@Autowired
+	@Qualifier(value="workflow-anuncio")
+	private Workflow workflow;
+	
+	@Autowired
 	private AnuncioMultipleMapper anuncioMultipleMapper;
+
+
+	public void setWorkflow(Workflow workflow) {
+		this.workflow = workflow;
+	}
 
 
 	public void setAnuncioMultipleMapper(AnuncioMultipleMapper anuncioMultipleMapper) {
@@ -76,6 +89,7 @@ public class ClientController {
 	public @ResponseBody JSONResponse clientCreatedAnnouncements(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filter){
 		JSONResponse response = new JSONResponse();
 		try {
+			filter.setEstado(workflow.getEstadoByName(AnuncioWFStateEnum.CREADO.getName()).getIdentityVector());
 			ResultadoPaginado<AnuncioMultipleLocalizado> announcements = ServiceLocator.getAnuncioService().findAnuncios(filter);
 			response.setResponse(announcements);
 			response.setSuccess(true);
@@ -96,6 +110,7 @@ public class ClientController {
 	public @ResponseBody JSONResponse clientPublishedAnnouncements(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filter){
 		JSONResponse response = new JSONResponse();
 		try {
+			filter.setEstado(workflow.getEstadoByName(AnuncioWFStateEnum.PUBLICADO.getName()).getIdentityVector());
 			ResultadoPaginado<AnuncioMultipleLocalizado> announcements = ServiceLocator.getAnuncioService().findAnuncios(filter);
 			response.setResponse(announcements);
 			response.setSuccess(true);
@@ -116,6 +131,7 @@ public class ClientController {
 	public @ResponseBody JSONResponse clientClosedAnnouncements(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filter){
 		JSONResponse response = new JSONResponse();
 		try {
+			filter.setEstado(workflow.getEstadoByName(AnuncioWFStateEnum.CERRAR_SIN_ADJUDICACION.getName()).getIdentityVector());
 			ResultadoPaginado<AnuncioMultipleLocalizado> announcements = ServiceLocator.getAnuncioService().findAnuncios(filter);
 			response.setResponse(announcements);
 			response.setSuccess(true);
@@ -165,10 +181,10 @@ public class ClientController {
 			response.setMessage(e.getMessage());
 		} catch (Exception e) {
 			response.setSuccess(false);
-			response.setMessage(JsonMesagesResolver.getMessage("error.action", null, null));
-		}finally{
-			return response;
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
 		}
+		return response;
+		
 	}
 	
 	@RequestMapping(value="/delete-announcement", method=RequestMethod.POST)
@@ -205,7 +221,7 @@ public class ClientController {
 			response.setMessage(e.getMessage());
 		} catch (Exception e) {
 			response.setSuccess(false);
-			response.setMessage(JsonMesagesResolver.getMessage("error.action", null, null));
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
 		}finally{
 			return response;
 		}

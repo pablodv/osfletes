@@ -93,7 +93,7 @@ public class Workflow {
 	
 	public Estado getEstadoByName(String name){
 		for(Estado estado:estados){
-			if(estado.getName().equals(name)){
+			if(estado.getName().equalsIgnoreCase(name)){
 				return estado;
 			}
 		}

@@ -3,7 +3,7 @@
 
 <jsp:include page="client-announcements-search.jsp"></jsp:include>
 <head>
-	<script type="text/javascript" src="<c:url value="/static/js/client-closed-announcements.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/static/js/client-deleted-announcements.js"/>"></script>
 </head>
 
 <div id="resultado"></div>

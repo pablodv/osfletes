@@ -92,5 +92,13 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 		return super.save(entity);
 	}
 
+
+	@Override
+	public AnuncioMultipleLocalizado findAnuncio(Long announcementId,
+			Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

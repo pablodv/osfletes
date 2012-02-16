@@ -81,6 +81,12 @@ public class Workflow {
 		return getStateById(actualState.executeAction(transaction));
 	}
 	
+	public Estado emuleAction(String state, String transactionName) throws InvalidTransactionException{
+		Estado actualState = this.getEstadoByName(state);
+		Transaction transaction = this.getTransactionByName(transactionName);
+		return getStateById(actualState.executeAction(transaction));
+	}
+	
 	public Transaction getTransactionByName(String name){
 		for(Transaction transaction:transactions){
 			if(transaction.getName().equalsIgnoreCase(name)){

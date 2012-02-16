@@ -7,6 +7,7 @@ $(function(){
 
 function search_client_created_announcements(page){
 	var url = ClientUrls['GET_CREATED_ANNOUNCEMENTS'];
+	
 	$.ajax({
 	    url: url,
 	    data: get_announcement_search_filter(page),

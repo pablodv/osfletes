@@ -32,4 +32,7 @@ public interface IAnuncioService extends IGenericService<AnuncioMultipleLocaliza
 
 	@Transactional
 	public void cerrarVencido(Long anuncioId);
+
+	@Transactional(readOnly=true)
+	public AnuncioMultipleLocalizado findAnuncio(Long announcementId, Long userId);
 }

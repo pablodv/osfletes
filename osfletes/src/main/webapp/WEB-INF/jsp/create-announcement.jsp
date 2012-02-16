@@ -2,19 +2,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
  
-<html>
 <head>
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"/>
-  	<script type="text/javascript" src="<c:url value="/static/js/jquery-ui.js"/>"></script>
-  	<script type="text/javascript" src="<c:url value="/static/js/create-announcement.js"/>"></script>
-  
-	
-	
-	
+	<script type="text/javascript" src="<c:url value="/static/js/create-announcement.js"/>"></script>
 </head>
 <body>
-	<h4>New Car</h4>
-	
 	<c:url value="/create-announcement" var="action"/>
  	<form:form method="post" id="form" action="${action}" commandName="anuncioDTO">
 		<div class="form">
@@ -51,4 +42,3 @@
  		</div>
 	</form:form>
 </body>
-</html>

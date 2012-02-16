@@ -72,10 +72,10 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
 	public boolean onSave(Session arg0) throws CallbackException {
 		this.setFechaCreacion(new Date());
 		
-//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		if (principal instanceof User && ! (this instanceof User)) {
-//			usuarioCreacion = (User) principal;
-//		}
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof User && ! (this instanceof User)) {
+			usuarioCreacion = (User) principal;
+		}
 
 		return false;
 	}

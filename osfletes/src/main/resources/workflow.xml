@@ -98,15 +98,16 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<constructor-arg name="name" value="Cerrar"/>
 	</bean>
 	
-	<bean id="seleccionar" class="com.licitaciones.TransactionImpl">
+	<bean id="cancelar" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="3"/>
+		<constructor-arg name="name" value="Cancelar"/>
+	</bean>
+
+	<bean id="seleccionar" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="4"/>
 		<constructor-arg name="name" value="Seleccionar"/>
 	</bean>
 	
-	<bean id="cancelar" class="com.licitaciones.TransactionImpl">
-		<constructor-arg name="identityVector" value="4"/>
-		<constructor-arg name="name" value="Cancelar"/>
-	</bean>
 	
 	<bean id="terminar-vencido" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="5"/>

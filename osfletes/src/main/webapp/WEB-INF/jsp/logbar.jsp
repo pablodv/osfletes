@@ -3,7 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/logbar.css"/>"></link>
-	<script type="text/javascript" src="<c:url value="/static/js/logbar.js"/>"></script>
+	<!-- Seleccionar Menu segun perfil -->
+	<sec:authorize access="isAuthenticated() and hasRole('ROLE_ADMIN')">
+	<script type="text/javascript" src="<c:url value="/static/js/admin-logbar.js"/>"></script>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated() and hasRole('ROLE_CLIENT')">
+		<script type="text/javascript" src="<c:url value="/static/js/client-logbar.js"/>"></script>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated() and hasRole('ROLE_PROV')">
+		<script type="text/javascript" src="<c:url value="/static/js/provider-logbar.js"/>"></script>
+	</sec:authorize>
+	
+	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/menu.css"/>"></link>
 	<script type="text/javascript" src="<c:url value="/static/js/menu.js"/>"></script>
 </head>

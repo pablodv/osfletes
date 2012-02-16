@@ -51,6 +51,10 @@ public class AnuncioMultipleLocalizadoDAO extends GenericHibernateDAO<AnuncioMul
 			
 		}
 		
+		if(filtro.getUsuarioCreacion() != null){
+			sb.append("and aml.usuarioCreacion.id>= :usuarioCreacion ");
+		}
+		
 		if(filtro.getEstado()!=null){
 			sb.append("and aml.estado = :estado ");
 		}

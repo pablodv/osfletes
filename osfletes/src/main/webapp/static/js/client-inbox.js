@@ -1,3 +1,3 @@
 $(function(){
-	init_tabs('tabs_container');
+	init_tabs('tabs_container','client-announcements');
 });

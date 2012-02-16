@@ -1,10 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "spring" uri = "http://www.springframework.org/tags" %>
+
+<jsp:include page="client-announcements-search.jsp"></jsp:include>
 <head>
 	<script type="text/javascript" src="<c:url value="/static/js/client-published-announcements.js"/>"></script>
 </head>
 
-<jsp:include page="client-announcements-search.jsp"></jsp:include>
 <div id="resultado"></div>
 <div class="form">
 	<div class="button_container">

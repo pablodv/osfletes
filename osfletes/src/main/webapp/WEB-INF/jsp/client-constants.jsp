@@ -11,5 +11,6 @@ GET_CANCELED_ANNOUNCEMENTS 		: "<c:url value="/client-canceled-announcements"/>"
 DELETE_ANNOUNCEMENT 			: "<c:url value="/delete-announcement"/>",
 CANCEL_ANNOUNCEMENT				: "<c:url value="/cancel-announcement"/>",
 SELECT_OFFER				: "<c:url value="/select-offer"/>",
-PUBLISH_ANNOUNCEMENT			: "<c:url value="/publish-announcement"/>"
+PUBLISH_ANNOUNCEMENT			: "<c:url value="/publish-announcement"/>",
+CREATE_ANNOUNCEMENT 		: "<c:url value="/create-announcement"/>"
 };

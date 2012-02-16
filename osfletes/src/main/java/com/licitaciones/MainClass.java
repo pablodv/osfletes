@@ -21,7 +21,7 @@ public class MainClass {
     	System.out.println("Transactions:");
     	for(Transaction transaction: wf.getEstadoTransactions(estado.getIdentityVector())){
     		try {
-				Estado nuevoEstado = wf.emuleAction(estado.getIdentityVector(), transaction.getIdentityVector());
+				Estado nuevoEstado = wf.emuleAction(estado.getName(), transaction.getName());
 				System.out.println(estado.getName()+ "---["+ transaction.getName() + "]--->" + nuevoEstado.getName());
 			} catch (InvalidTransactionException e) {
 				System.out.println(transaction.getName()+ " No soportada");

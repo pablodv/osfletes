@@ -94,6 +94,10 @@ public abstract class GenericHibernateDAO<T> extends HibernateDaoSupport
 	protected Criteria createCriteria() {
 		return getSession().createCriteria(representedClass);
 	}
+	
+	protected Criteria createCriteria(String alias) {
+		return getSession().createCriteria(representedClass,alias);
+	}
 
 	/**
 	 * Crea una Instancia de una Implmentacion de la

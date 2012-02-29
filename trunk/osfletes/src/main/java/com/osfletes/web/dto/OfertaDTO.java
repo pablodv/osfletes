@@ -1,6 +1,5 @@
 package com.osfletes.web.dto;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,39 +8,39 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 public class OfertaDTO {
 	@NumberFormat(style=Style.NUMBER)
-	private BigDecimal valorOferta;
-	private Serializable id;
-	private Long anuncioId;
-	private Date fechaServicio;
+	private BigDecimal value;
+	private Long id;
+	private Long announcementId;
+	private Date serviceDate;
 	
 	
 	
-	public BigDecimal getValorOferta() {
-		return valorOferta;
+	public BigDecimal getValue() {
+		return value;
 	}
-	public void setValorOferta(BigDecimal valorOferta) {
-		this.valorOferta = valorOferta;
+	public void setValue(BigDecimal valorOferta) {
+		this.value = valorOferta;
 	}
 	
 	
 	
-	public Serializable getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Serializable id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getAnuncioId() {
-		return anuncioId;
+	public Long getAnnouncementId() {
+		return announcementId;
 	}
-	public void setAnuncioId(Long anuncioId) {
-		this.anuncioId = anuncioId;
+	public void setAnnouncementId(Long anuncioId) {
+		this.announcementId = anuncioId;
 	}
-	public Date getFechaServicio() {
-		return fechaServicio;
+	public Date getServiceDate() {
+		return serviceDate;
 	}
-	public void setFechaServicio(Date fechaServicio) {
-		this.fechaServicio = fechaServicio;
+	public void setServiceDate(Date fechaServicio) {
+		this.serviceDate = fechaServicio;
 	}
 	
 	

@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.service.interfaces.IClienteService;
+import com.osfletes.service.interfaces.IContractService;
+import com.osfletes.service.interfaces.IMailService;
+import com.osfletes.service.interfaces.IOfertaService;
 import com.osfletes.service.interfaces.IProveedorService;
 import com.osfletes.service.interfaces.IRoleService;
 import com.osfletes.service.interfaces.IUserService;
@@ -17,6 +20,9 @@ public class ServiceLocator {
   private IRoleService roleService;
   private IProveedorService providerService;
   private IClienteService clienteService;
+  private IContractService contractService;
+  private IOfertaService ofertaService;
+  private IMailService mailService;
  
   
   // constructor privado
@@ -75,9 +81,31 @@ public class ServiceLocator {
 		this.clienteService = clienteService;
 	}
 
-	
-	
-	
-  
+	public static IContractService getContractService() {
+		return INSTANCE.contractService;
+	}
+
+	@Autowired
+	public void setContractService(IContractService contractService) {
+		this.contractService = contractService;
+	}
+
+	public static IOfertaService getOfertaService() {
+		return INSTANCE.ofertaService;
+	}
+
+	@Autowired
+	public void setOfertaService(IOfertaService ofertaService) {
+		this.ofertaService = ofertaService;
+	}
+
+	public static IMailService getMailService() {
+		return INSTANCE.mailService;		
+	}
+
+	@Autowired
+	public void setMailService(IMailService mailService){
+		this.mailService = mailService;
+	}
   
 }

@@ -19,13 +19,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.licitaciones.Workflow;
 import com.licitaciones.exception.BusinessException;
 import com.osfletes.mapper.AnuncioMultipleMapper;
+import com.osfletes.mapper.ContractMapper;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.AnuncioWFStateEnum;
+import com.osfletes.model.Oferta;
 import com.osfletes.security.User;
 import com.osfletes.service.ServiceLocator;
 import com.osfletes.service.interfaces.IClienteService;
+import com.osfletes.web.dto.AnuncioDTO;
 import com.osfletes.web.dto.AnuncioMultipleDTO;
+import com.osfletes.web.dto.ContractDTO;
 import com.osfletes.web.dto.FiltroAnuncioDTO;
+import com.osfletes.web.dto.OfertaDTO;
+import com.osfletes.web.dto.OfferFilterDTO;
 import com.osfletes.web.dto.SignupClientDTO;
 import com.osfletes.web.model.JSONResponse;
 import com.osfletes.web.model.ResultadoPaginado;
@@ -41,6 +47,13 @@ public class ClientController {
 	
 	@Autowired
 	private AnuncioMultipleMapper anuncioMultipleMapper;
+	
+	@Autowired
+	ContractMapper contractMapper;
+	
+	public void setContractMapper(ContractMapper contractMapper) {
+		this.contractMapper = contractMapper;
+	}
 
 
 	public void setWorkflow(Workflow workflow) {
@@ -100,7 +113,7 @@ public class ClientController {
 			response.setResponse(announcements);
 			response.setSuccess(true);
 		} catch (Exception e) {
-			response.setMessage("ERRRRRORRORRORR");
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
 			response.setSuccess(false);
 		}
 		return response;
@@ -125,7 +138,7 @@ public class ClientController {
 			response.setResponse(announcements);
 			response.setSuccess(true);
 		} catch (Exception e) {
-			response.setMessage("ERRRRRORRORRORR");
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
 			response.setSuccess(false);
 		}
 		return response;
@@ -150,7 +163,7 @@ public class ClientController {
 			response.setResponse(announcements);
 			response.setSuccess(true);
 		} catch (Exception e) {
-			response.setMessage("ERRRRRORRORRORR");
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
 			response.setSuccess(false);
 		}
 		return response;
@@ -175,7 +188,7 @@ public class ClientController {
 			response.setResponse(announcements);
 			response.setSuccess(true);
 		} catch (Exception e) {
-			response.setMessage("ERRRRRORRORRORR");
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
 			response.setSuccess(false);
 		}
 		return response;
@@ -200,7 +213,32 @@ public class ClientController {
 			response.setResponse(announcements);
 			response.setSuccess(true);
 		} catch (Exception e) {
-			response.setMessage("ERRRRRORRORRORR");
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
+			response.setSuccess(false);
+		}
+		return response;
+	}
+	
+	@RequestMapping(value="/client-provider-selected-announcements", method=RequestMethod.GET)
+	@Secured(value="ROLE_CLIENT")
+	public ModelAndView clientProviderSelectedAnnouncements(){
+		ModelAndView mv = new ModelAndView("client-prov-selected-announcements");
+		return mv;
+	}
+	
+	@RequestMapping(value="/client-provider-selected-announcements",  method=RequestMethod.POST)
+	@Secured(value="ROLE_CLIENT")
+	public @ResponseBody JSONResponse clientProviderSelectedAnnouncements(@ModelAttribute("filtroDTO") FiltroAnuncioDTO filter){
+		JSONResponse response = new JSONResponse();
+		try {
+			User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			filter.setUsuarioCreacion(principal.getId());
+			filter.setEstado(workflow.getEstadoByName(AnuncioWFStateEnum.PROVEEDOR_SELECCIONADO.getName()).getIdentityVector());
+			ResultadoPaginado<AnuncioMultipleLocalizado> announcements = ServiceLocator.getAnuncioService().findAnuncios(filter);
+			response.setResponse(announcements);
+			response.setSuccess(true);
+		} catch (Exception e) {
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
 			response.setSuccess(false);
 		}
 		return response;
@@ -235,6 +273,14 @@ public class ClientController {
 		
 		JSONResponse response = new JSONResponse();
 		
+		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(!ServiceLocator.getAnuncioService().existAnnouncement(announcementId, principal.getId())){
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			return response;
+		}
+		
 		try {
 			ServiceLocator.getAnuncioService().publicarAnuncio(announcementId);
 			response.setSuccess(true);
@@ -255,6 +301,14 @@ public class ClientController {
 	public @ResponseBody JSONResponse deleteAnnouncement(@RequestParam("announcementId") Long announcementId){
 		JSONResponse response = new JSONResponse();
 		
+		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(!ServiceLocator.getAnuncioService().existAnnouncement(announcementId, principal.getId())){
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			return response;
+		}
+		
 		try {
 			ServiceLocator.getAnuncioService().delete(announcementId);
 			response.setSuccess(true);
@@ -273,9 +327,17 @@ public class ClientController {
 	
 	@RequestMapping(value="/cancel-announcement",  method=RequestMethod.POST)
 	@Secured(value="ROLE_CLIENT")
-	public @ResponseBody JSONResponse cancelAnnouncements(@RequestParam("announcementId") Long announcementId){
+	public @ResponseBody JSONResponse cancelAnnouncement(@RequestParam("announcementId") Long announcementId){
 		JSONResponse response = new JSONResponse();
 
+		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(!ServiceLocator.getAnuncioService().existAnnouncement(announcementId, principal.getId())){
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			return response;
+		}
+		
 		try {
 			ServiceLocator.getAnuncioService().cancelarAnuncio(announcementId);
 			response.setSuccess(true);
@@ -286,17 +348,115 @@ public class ClientController {
 		} catch (Exception e) {
 			response.setSuccess(false);
 			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
-		}finally{
-			return response;
 		}
+		
+		return response;
+		
 	}
 	
 	@RequestMapping(value="/select-offer/{announcementId}", method=RequestMethod.GET)
 	@Secured(value="ROLE_CLIENT")
 	public ModelAndView selectOffer(@PathVariable Long announcementId){
 		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		AnuncioMultipleLocalizado announcements = ServiceLocator.getAnuncioService().findAnuncio(announcementId,principal.getId());
-		ModelAndView mv = new ModelAndView("select-offer");
+		ModelAndView mv = new ModelAndView();
+		
+		try {
+			AnuncioMultipleLocalizado announcement = ServiceLocator.getAnuncioService().findAnuncio(announcementId,principal.getId());
+			ContractDTO<AnuncioMultipleDTO> contractDTO = new ContractDTO<AnuncioMultipleDTO>();
+			contractDTO.setAnnouncementDTO(anuncioMultipleMapper.toDTO(announcement));
+			contractDTO.setOfferDTO(new OfertaDTO());
+			mv.addObject("contractDTO",contractDTO);
+			mv.setViewName("select-offer");
+		}catch (BusinessException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("error");
+		}catch (Exception e) {
+			mv.addObject("message", JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			mv.setViewName("error");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="/announcement-offers",  method=RequestMethod.POST)
+	@Secured(value="ROLE_CLIENT")
+	public @ResponseBody JSONResponse annoucementOffers(@ModelAttribute("offerFilterDTO") OfferFilterDTO filter){
+		JSONResponse response = new JSONResponse();
+		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(!ServiceLocator.getAnuncioService().existAnnouncement(filter.getAnnouncementId(), principal.getId())){
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			return response;
+		}
+		
+		try {
+			
+			ResultadoPaginado<Oferta> result =  ServiceLocator.getOfertaService().findOffers(filter);
+			response.setResponse(result);
+			response.setSuccess(true);
+		} catch (BusinessException e) {
+			response.setSuccess(false);
+			response.setMessage(e.getMessage());
+		} catch (Exception e) {
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
+		}
+		
+		return response;
+		
+	}
+	
+	@RequestMapping(value="/announcement-offer",  method=RequestMethod.POST)
+	@Secured(value="ROLE_CLIENT")
+	public @ResponseBody JSONResponse annoucementOffer(@RequestParam("announcementId") Long announcementId,@RequestParam("offerId") Long offerId){
+		JSONResponse response = new JSONResponse();
+		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(!ServiceLocator.getAnuncioService().existAnnouncement(announcementId, principal.getId())){
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			return response;
+		}
+		
+		try {
+			Oferta result =  ServiceLocator.getOfertaService().findOffer(announcementId,offerId);
+			response.setResponse(result);
+			response.setSuccess(true);
+		} catch (BusinessException e) {
+			response.setSuccess(false);
+			response.setMessage(e.getMessage());
+		} catch (Exception e) {
+			response.setSuccess(false);
+			response.setMessage(JsonMesagesResolver.getMessage("error.action.fatal", null, null));
+		}
+		
+		return response;
+		
+	}
+	
+	@RequestMapping(value="/select-offer", method=RequestMethod.POST)
+	@Secured(value="ROLE_CLIENT")
+	public ModelAndView selectOffer(@ModelAttribute("contractDTO") @Valid ContractDTO<AnuncioDTO> contractDTO){
+		ModelAndView mv = new ModelAndView();
+		
+		User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(!ServiceLocator.getAnuncioService().existAnnouncement(contractDTO.getAnnouncementDTO().getId(), principal.getId())){
+			mv.addObject("message", JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			mv.setViewName("error");
+			return mv;
+		}
+		
+		try {
+			ServiceLocator.getAnuncioService().seleccionarProveedor(contractDTO.getAnnouncementDTO().getId(), contractDTO.getOfferDTO().getId());
+			mv.setViewName("redirect:/inbox");
+		}catch (BusinessException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("error");
+		}catch (Exception e) {
+			mv.addObject("message", JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+			mv.setViewName("error");
+		}
 		return mv;
 	}
 }

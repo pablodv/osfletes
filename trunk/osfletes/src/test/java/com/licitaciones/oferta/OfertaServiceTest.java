@@ -37,7 +37,6 @@ public class OfertaServiceTest {
 		Proveedor proveedor = new Proveedor();
 		proveedorService.save(proveedor);
 		
-		oferta.setProveedor(proveedor);
 		oferta.setAnuncio(anuncio);
 		oferta.setValorOferta(new BigDecimal(10));
 		

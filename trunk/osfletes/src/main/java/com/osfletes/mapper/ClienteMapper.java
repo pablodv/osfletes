@@ -19,8 +19,6 @@ public class ClienteMapper implements IMapper<Cliente,ClienteDTO>{
 		dto.setPassword(model.getPassword());
 		dto.setId(model.getId());
 		
-		dto.getListaAnuncios().addAll(anuncioMultipleMapper.listToDto(model.getListaAnuncios()));
-		
 		return dto;
 	}
 

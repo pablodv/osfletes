@@ -14,7 +14,7 @@
     <li class="rounded"><a href="client-canceled-announcements"><spring:message code="announce.tab.canceled"/></a></li>
     <li class="rounded"><a href="client-closed-announcements"><spring:message code="announce.tab.uncloncuded"/></a></li>
     <li class="rounded"><a href="client-deleted-announcements"><spring:message code="announce.tab.deleted"/></a></li>
-    
+    <li class="rounded"><a href="client-provider-selected-announcements"><spring:message code="announce.tab.selected"/></a></li>
 </ul>
 
 <div class="tab_container">

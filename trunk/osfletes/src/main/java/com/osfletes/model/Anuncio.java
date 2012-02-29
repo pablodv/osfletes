@@ -3,18 +3,19 @@ package com.osfletes.model;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.licitaciones.StateAware;
 import com.osfletes.model.hibernate.ObjetoPersistente;
-import com.osfletes.security.User;
 
-@MappedSuperclass
-public abstract class Anuncio extends ObjetoPersistente implements StateAware{
+
+@Entity(name="ANUNCIO")
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Anuncio extends ObjetoPersistente implements StateAware{
 	
 	private static final long serialVersionUID = -1960041916990966080L;
 
@@ -34,9 +35,8 @@ public abstract class Anuncio extends ObjetoPersistente implements StateAware{
     @Column(name="DESCRIPCION")
     public String descripcion;
     
-    @ManyToOne
-    public User user;
-    
+   
+    @Column(name="ESTADO")
     public int estado;
    
 
@@ -88,14 +88,6 @@ public abstract class Anuncio extends ObjetoPersistente implements StateAware{
 		this.horaHasta = horaHasta;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -114,6 +106,11 @@ public abstract class Anuncio extends ObjetoPersistente implements StateAware{
 	
 	public void setState(int estado) {
 		this.estado = estado;
+	}
+
+	@Override
+	public int getState() {
+		return this.estado;
 	}
     
 	

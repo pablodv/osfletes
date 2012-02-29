@@ -16,5 +16,5 @@ public interface Estado {
 
 	public int executeAction(Transaction transaction) throws InvalidTransactionException;
 
-	public void executeInitAction(Object obj, Object... args);
+	public <T extends StateAware> void executeInitAction(T obj, Object... args) throws InvalidTransactionException;
 }

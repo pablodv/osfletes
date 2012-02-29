@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.web.dto.FiltroAnuncioDTO;
+import com.osfletes.web.dto.ProviderAnnounceFilterDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 public interface IAnuncioService extends IGenericService<AnuncioMultipleLocalizado> {
@@ -35,4 +36,12 @@ public interface IAnuncioService extends IGenericService<AnuncioMultipleLocaliza
 
 	@Transactional(readOnly=true)
 	public AnuncioMultipleLocalizado findAnuncio(Long announcementId, Long userId);
+	
+	@Transactional(readOnly=true)
+	public boolean existAnnouncement(Long announcementId, Long userId);
+
+	@Transactional(readOnly=true)
+	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(ProviderAnnounceFilterDTO filter);
+
+	
 }

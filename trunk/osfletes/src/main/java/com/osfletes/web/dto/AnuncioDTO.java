@@ -7,24 +7,16 @@ import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 public class AnuncioDTO {
+	
 	private Long id;
-	
-	@DateTimeFormat
 	private Date fechaDesde;
-	
-	@DateTimeFormat
 	private Date fechaHasta;
-	
-	@DateTimeFormat
 	private Date fechaCierre;
-	
 	@NumberFormat(style=Style.NUMBER)
 	private Integer horaDesde;
-	
 	@NumberFormat(style=Style.NUMBER)
 	private Integer horaHasta;
-	private String direccionInicial;
-	private String direccionFinal;
+	
 	
 	public Long getId() {
 		return id;
@@ -62,18 +54,7 @@ public class AnuncioDTO {
 	public void setHoraHasta(Integer horaHasta) {
 		this.horaHasta = horaHasta;
 	}
-	public String getDireccionInicial() {
-		return direccionInicial;
-	}
-	public void setDireccionInicial(String direccionInicial) {
-		this.direccionInicial = direccionInicial;
-	}
-	public String getDireccionFinal() {
-		return direccionFinal;
-	}
-	public void setDireccionFinal(String direccionFinal) {
-		this.direccionFinal = direccionFinal;
-	}
+	
 	
 	
 }

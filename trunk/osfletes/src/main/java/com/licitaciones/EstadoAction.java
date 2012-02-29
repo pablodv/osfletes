@@ -1,6 +1,8 @@
 package com.licitaciones;
 
-public interface EstadoAction {
+import com.licitaciones.exception.InvalidTransactionException;
+
+public interface EstadoAction<T extends StateAware> {
 	
-	public void exceute(Object obj, Object... args);
+	public void exceute(T obj, Object... args) throws InvalidTransactionException;
 }

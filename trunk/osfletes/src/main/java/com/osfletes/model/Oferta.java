@@ -5,66 +5,63 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.licitaciones.StateAware;
 import com.osfletes.model.hibernate.ObjetoPersistente;
-import com.osfletes.security.User;
 
 @Entity(name="OFERTA")
-public class Oferta extends ObjetoPersistente {
+public class Oferta extends ObjetoPersistente implements StateAware {
 	
 	private static final long serialVersionUID = 915473460883012433L;
 
 	@ManyToOne
-	private AnuncioMultipleLocalizado anuncio;
+	@JoinColumn(name="ANUNCIO_ID")
+	private Anuncio anuncio;
 	
+	@Temporal(TemporalType.DATE)
+	@Column(name="FECHA_SERVICIO")
 	private Date fechaServicio;
-	
-	@ManyToOne
-	private User proveedor;
 	
 	@Column(name="VALOR_OFERTA")
 	private BigDecimal valorOferta;
 	
-	@Column(name="VENCIDA")
-	private Boolean vencida = false;
+	@Column(name="ESTADO")
+	private int state;
 	
-	public Date getFechaCreacion() {
-		return fechaCreacion;
-	}
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
+	
 	public Date getFechaServicio() {
 		return fechaServicio;
 	}
 	public void setFechaServicio(Date fechaServicio) {
 		this.fechaServicio = fechaServicio;
 	}
-	public User getProveedor() {
-		return proveedor;
-	}
-	public void setProveedor(User proveedor) {
-		this.proveedor = proveedor;
-	}
+	
 	public BigDecimal getValorOferta() {
 		return valorOferta;
 	}
 	public void setValorOferta(BigDecimal valorOferta) {
 		this.valorOferta = valorOferta;
 	}
-	public AnuncioMultipleLocalizado getAnuncio() {
+	public Anuncio getAnuncio() {
 		return anuncio;
 	}
-	public void setAnuncio(AnuncioMultipleLocalizado anuncio) {
+	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}
-	public Boolean getVencida() {
-		return vencida;
+
+	@Override
+	public void setState(int stateId) {
+		this.state = stateId;
 	}
-	public void setVencida(Boolean vencida) {
-		this.vencida = vencida;
+	@Override
+	public int getState() {
+		return this.state;
 	}
+	
 	
 	
 }

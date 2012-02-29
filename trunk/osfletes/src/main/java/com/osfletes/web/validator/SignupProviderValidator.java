@@ -4,7 +4,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.osfletes.service.ServiceLocator;
-import com.osfletes.web.dto.SignupClientDTO;
 import com.osfletes.web.dto.SignupProviderDTO;
 
 public class SignupProviderValidator implements Validator {
@@ -16,8 +15,8 @@ public class SignupProviderValidator implements Validator {
 
 	@Override
 	public void validate(Object arg0, Errors e) {
-		SignupClientDTO signupClient = (SignupClientDTO) arg0;
-		if(ServiceLocator.getProviderService().existUserWithMail(signupClient.getMail())){
+		SignupProviderDTO signupProviderDTO = (SignupProviderDTO) arg0;
+		if(ServiceLocator.getProviderService().existUserWithMail(signupProviderDTO.getMail())){
 			e.rejectValue("mail", "username.not.available");
 		}
 				

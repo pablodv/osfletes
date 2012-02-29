@@ -33,12 +33,16 @@
 
 function create_popup(settings,body){
 	popup = $('<div>');
+	var time = new Date();
+	
+	id = 'popup_'+time.getTime();
+	popup.attr('id', id);
 	$(popup).css('display','none');
 	$(popup).addClass(settings.clazz);
 	$(popup).css('width',settings.size.width);
 	$(popup).css('height',settings.size.height);
 	title = create_title(settings);
-	buttons = create_buttons(settings);
+	buttons = create_buttons(settings,id);
 	$(popup).append(title);
 	$(body).addClass('body');
 	$(body).height(settings.size.height - (80 + 20 + 20));
@@ -57,19 +61,19 @@ function create_title(settings){
 	return $(title);
 }
 
-function create_buttons(settings){
+function create_buttons(settings,id){
 	buttons_container = $('<div class="buttons-container">');
 	buttons_list = $('<ul>');
 	if(!settings.msg){
 		button_ok = create_button({label:'ok',funcion:settings.action});
 		$(buttons_list).append($(button_ok));
-		button_cancel = create_button({label:'cancel',funcion:function(){close_popup($('.popup'))}});
+		button_cancel = create_button({label:'cancel',funcion:function(){close_popup($('#'+id))}});
 		for(var i=0;i<settings.buttons.length;i++){
 			button = create_button(setting.buttons[i]);
 			$(buttons_list).append($(button));
 		}
 	}else{
-		button_cancel = create_button({label:'ok',funcion:function(){close_popup($('.popup')); $('.popup').remove();}});
+		button_cancel = create_button({label:'ok',funcion:function(){close_popup($('#'+id)); $('#'+id).remove();}});
 	}
 	
 

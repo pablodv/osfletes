@@ -24,9 +24,11 @@ public class User extends ObjetoPersistente implements UserDetails {
 
 	private static final long serialVersionUID = 4079664434226649300L;
 	
+	@Column(name="PASSWORD")
 	public String password;
 	
-    public String username;
+    @Column(name="USER_NAME")
+	public String username;
 	
     @ManyToMany(targetEntity=Role.class,fetch=FetchType.LAZY)
 	  @Cascade(value={CascadeType.DELETE_ORPHAN,CascadeType.PERSIST, CascadeType.SAVE_UPDATE})

@@ -12,112 +12,287 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="workflows">
 			<map>
 				<entry key="workflow-anuncio" value-ref="workflow-anuncio"/>
+				<entry key="workflow-oferta" value-ref="workflow-oferta"/>
+				<entry key="workflow-contrato" value-ref="workflow-contrato"/>
 			</map>
 		</property>
 	</bean>
+	
+	<!-- WORKFLOW ANUNCIO -->
 	<bean id="workflow-anuncio" class="com.licitaciones.Workflow">
 		<constructor-arg name="estados">
 			<list>
-				<ref local="creado"/>
-				<ref local="publicado"/>
-				<ref local="publicacion-cerrada"/>
-				<ref local="cancelada"/>
-				<ref local="proveedor-seleccionado"/>
-				<ref local="cerrado-sin-adj"/>
-				<ref local="eliminado"/>
+				<ref local="anuncio-creado"/>
+				<ref local="anuncio-publicado"/>
+				<ref local="anuncio-publicacion-cerrada"/>
+				<ref local="anuncio-cancelada"/>
+				<ref local="anuncio-proveedor-seleccionado"/>
+				<ref local="anuncio-cerrado-sin-adj"/>
+				<ref local="anuncio-eliminado"/>
 			</list>
 		</constructor-arg>
 		<constructor-arg name="transactions">
 			<list>
-				<ref local="crear"/>
-				<ref local="publicar"/>
-				<ref local="cerrar"/>
-				<ref local="cancelar"/>
-				<ref local="seleccionar"/>
-				<ref local="terminar-vencido"/>
-				<ref local="eliminar"/>
+				<ref local="crear-anuncio"/>
+				<ref local="publicar-anuncio"/>
+				<ref local="cerrar-anuncio"/>
+				<ref local="cancelar-anuncio"/>
+				<ref local="seleccionar-anuncio"/>
+				<ref local="terminar-vencido-anuncio"/>
+				<ref local="eliminar-anuncio"/>
 			</list>
 		</constructor-arg>
 		<qualifier value="workflow-anuncio"></qualifier>
 	</bean>
 	
-	<bean id="creado" class="com.licitaciones.EstadoImpl">
+	<bean id="anuncio-creado" class="com.licitaciones.EstadoImpl">
 		<constructor-arg name="identityVector" value="0"/>
 		<constructor-arg name="transactionsVector" value="66"/>
 		<constructor-arg name="name" value="CREADO"/>
+		<constructor-arg name="finalState" value="false" type="boolean"/>
+		<constructor-arg name="startState" value="true" type="boolean"/>
 	</bean>
 	
-	<bean id="publicado" class="com.licitaciones.EstadoImpl">
+	<bean id="anuncio-publicado" class="com.licitaciones.EstadoImpl">
 		<constructor-arg name="identityVector" value="1"/>
 		<constructor-arg name="transactionsVector" value="28"/>
 		<constructor-arg name="name" value="PUBLICADO"/>
+		<constructor-arg name="finalState" value="false" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
 	</bean>
 	
-	<bean id="publicacion-cerrada" class="com.licitaciones.EstadoImpl">
+	<bean id="anuncio-publicacion-cerrada" class="com.licitaciones.EstadoImpl">
 		<constructor-arg name="identityVector" value="2"/>
 		<constructor-arg name="transactionsVector" value="48"/>
 		<constructor-arg name="name" value="PUBLICACION CERRADA"/>
+		<constructor-arg name="finalState" value="false" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
 	</bean>
 	
-	<bean id="cancelada" class="com.licitaciones.EstadoImpl">
+	<bean id="anuncio-cancelada" class="com.licitaciones.EstadoImpl">
 		<constructor-arg name="identityVector" value="3"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="CANCELADO"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
 	</bean>
 	
-	<bean id="proveedor-seleccionado" class="com.licitaciones.EstadoImpl">
+	<bean id="anuncio-proveedor-seleccionado" class="com.licitaciones.EstadoImpl">
 		<constructor-arg name="identityVector" value="4"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="PROVEEDOR SELECCIONADO"/>
+		<constructor-arg name="action" ref="select-offer"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
 	</bean>
 	
-	<bean id="cerrado-sin-adj" class="com.licitaciones.EstadoImpl">
+	<bean id="anuncio-cerrado-sin-adj" class="com.licitaciones.EstadoImpl">
 		<constructor-arg name="identityVector" value="5"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="CERRADO SIN ADJUDICACION"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
 	</bean>
 	
-	<bean id="eliminado" class="com.licitaciones.EstadoImpl">
+	<bean id="anuncio-eliminado" class="com.licitaciones.EstadoImpl">
 		<constructor-arg name="identityVector" value="6"/>
 		<constructor-arg name="transactionsVector" value="0"/>
 		<constructor-arg name="name" value="eliminado"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
 	</bean>
 	
-	<bean id="crear" class="com.licitaciones.TransactionImpl">
+	<!-- TRANSACCIONES WORKFLOW ANUNCIO -->
+	<bean id="crear-anuncio" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="0"/>
 		<constructor-arg name="name" value="crear"/>
 	</bean>
 	
-	<bean id="publicar" class="com.licitaciones.TransactionImpl">
+	<bean id="publicar-anuncio" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="1"/>
 		<constructor-arg name="name" value="Publicar"/>
 	</bean>
 	
-	<bean id="cerrar" class="com.licitaciones.TransactionImpl">
+	<bean id="cerrar-anuncio" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="2"/>
 		<constructor-arg name="name" value="Cerrar"/>
 	</bean>
 	
-	<bean id="cancelar" class="com.licitaciones.TransactionImpl">
+	<bean id="cancelar-anuncio" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="3"/>
 		<constructor-arg name="name" value="Cancelar"/>
 	</bean>
 
-	<bean id="seleccionar" class="com.licitaciones.TransactionImpl">
+	<bean id="seleccionar-anuncio" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="4"/>
 		<constructor-arg name="name" value="Seleccionar"/>
 	</bean>
 	
 	
-	<bean id="terminar-vencido" class="com.licitaciones.TransactionImpl">
+	<bean id="terminar-vencido-anuncio" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="5"/>
 		<constructor-arg name="name" value="Terminar Vencido"/>
 	</bean>
 	
-	<bean id="eliminar" class="com.licitaciones.TransactionImpl">
+	<bean id="eliminar-anuncio" class="com.licitaciones.TransactionImpl">
 		<constructor-arg name="identityVector" value="6"/>
 		<constructor-arg name="name" value="Eliminar"/>
 	</bean>
 	
+	<bean id="select-offer" class="com.osfletes.workflow.SelectOfferAction">
+	</bean>	
+	<!-- FIN WORKFLOW ANUNCIO -->
+	<!-- WORKFLOW OFERTA -->
+	
+	<bean id="workflow-oferta" class="com.licitaciones.Workflow">
+		<constructor-arg name="estados">
+			<list>
+				<ref local="oferta-creado"/>
+				<ref local="oferta-adjudicada"/>
+				<ref local="oferta-noadjudicada"/>
+				<ref local="oferta-cancelada-anuncio-cancelada"/>
+				<ref local="oferta-cancelada-proveedor"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="transactions">
+			<list>
+				<ref local="cliente-selecciona-oferta"/>
+				<ref local="cliente-no-seleccionar-oferta"/>
+				<ref local="cancelar-oferta"/>
+				<ref local="provedor-cancela-oferta"/>
+			</list>
+		</constructor-arg>
+		<qualifier value="workflow-oferta"></qualifier>
+	</bean>
+	
+	<!-- ESTADOS WORKFLOW OFERTA -->
+	<bean id="oferta-creado" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="0"/>
+		<constructor-arg name="transactionsVector" value="30"/>
+		<constructor-arg name="name" value="CREADO"/>
+		<constructor-arg name="finalState" value="false" type="boolean"/>
+		<constructor-arg name="startState" value="true" type="boolean"/>
+	</bean>
+	<bean id="oferta-adjudicada" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="1"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="ADJUDICADA"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
+	</bean>
+	<bean id="oferta-noadjudicada" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="NO ADJUDICADA"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
+	</bean>
+	<bean id="oferta-cancelada-proveedor" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="3"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="CANCELADA POR PROVEEDOR"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
+	</bean>
+	<bean id="oferta-cancelada-anuncio-cancelada" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="4"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="CANCELADA POR ANUNCIO CANCELADO"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
+	</bean>
+	<!-- FIN ESTADOS WORKFLOW OFERTA -->
+	<!-- TRANSACCIONES WORKFLOW OFERTA -->
+	<bean id="cliente-selecciona-oferta" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="1"/>
+		<constructor-arg name="name" value="CLIENTE SELECCIONA OFERTA"/>
+	</bean>
+	
+	<bean id="cliente-no-seleccionar-oferta" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="name" value="CLIENTE NO SELECCIONA OFERTA"/>
+	</bean>
+	
+	<bean id="cancelar-oferta" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="4"/>
+		<constructor-arg name="name" value="CANCELAR OFERTA POR ANUNCIO CANCELADO"/>
+	</bean>
+
+	<bean id="provedor-cancela-oferta" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="3"/>
+		<constructor-arg name="name" value="PROVEEDOR CANCELA OFERTA"/>
+	</bean>
+	
+	<!-- FIN TRANSACCIONES WORKFLOW OFERTA -->
+	
+	<!-- WORKFLOW OFERTA -->
+	
+	<bean id="workflow-contrato" class="com.licitaciones.Workflow">
+		<constructor-arg name="estados">
+			<list>
+				<ref local="contrato-creado"/>
+				<ref local="licitacion-concretada"/>
+				<ref local="licitacion-no-concretada"/>
+				<ref local="contrato-inconcluso"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="transactions">
+			<list>
+				<ref local="confirmacion-servicio"/>
+				<ref local="confirmacion-negativa-servicio"/>
+				<ref local="confirmacion-vencida"/>
+			</list>
+		</constructor-arg>
+		<qualifier value="workflow-contrato"></qualifier>
+	</bean>
+	
+	<!-- ESTADOS WORKFLOW OFERTA -->
+	<bean id="contrato-creado" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="0"/>
+		<constructor-arg name="transactionsVector" value="14"/>
+		<constructor-arg name="name" value="CREADO"/>
+		<constructor-arg name="finalState" value="false" type="boolean"/>
+		<constructor-arg name="startState" value="true" type="boolean"/>
+	</bean>
+	<bean id="licitacion-concretada" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="1"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="LICITACION CONCRETADA"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
+	</bean>
+	<bean id="licitacion-no-concretada" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="LICITACION NO CONCRETADA"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
+	</bean>
+	<bean id="contrato-inconcluso" class="com.licitaciones.EstadoImpl">
+		<constructor-arg name="identityVector" value="3"/>
+		<constructor-arg name="transactionsVector" value="0"/>
+		<constructor-arg name="name" value="CONTRATO INCONCLUSO"/>
+		<constructor-arg name="finalState" value="true" type="boolean"/>
+		<constructor-arg name="startState" value="false" type="boolean"/>
+	</bean>
+	<!-- FIN ESTADOS WORKFLOW OFERTA -->
+	<!-- TRANSACCIONES WORKFLOW OFERTA -->
+	<bean id="confirmacion-servicio" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="1"/>
+		<constructor-arg name="name" value="CONFIRMACION SERVICIO"/>
+	</bean>
+	
+	<bean id="confirmacion-negativa-servicio" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="2"/>
+		<constructor-arg name="name" value="CONFIRMACION NEGATIVA SERVICIO"/>
+	</bean>
+	
+	<bean id="confirmacion-vencida" class="com.licitaciones.TransactionImpl">
+		<constructor-arg name="identityVector" value="3"/>
+		<constructor-arg name="name" value="confirmacion-vencida"/>
+	</bean>
+	
+	
+	<!-- FIN TRANSACCIONES WORKFLOW OFERTA -->
 
 </beans>

@@ -25,7 +25,7 @@
 			  <span class="tiny-button-class"><sec:authentication property="principal.username"></sec:authentication></span>
 		  </li>
 	  	  <li id="inicio" >
-			  <a class="tiny-button-class" href="<c:url value="index"/>">Inicio</a>
+			  <a class="tiny-button-class" href="<c:url value="/index"/>">Inicio</a>
 		  </li>
 	  </ul>
   </div>

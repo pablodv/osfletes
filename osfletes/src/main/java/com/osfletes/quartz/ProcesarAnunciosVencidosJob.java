@@ -53,7 +53,7 @@ public class ProcesarAnunciosVencidosJob extends QuartzJobBean implements Statef
 		try{
 			
 			for (AnuncioMultipleLocalizado anuncioMultipleLocalizado : lista) {
-				anuncioMultipleLocalizado.setVencido(true);
+				//anuncioMultipleLocalizado.setVencido(true);
 				anuncioService.update(anuncioMultipleLocalizado);
 			}
 		

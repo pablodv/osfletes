@@ -2,7 +2,7 @@
 <head>
 	<jsp:include page="busqueda.jsp"></jsp:include>
 	<jsp:include page="modal-pop.jsp"></jsp:include>
-	<script type="text/javascript" src="<c:url value="/static/js/client-announcements-search.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/static/js/client-offer-search.js"/>"></script>
 </head>
 <div class="form">
 	<div class="form_row">

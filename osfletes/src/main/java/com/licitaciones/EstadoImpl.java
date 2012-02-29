@@ -13,11 +13,23 @@ public class EstadoImpl implements Estado {
 	
 	private EstadoImpl(){};
 	
-	public EstadoImpl(int identityVector, int transactionsVector, String name){
+	public EstadoImpl(int identityVector, int transactionsVector, String name,boolean finalState,boolean startState){
 		super();
 		this.identityVector = identityVector;
 		this.transactionsVector = transactionsVector;
 		this.name = name;
+		this.finalState = finalState;
+		this.startState = startState;
+	}
+	
+	public EstadoImpl(int identityVector, int transactionsVector, String name,boolean finalState,boolean startState,EstadoAction action){
+		super();
+		this.identityVector = identityVector;
+		this.transactionsVector = transactionsVector;
+		this.name = name;
+		this.action = action;
+		this.finalState = finalState;
+		this.startState = startState;
 	}
 	
 	@Override
@@ -73,7 +85,7 @@ public class EstadoImpl implements Estado {
 	}
 
 	@Override
-	public void executeInitAction(Object obj, Object... args) {
+	public <T extends StateAware> void executeInitAction(T  obj, Object... args) throws InvalidTransactionException {
 		if(action != null)
 			action.exceute(obj,args);		
 	}

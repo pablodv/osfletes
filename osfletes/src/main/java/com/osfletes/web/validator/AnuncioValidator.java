@@ -29,14 +29,7 @@ public class AnuncioValidator implements Validator{
 		if(anuncio.getFechaHasta() == null && !e.hasFieldErrors("fechaHasta")){
 			e.rejectValue("fechaHasta", "field.empty");
 		}
-		if(anuncio.getDireccionInicial() == null && !e.hasFieldErrors("direccionInicial")){
-			e.rejectValue("direccionInicial", "field.empty");
-		}
-		if(anuncio.getDireccionFinal() == null && !e.hasFieldErrors("direccionFinal")){
-			e.rejectValue("direccionFinal", "field.empty");
-		}
-		
-		
+				
 	}
 
 }

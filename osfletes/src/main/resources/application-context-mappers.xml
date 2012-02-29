@@ -17,6 +17,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<bean id="anuncioMultipleMapper" class="com.osfletes.mapper.AnuncioMultipleMapper" />
 	<bean id="direccionMapper" class="com.osfletes.mapper.DireccionMapper" />    
 	<bean id="clienteMapper" class="com.osfletes.mapper.ClienteMapper" />    
+	<bean id="contractMapper" class="com.osfletes.mapper.ContractMapper" />
+	<bean id="offerMapper" class="com.osfletes.mapper.OfferMapper" />
 	    
 <!-- 
  -->

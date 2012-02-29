@@ -1,5 +1,6 @@
 package com.osfletes.security;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -9,7 +10,7 @@ import com.osfletes.model.hibernate.ObjetoPersistente;
 @Entity(name="ROLE")
 public class Role extends ObjetoPersistente implements GrantedAuthority {
 
-	
+	@Column(name="ROLE")
 	public String role;
 
 	@Override

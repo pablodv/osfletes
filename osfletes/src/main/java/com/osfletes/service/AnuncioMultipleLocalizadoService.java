@@ -9,17 +9,18 @@ import org.springframework.stereotype.Service;
 import com.licitaciones.Workflow;
 import com.licitaciones.exception.BusinessException;
 import com.licitaciones.exception.InvalidTransactionException;
-import com.osfletes.dao.hibernate.AnuncioMultipleLocalizadoDAO;
+import com.osfletes.dao.interfaces.AnuncioMultipleDAO;
 import com.osfletes.model.AnuncioMultipleLocalizado;
 import com.osfletes.model.AnuncioWFTransactionsEnum;
 import com.osfletes.service.interfaces.IAnuncioService;
 import com.osfletes.service.interfaces.IDireccionService;
 import com.osfletes.web.controller.JsonMesagesResolver;
 import com.osfletes.web.dto.FiltroAnuncioDTO;
+import com.osfletes.web.dto.ProviderAnnounceFilterDTO;
 import com.osfletes.web.model.ResultadoPaginado;
 
 @Service(value="anuncioMultipleLocalizadoService")
-public class AnuncioMultipleLocalizadoService extends GenericServiceImplementacion<AnuncioMultipleLocalizado,AnuncioMultipleLocalizadoDAO> implements IAnuncioService{
+public class AnuncioMultipleLocalizadoService extends GenericServiceImplementacion<AnuncioMultipleLocalizado,AnuncioMultipleDAO> implements IAnuncioService{
 
 	@Autowired
 	IDireccionService direccionService;
@@ -61,7 +62,7 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 	
 	@Override
 	public void seleccionarProveedor(Long anuncioId, Long ofertaId){
-		ejecutarAccion(anuncioId, AnuncioWFTransactionsEnum.SELECCIONAR.getName(), ofertaId);
+		ejecutarAccion(anuncioId, AnuncioWFTransactionsEnum.SELECCIONAR.getName(),ofertaId);
 	}
 	
 	@Override
@@ -88,7 +89,12 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 
 	@Override
 	public Serializable save(AnuncioMultipleLocalizado entity) {
-		entity.setEstado(0);
+		try {
+			workflow.initWorkflow(entity);
+		} catch (Exception e) {
+			throw new BusinessException(JsonMesagesResolver.getMessage("error.action.invalid", null, null));
+		}
+		
 		return super.save(entity);
 	}
 
@@ -96,8 +102,19 @@ public class AnuncioMultipleLocalizadoService extends GenericServiceImplementaci
 	@Override
 	public AnuncioMultipleLocalizado findAnuncio(Long announcementId,
 			Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAnnoucement(announcementId,userId);
+	}
+
+
+	@Override
+	public boolean existAnnouncement(Long announcementId, Long userId) {
+		return dao.existAnnouncement(announcementId,userId);		
+	}
+
+
+	@Override
+	public ResultadoPaginado<AnuncioMultipleLocalizado> findAnuncios(ProviderAnnounceFilterDTO filter) {
+		return this.dao.findAnuncios(filter);
 	}
 
 	

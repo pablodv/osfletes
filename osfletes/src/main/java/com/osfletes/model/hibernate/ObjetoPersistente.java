@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -46,8 +47,10 @@ public abstract class ObjetoPersistente implements IObjetoPersistente {
 	protected Date fechaCreacion;
 	
 	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
+	@JoinColumn(name="USR_CREACION")
 	protected User usuarioCreacion;
 	@ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)
+	@JoinColumn(name="USR_MODIFICACION")
 	protected User usuarioModificacion;
 
 	@Override

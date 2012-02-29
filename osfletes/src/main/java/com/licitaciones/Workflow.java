@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.licitaciones.exception.InvalidTransactionException;
-import com.osfletes.model.AnuncioMultipleLocalizado;
 
 public class Workflow {
 	private List<Estado> estados;
 	private List<Transaction> transactions;
+	private Estado initialState;
 	
 	
 	
@@ -20,6 +20,11 @@ public class Workflow {
 		new Workflow();
 		this.estados = estados;
 		this.transactions = transactions;
+		for(Estado estado:estados){
+			if(estado.isStartState()){
+				this.initialState = estado;
+			}
+		}
 	}
 
 	public List<Estado> getEstados() {
@@ -31,11 +36,17 @@ public class Workflow {
 	}
 	
 	public Estado getStateById(int id) {
-		return estados.get(id);
+		for(Estado estado:estados){
+			if(estado.getIdentityVector() == id){
+				return estado;
+			}
+		}
+		
+		return null;
 	}
 	
-	public List<Transaction> getEstadoTransactions(int id){
-		Estado estado= getStateById(id);
+	public List<Transaction> getEstadoTransactions(Estado estado){
+		
 		int transactionVector = estado.getTransactionsVector();
 		int bitCount = Integer.bitCount(transactionVector);
 		List<Transaction> transactions = new ArrayList<Transaction>(bitCount);
@@ -50,7 +61,13 @@ public class Workflow {
 	}
 	
 	public Transaction getTransactionById(int id){
-		return transactions.get(id);
+		for(Transaction transaction:transactions){
+			if(transaction.getIdentityVector() == id){
+				return transaction;
+			}
+		}
+		
+		return null;
 	}
 	
 	public void executeAction(int stateId, int transactionId, StateAware obj, Object ... args) throws InvalidTransactionException{
@@ -87,6 +104,17 @@ public class Workflow {
 		return getStateById(actualState.executeAction(transaction));
 	}
 	
+	public boolean isTransactionValid(int state, String transactionName){
+		Estado actualState = this.getStateById(state);
+		Transaction transaction = this.getTransactionByName(transactionName);
+		try {
+			actualState.executeAction(transaction);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	public Transaction getTransactionByName(String name){
 		for(Transaction transaction:transactions){
 			if(transaction.getName().equalsIgnoreCase(name)){
@@ -105,6 +133,16 @@ public class Workflow {
 		}
 		
 		return null;
+	}
+	
+	public Estado getInitialState(){
+		return initialState;
+	}
+
+	public void initWorkflow(StateAware contract, Object... objects) throws InvalidTransactionException {
+		Estado initialState = this.getInitialState();
+		initialState.executeInitAction(contract, objects);
+		contract.setState(initialState.getIdentityVector());
 	}
 	
 }

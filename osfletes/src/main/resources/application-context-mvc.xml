@@ -37,6 +37,7 @@
   			<entry key="com.osfletes.web.dto.RoleDTO" value-ref="roleValidator"/>
   			<entry key="com.osfletes.web.dto.SignupClientDTO" value-ref="signUpClientValidator"/>
   			<entry key="com.osfletes.web.dto.SignupProviderDTO" value-ref="signUpProviderValidator"/>
+  			<entry key="com.osfletes.web.dto.ContractDTO" value-ref="contractValidator"/>
   		</map>
   	</property>
   </bean>  
@@ -46,6 +47,7 @@
   <bean id="roleValidator" class="com.osfletes.web.validator.RoleValidator" scope="singleton"/>
   <bean id="signUpClientValidator" class="com.osfletes.web.validator.SignupClientValidator" scope="singleton"/>
   <bean id="signUpProviderValidator" class="com.osfletes.web.validator.SignupProviderValidator" scope="singleton"/>
+  <bean id="contractValidator" class="com.osfletes.web.validator.ContractValidator" scope="singleton"/>
   
   
   
